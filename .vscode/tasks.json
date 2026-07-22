@@ -1,0 +1,31 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Minecraft: Run Client",
+      "type": "shell",
+      "command": "./gradlew",
+      "args": ["runClient"],
+      "options": {
+        "env": {
+          "JAVA_HOME": "/home/hadrykkxd/.local/share/jdks/jdk-21.0.11+10"
+        }
+      },
+      "group": "build",
+      "problemMatcher": "$gradle"
+    },
+    {
+      "label": "Minecraft: Build Mod",
+      "type": "shell",
+      "command": "./gradlew",
+      "args": ["build"],
+      "options": {
+        "env": {
+          "JAVA_HOME": "/home/hadrykkxd/.local/share/jdks/jdk-21.0.11+10"
+        }
+      },
+      "group": "build",
+      "problemMatcher": "$gradle"
+    }
+  ]
+}

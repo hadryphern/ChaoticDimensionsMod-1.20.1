@@ -1,0 +1,23 @@
+{
+  "item.chaoticd.shadow_gem": "Shadow Gem",
+  "item.chaoticd.sun_tear": "Sun Tear",
+  "item.chaoticd.chlorophyte_ingot": "Chlorophyte Ingot",
+  "item.chaoticd.rosalita_gem": "Rosalita",
+  "item.chaoticd.aluminium_ingot": "Aluminium Ingot",
+  "item.chaoticd.titanium_ingot": "Titanium Ingot",
+  "item.chaoticd.hero_gem": "Hero Gem",
+  "item.chaoticd.ruby": "Ruby",
+  "item.chaoticd.lava_ingot": "Lava Ingot",
+  "item.chaoticd.water_ingot": "Water Ingot",
+  "item.chaoticd.shadow_nugget": "Shadow Nugget",
+  "item.chaoticd.vortex_gem": "Vortex Gem",
+  "item.chaoticd.vylam_gem": "Vylam Gem",
+  "item.chaoticd.gold_especial_apple": "Gold Dimension Apple",
+  "item.chaoticd.enteralda": "Enteralda",
+  "item.chaoticd.dimension_apple": "Dimension Apple",
+  "item.chaoticd.derman_gem": "Derman Gem",
+  "item.chaoticd.bedrock_stick": "Bedrock Stick",
+
+  "itemgroup.chaotic.chaoticd_ores": "Chaotic Dimensions Ores",
+  "itemgroup.chaotic.chaoticd_items": "Chaotic Dimensions Items"
+}

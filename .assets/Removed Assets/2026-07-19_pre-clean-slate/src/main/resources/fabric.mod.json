@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "chaoticd",
+  "version": "${version}",
+  "name": "Chaotic Dimensions",
+  "description": "A Fabric continuation of Chaotic Dimensions.",
+  "authors": [
+    "hadrykkxd"
+  ],
+  "license": "All Rights Reserved",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "net.blue.chaoticd.ChaoticDimensions"
+    ],
+    "client": [
+      "net.blue.chaoticd.client.ChaoticDimensionsClient"
+    ],
+    "terrablender": [
+      "net.blue.chaoticd.worldgen.ChaoticDimensionsTerraBlender"
+    ]
+  },
+  "mixins": [
+    "chaoticd.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.16.14",
+    "fabric-api": "*",
+    "terrablender": ">=3.0.1.7",
+    "minecraft": "1.20.1",
+    "java": ">=17"
+  }
+}

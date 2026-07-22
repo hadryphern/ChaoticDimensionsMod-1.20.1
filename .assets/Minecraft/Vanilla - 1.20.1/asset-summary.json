@@ -1,0 +1,18 @@
+{
+  "minecraft_version": "1.20.1",
+  "source": "/home/hadrykkxd/.gradle/caches/fabric-loom/1.20.1/minecraft-client.jar",
+  "jar_resource_files": 7590,
+  "indexed_resource_files": 3563,
+  "jar_paths_retained_when_indexed_path_differs": [
+    "minecraft/font/include/unifont.json",
+    "minecraft/textures/gui/title/background/panorama_0.png",
+    "minecraft/textures/gui/title/background/panorama_1.png",
+    "minecraft/textures/gui/title/background/panorama_2.png",
+    "minecraft/textures/gui/title/background/panorama_3.png",
+    "minecraft/textures/gui/title/background/panorama_4.png",
+    "minecraft/textures/gui/title/background/panorama_5.png"
+  ],
+  "textures_png": 2431,
+  "resource_root": "assets/minecraft",
+  "git_ignored": true
+}

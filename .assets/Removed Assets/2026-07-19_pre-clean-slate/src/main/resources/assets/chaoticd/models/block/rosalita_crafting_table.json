@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "chaoticd:block/rosalita_planks",
+    "east": "chaoticd:block/rosalita_planks",
+    "north": "chaoticd:block/rosalita_planks",
+    "particle": "chaoticd:block/rosalita_planks",
+    "south": "chaoticd:block/rosalita_planks",
+    "up": "chaoticd:block/rosalita_planks",
+    "west": "chaoticd:block/rosalita_planks"
+  }
+}

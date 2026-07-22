@@ -1,0 +1,41 @@
+{
+	"schemaVersion": 1,
+	"id": "chaoticd",
+	"version": "${version}",
+	"name": "Chaotic Dimensions",
+	"description": "This is a Mod that adds a variety of Mobs and Things to your Minecraft world inspired by the famous Orespawn Mod!",
+	"authors": [
+		"blueDev!"
+	],
+	"contact": {
+		"homepage": "",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "MIT",
+	"icon": "assets/chaoticd/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"net.blue.chaoticd.ChaoticDimensions"
+		],
+		"client": [
+			"net.blue.chaoticd.ChaoticDimensionsClient"
+		],
+		"fabric-datagen": [
+			"net.blue.chaoticd.ChaoticDimensionsDataGenerator"
+		]
+	},
+	"mixins": [
+		"chaoticd.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.16.14",
+		"minecraft": "~1.20.1",
+		"java": ">=17",
+		"fabric-api": "*",
+		"geckolib": ">=4.3"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}

@@ -1,0 +1,18 @@
+{
+  "java.configuration.runtimes": [
+    {
+      "name": "JavaSE-17",
+      "path": "/home/hadrykkxd/.local/share/jdks/jdk-17.0.19+10"
+    },
+    {
+      "name": "JavaSE-21",
+      "path": "/home/hadrykkxd/.local/share/jdks/jdk-21.0.11+10",
+      "default": true
+    }
+  ],
+  "java.jdt.ls.java.home": "/home/hadrykkxd/.local/share/jdks/jdk-21.0.11+10",
+  "java.import.gradle.java.home": "/home/hadrykkxd/.local/share/jdks/jdk-21.0.11+10",
+  "java.import.gradle.wrapper.enabled": true,
+  "java.configuration.updateBuildConfiguration": "automatic",
+  "java.compile.nullAnalysis.mode": "automatic"
+}
