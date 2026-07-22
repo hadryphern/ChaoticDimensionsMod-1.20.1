@@ -31,6 +31,10 @@ bin/
 # fabric
 
 run/
+logs/
+
+# Local reference and working-source assets; never package or publish them.
+.assets/
 
 # java
 

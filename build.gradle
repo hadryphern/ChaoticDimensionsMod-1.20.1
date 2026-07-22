@@ -10,36 +10,14 @@ base {
 	archivesName = project.archives_base_name
 }
 
-repositories {
-
-	// Add repositories to retrieve artifacts from in here.
-	// You should only use this when depending on other mods because
-	// Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
-	// See https://docs.gradle.org/current/userguide/declaring_repositories.html
-	// for more information about repositories.
-
-	maven { url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/' }
-
-}
-
-fabricApi {
-	configureDataGeneration {
-		client = true
-	}
-}
-
 dependencies {
 	// To change the versions see the gradle.properties file
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
-	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
+	mappings loom.officialMojangMappings()
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
-	// Fabric API. This is technically optional, but you probably want it anyway.
+	// The clean base keeps only Fabric API; new content can add its own dependencies later.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-
-	// Geckolib
-	modImplementation 'software.bernie.geckolib:geckolib-fabric-1.20.1:4.3'
-
 }
 
 processResources {
@@ -88,4 +66,48 @@ publishing {
 		// The repositories here will be used for publishing your artifact, not for
 		// retrieving dependencies.
 	}
+}
+
+tasks.register('validateAuroraWorldgen', JavaExec) {
+	group = 'verification'
+	description = 'Loads and statistically validates the Aurora datapack without starting a server.'
+	classpath = sourceSets.test.runtimeClasspath
+	mainClass = 'net.blue.chaoticd.validation.AuroraWorldgenValidator'
+	dependsOn testClasses
+}
+
+tasks.register('validateAuroraAssets', JavaExec) {
+	group = 'verification'
+	description = 'Validates Aurora PNG dimensions/alpha and every local block model reference.'
+	classpath = sourceSets.test.runtimeClasspath
+	mainClass = 'net.blue.chaoticd.validation.AuroraAssetsValidator'
+	dependsOn testClasses
+}
+
+tasks.register('validateAuroraTrees', JavaExec) {
+	group = 'verification'
+	description = 'Generates a large deterministic sample and validates Aurora tree structure and variety.'
+	classpath = sourceSets.test.runtimeClasspath
+	mainClass = 'net.blue.chaoticd.validation.AuroraTreeValidator'
+	dependsOn testClasses
+}
+
+tasks.register('validateRarityApi', JavaExec) {
+	group = 'verification'
+	description = 'Validates rarity balance, resolution priority, animations, Unicode and Component styles.'
+	classpath = sourceSets.test.runtimeClasspath
+	mainClass = 'net.blue.chaoticd.validation.RarityApiValidator'
+	dependsOn testClasses
+}
+
+tasks.register('validateAuroraVisuals', JavaExec) {
+	group = 'verification'
+	description = 'Validates Aurora visual registry data, atmosphere tuning, cloud layers and rainbow geometry.'
+	classpath = sourceSets.test.runtimeClasspath
+	mainClass = 'net.blue.chaoticd.validation.AuroraVisualValidator'
+	dependsOn testClasses
+}
+
+tasks.named('check') {
+	dependsOn validateAuroraAssets, validateAuroraWorldgen, validateAuroraTrees, validateRarityApi, validateAuroraVisuals
 }

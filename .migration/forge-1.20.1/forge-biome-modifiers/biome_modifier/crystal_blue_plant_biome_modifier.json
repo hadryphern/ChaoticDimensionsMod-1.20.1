@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "chaoticd:crystal_dimension",
+  "features": "chaoticd:crystal_blue_plant",
+  "step": "vegetal_decoration"
+}

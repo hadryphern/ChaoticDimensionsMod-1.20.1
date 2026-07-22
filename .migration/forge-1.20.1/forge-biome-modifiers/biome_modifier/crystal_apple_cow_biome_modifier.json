@@ -1,0 +1,10 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": "chaoticd:crystal_dimension",
+  "spawners": {
+    "type": "chaoticd:crystal_apple_cow",
+    "weight": 20,
+    "minCount": 4,
+    "maxCount": 4
+  }
+}

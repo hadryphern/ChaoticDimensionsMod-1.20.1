@@ -1,0 +1,10 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": "chaoticd:pss_dimension",
+  "spawners": {
+    "type": "chaoticd:gold_dimension_pig",
+    "weight": 5,
+    "minCount": 1,
+    "maxCount": 1
+  }
+}

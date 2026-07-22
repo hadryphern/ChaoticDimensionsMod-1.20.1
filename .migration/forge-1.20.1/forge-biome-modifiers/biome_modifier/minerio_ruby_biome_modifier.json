@@ -1,0 +1,9 @@
+{
+  "type": "forge:add_features",
+  "biomes": [
+    "the_end",
+    "nether_wastes"
+  ],
+  "features": "chaoticd:minerio_ruby",
+  "step": "underground_ores"
+}
