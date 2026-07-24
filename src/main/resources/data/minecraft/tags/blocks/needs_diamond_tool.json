@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "chaoticd:ruby_ore",
+    "chaoticd:ruby_block",
+    "chaoticd:titanium_ore",
+    "chaoticd:titanium_block"
+  ]
+}

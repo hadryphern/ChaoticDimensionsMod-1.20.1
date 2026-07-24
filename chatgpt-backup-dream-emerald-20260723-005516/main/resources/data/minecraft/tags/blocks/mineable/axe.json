@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "#chaoticd:pastel_aurora_logs",
+    "chaoticd:pastel_aurora_planks",
+    "#chaoticd:shadow_logs",
+    "chaoticd:shadow_planks"
+  ]
+}

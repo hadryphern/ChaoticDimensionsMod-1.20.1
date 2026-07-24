@@ -7,6 +7,9 @@
     "net/blue/chaoticd/mixin/EnchantedBookTooltipMixin": {
       "appendHoverText": "Lnet/minecraft/class_1772;method_7851(Lnet/minecraft/class_1799;Lnet/minecraft/class_1937;Ljava/util/List;Lnet/minecraft/class_1836;)V"
     },
+    "net/blue/chaoticd/mixin/InventoryDropMixin": {
+      "dropAll": "Lnet/minecraft/class_1661;method_7388()V"
+    },
     "net/blue/chaoticd/mixin/ItemStackNameMixin": {
       "getHoverName": "Lnet/minecraft/class_1799;method_7964()Lnet/minecraft/class_2561;"
     },
@@ -39,6 +42,9 @@
       },
       "net/blue/chaoticd/mixin/EnchantedBookTooltipMixin": {
         "appendHoverText": "Lnet/minecraft/class_1772;method_7851(Lnet/minecraft/class_1799;Lnet/minecraft/class_1937;Ljava/util/List;Lnet/minecraft/class_1836;)V"
+      },
+      "net/blue/chaoticd/mixin/InventoryDropMixin": {
+        "dropAll": "Lnet/minecraft/class_1661;method_7388()V"
       },
       "net/blue/chaoticd/mixin/ItemStackNameMixin": {
         "getHoverName": "Lnet/minecraft/class_1799;method_7964()Lnet/minecraft/class_2561;"

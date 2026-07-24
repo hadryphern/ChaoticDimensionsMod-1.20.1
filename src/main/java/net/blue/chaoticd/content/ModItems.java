@@ -1,65 +1,590 @@
 package net.blue.chaoticd.content;
 
+import java.util.Map;
 import net.blue.chaoticd.ChaoticDimensions;
+import net.blue.chaoticd.content.item.ChaoticAppleItem;
+import net.blue.chaoticd.content.item.CrystalineSeeItem;
+import net.blue.chaoticd.content.item.DeathTotemItem;
+import net.blue.chaoticd.content.item.EmeraldArmorMaterial;
+import net.blue.chaoticd.content.item.EmeraldTier;
+import net.blue.chaoticd.content.item.LeatherBackpackItem;
+import net.blue.chaoticd.content.item.RubyArmorMaterial;
+import net.blue.chaoticd.content.item.RubyTier;
+import net.blue.chaoticd.content.item.TitaniumTier;
 import net.blue.chaoticd.content.item.SapphireSwordItem;
 import net.blue.chaoticd.content.item.SapphireTier;
-import net.blue.chaoticd.content.item.ChaoticAppleItem;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.food.FoodProperties;
+import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.AxeItem;
+import net.minecraft.world.item.BucketItem;
+import net.minecraft.world.item.HoeItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.AxeItem;
-import net.minecraft.world.item.HoeItem;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.PickaxeItem;
+import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.SpawnEggItem;
 import net.minecraft.world.item.ShovelItem;
+import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
-import net.minecraft.world.food.FoodProperties;
 
-import java.util.Map;
-
-/** The first clean-slate items: the manual Sapphire assets and their sword. */
+/** Items belonging to Chaotic Dimensions progression. */
 public final class ModItems {
-    public static final Item SAPPHIRE_GEM = register("sapphire_gem", new Item(new Item.Properties()));
-    public static final Item SAPPHIRE_SWORD = register("sapphire_sword", new SapphireSwordItem(new Item.Properties()));
-    public static final Item SAPPHIRE_PICKAXE = register("sapphire_pickaxe", new PickaxeItem(SapphireTier.INSTANCE, 1, -2.8F, new Item.Properties()));
-    public static final Item SAPPHIRE_AXE = register("sapphire_axe", new AxeItem(SapphireTier.INSTANCE, 7.0F, -3.0F, new Item.Properties()));
-    public static final Item SAPPHIRE_SHOVEL = register("sapphire_shovel", new ShovelItem(SapphireTier.INSTANCE, 1.5F, -3.0F, new Item.Properties()));
-    public static final Item SAPPHIRE_HOE = register("sapphire_hoe", new HoeItem(SapphireTier.INSTANCE, -2, -1.0F, new Item.Properties()));
-    public static final Item CHAOTIC_APPLE = register("chaotic_apple", new ChaoticAppleItem(new Item.Properties()
-        .food(new FoodProperties.Builder().nutrition(8).saturationMod(1.2F).alwaysEat().build())));
+    public static final Item SAPPHIRE_GEM = register(
+        "sapphire_gem",
+        new Item(new Item.Properties())
+    );
+
+    public static final Item SAPPHIRE_SWORD = register(
+        "sapphire_sword",
+        new SapphireSwordItem(new Item.Properties())
+    );
+
+    public static final Item SAPPHIRE_PICKAXE = register(
+        "sapphire_pickaxe",
+        new PickaxeItem(
+            SapphireTier.INSTANCE,
+            1,
+            -2.8F,
+            new Item.Properties()
+        )
+    );
+
+    public static final Item SAPPHIRE_AXE = register(
+        "sapphire_axe",
+        new AxeItem(
+            SapphireTier.INSTANCE,
+            7.0F,
+            -3.0F,
+            new Item.Properties()
+        )
+    );
+
+    public static final Item SAPPHIRE_SHOVEL = register(
+        "sapphire_shovel",
+        new ShovelItem(
+            SapphireTier.INSTANCE,
+            1.5F,
+            -3.0F,
+            new Item.Properties()
+        )
+    );
+
+    public static final Item SAPPHIRE_HOE = register(
+        "sapphire_hoe",
+        new HoeItem(
+            SapphireTier.INSTANCE,
+            -2,
+            -1.0F,
+            new Item.Properties()
+        )
+    );
+
+    public static final Item CHAOTIC_APPLE = register(
+        "chaotic_apple",
+        new ChaoticAppleItem(
+            new Item.Properties().food(
+                new FoodProperties.Builder()
+                    .nutrition(8)
+                    .saturationMod(1.2F)
+                    .alwaysEat()
+                    .build()
+            )
+        )
+    );
+
+    public static final Item DEATH_TOTEM = register(
+        "death_totem",
+        new DeathTotemItem(
+            new Item.Properties()
+                .stacksTo(1)
+                .fireResistant()
+                .rarity(Rarity.EPIC)
+        )
+    );
+
+    public static final Item EMERALD_INGOT = register(
+        "emerald_ingot",
+        new Item(
+            new Item.Properties()
+                .fireResistant()
+                .rarity(Rarity.EPIC)
+        )
+    );
+
+    public static final Item DREAM_FLUID_BUCKET = register(
+        "dream_fluid_bucket",
+        new BucketItem(
+            ModFluids.DREAM_FLUID,
+            new Item.Properties()
+                .craftRemainder(Items.BUCKET)
+                .stacksTo(1)
+                .rarity(Rarity.EPIC)
+        )
+    );
+
+    public static final Item CRYSTALINE_SEE = register(
+        "crystaline_see",
+        new CrystalineSeeItem(
+            new Item.Properties()
+                .stacksTo(16)
+                .rarity(Rarity.EPIC)
+        )
+    );
+
+
+
+    public static final Item CRYSTALINE_EYE = register(
+        "crystaline_eye",
+        new Item(new Item.Properties().stacksTo(16).rarity(Rarity.RARE))
+    );
+
+    public static final Item GOLD_SPECIAL_APPLE = register(
+        "gold_special_apple",
+        new Item(new Item.Properties().food(
+            new FoodProperties.Builder()
+                .nutrition(8)
+                .saturationMod(1.2F)
+                .alwaysEat()
+                .build()
+        ))
+    );
+
+    public static final Item DIMENSION_APPLE = register(
+        "dimension_apple",
+        new Item(new Item.Properties().food(
+            new FoodProperties.Builder()
+                .nutrition(6)
+                .saturationMod(0.8F)
+                .alwaysEat()
+                .build()
+        ))
+    );
+
+    public static final Item LEATHER_BACKPACK = register(
+        "leather_backpack",
+        new LeatherBackpackItem(new Item.Properties().stacksTo(1))
+    );
+
+    public static final Item BEDROCK_STICK = register(
+        "bedrock_stick",
+        new Item(new Item.Properties())
+    );
+
+    public static final Item ROSALITA_GEM = register(
+        "rosalita_gem",
+        new Item(new Item.Properties().rarity(Rarity.RARE))
+    );
+
+    public static final Item WATER_INGOT = register(
+        "water_ingot",
+        new Item(new Item.Properties().rarity(Rarity.RARE))
+    );
+
+    public static final Item LAVA_INGOT = register(
+        "lava_ingot",
+        new Item(new Item.Properties().fireResistant().rarity(Rarity.RARE))
+    );
+
+    public static final Item TITANIUM_INGOT = register(
+        "titanium_ingot",
+        new Item(new Item.Properties())
+    );
+
+    public static final Item TITANIUM_SWORD = register(
+        "titanium_sword",
+        new SwordItem(TitaniumTier.INSTANCE, 3, -2.4F, new Item.Properties())
+    );
+
+    public static final Item TITANIUM_PICKAXE = register(
+        "titanium_pickaxe",
+        new PickaxeItem(TitaniumTier.INSTANCE, 1, -2.8F, new Item.Properties())
+    );
+
+    public static final Item TITANIUM_AXE = register(
+        "titanium_axe",
+        new AxeItem(TitaniumTier.INSTANCE, 6.0F, -3.0F, new Item.Properties())
+    );
+
+    public static final Item TITANIUM_SHOVEL = register(
+        "titanium_shovel",
+        new ShovelItem(TitaniumTier.INSTANCE, 1.5F, -3.0F, new Item.Properties())
+    );
+
+    public static final Item TITANIUM_HOE = register(
+        "titanium_hoe",
+        new HoeItem(TitaniumTier.INSTANCE, -3, 0.0F, new Item.Properties())
+    );
+
+    public static final Item RUBY_NUGGET = register(
+        "ruby_nugget",
+        new Item(new Item.Properties().fireResistant().rarity(Rarity.EPIC))
+    );
+
+    public static final Item RUBY = register(
+        "ruby",
+        new Item(new Item.Properties().fireResistant().rarity(Rarity.EPIC))
+    );
+
+    public static final Item RUBY_PLATE = register(
+        "ruby_plate",
+        new Item(new Item.Properties().fireResistant().rarity(Rarity.EPIC))
+    );
+
+    public static final Item RUBY_SWORD = register(
+        "ruby_sword",
+        new SwordItem(
+            RubyTier.INSTANCE,
+            14,
+            -2.0F,
+            new Item.Properties().fireResistant().rarity(Rarity.EPIC)
+        )
+    );
+
+    public static final Item RUBY_PICKAXE = register(
+        "ruby_pickaxe",
+        new PickaxeItem(
+            RubyTier.INSTANCE,
+            6,
+            -2.4F,
+            new Item.Properties().fireResistant().rarity(Rarity.EPIC)
+        )
+    );
+
+    public static final Item RUBY_AXE = register(
+        "ruby_axe",
+        new AxeItem(
+            RubyTier.INSTANCE,
+            22.0F,
+            -2.6F,
+            new Item.Properties().fireResistant().rarity(Rarity.EPIC)
+        )
+    );
+
+    public static final Item RUBY_SHOVEL = register(
+        "ruby_shovel",
+        new ShovelItem(
+            RubyTier.INSTANCE,
+            8.0F,
+            -2.4F,
+            new Item.Properties().fireResistant().rarity(Rarity.EPIC)
+        )
+    );
+
+    public static final Item RUBY_HOE = register(
+        "ruby_hoe",
+        new HoeItem(
+            RubyTier.INSTANCE,
+            -8,
+            0.0F,
+            new Item.Properties().fireResistant().rarity(Rarity.EPIC)
+        )
+    );
+
+    public static final Item RUBY_HELMET = register(
+        "ruby_helmet",
+        new ArmorItem(
+            RubyArmorMaterial.INSTANCE,
+            ArmorItem.Type.HELMET,
+            new Item.Properties().fireResistant().rarity(Rarity.EPIC)
+        )
+    );
+
+    public static final Item RUBY_CHESTPLATE = register(
+        "ruby_chestplate",
+        new ArmorItem(
+            RubyArmorMaterial.INSTANCE,
+            ArmorItem.Type.CHESTPLATE,
+            new Item.Properties().fireResistant().rarity(Rarity.EPIC)
+        )
+    );
+
+    public static final Item RUBY_LEGGINGS = register(
+        "ruby_leggings",
+        new ArmorItem(
+            RubyArmorMaterial.INSTANCE,
+            ArmorItem.Type.LEGGINGS,
+            new Item.Properties().fireResistant().rarity(Rarity.EPIC)
+        )
+    );
+
+    public static final Item RUBY_BOOTS = register(
+        "ruby_boots",
+        new ArmorItem(
+            RubyArmorMaterial.INSTANCE,
+            ArmorItem.Type.BOOTS,
+            new Item.Properties().fireResistant().rarity(Rarity.EPIC)
+        )
+    );
+
+    public static final Item DIMENSION_PIG_SPAWN_EGG = register(
+        "dimension_pig_spawn_egg",
+        new SpawnEggItem(ModEntities.DIMENSION_PIG, 0x8A4B79, 0xE5A6D7, new Item.Properties())
+    );
+
+    public static final Item GOLD_DIMENSION_PIG_SPAWN_EGG = register(
+        "gold_dimension_pig_spawn_egg",
+        new SpawnEggItem(ModEntities.GOLD_DIMENSION_PIG, 0xD5A82A, 0xFFF08A, new Item.Properties())
+    );
+
+    public static final Item APPLE_COW_SPAWN_EGG = register(
+        "apple_cow_spawn_egg",
+        new SpawnEggItem(ModEntities.APPLE_COW, 0x6C2E1A, 0xD92B2B, new Item.Properties())
+    );
+
+    public static final Item GOLDEN_APPLE_COW_SPAWN_EGG = register(
+        "golden_apple_cow_spawn_egg",
+        new SpawnEggItem(ModEntities.GOLDEN_APPLE_COW, 0xC69A23, 0xFFF1A0, new Item.Properties())
+    );
+
+    public static final Item CRYSTAL_APPLE_COW_SPAWN_EGG = register(
+        "crystal_apple_cow_spawn_egg",
+        new SpawnEggItem(ModEntities.CRYSTAL_APPLE_COW, 0x8D6FD1, 0x65E6F4, new Item.Properties())
+    );
+
+    public static final Item CRYSTAL_GOLDEN_APPLE_SPAWN_EGG = register(
+        "crystal_golden_apple_spawn_egg",
+        new SpawnEggItem(ModEntities.CRYSTAL_GOLDEN_APPLE, 0xA96ED4, 0xFFD75A, new Item.Properties())
+    );
+
+    public static final Item CRYSTAL_CREEPER_SPAWN_EGG = register(
+        "crystal_creeper_spawn_egg",
+        new SpawnEggItem(ModEntities.CRYSTAL_CREEPER, 0x7869C6, 0xD6F5FF, new Item.Properties())
+    );
+
+    /*
+     * The Emerald tools are built around a tier with twice Netherite's
+     * durability, mining speed and attack bonus.
+     *
+     * Their constructor damage values were also adjusted so the final attacks
+     * remain a clear direct upgrade instead of merely reusing Netherite values.
+     */
+    public static final Item EMERALD_SWORD = register(
+        "emerald_sword",
+        new SwordItem(
+            EmeraldTier.INSTANCE,
+            7,
+            -2.4F,
+            new Item.Properties()
+                .fireResistant()
+                .rarity(Rarity.EPIC)
+        )
+    );
+
+    public static final Item EMERALD_PICKAXE = register(
+        "emerald_pickaxe",
+        new PickaxeItem(
+            EmeraldTier.INSTANCE,
+            3,
+            -2.8F,
+            new Item.Properties()
+                .fireResistant()
+                .rarity(Rarity.EPIC)
+        )
+    );
+
+    public static final Item EMERALD_AXE = register(
+        "emerald_axe",
+        new AxeItem(
+            EmeraldTier.INSTANCE,
+            11.0F,
+            -3.0F,
+            new Item.Properties()
+                .fireResistant()
+                .rarity(Rarity.EPIC)
+        )
+    );
+
+    public static final Item EMERALD_SHOVEL = register(
+        "emerald_shovel",
+        new ShovelItem(
+            EmeraldTier.INSTANCE,
+            4.0F,
+            -3.0F,
+            new Item.Properties()
+                .fireResistant()
+                .rarity(Rarity.EPIC)
+        )
+    );
+
+    public static final Item EMERALD_HOE = register(
+        "emerald_hoe",
+        new HoeItem(
+            EmeraldTier.INSTANCE,
+            -4,
+            0.0F,
+            new Item.Properties()
+                .fireResistant()
+                .rarity(Rarity.EPIC)
+        )
+    );
+
+    public static final Item EMERALD_HELMET = register(
+        "emerald_helmet",
+        new ArmorItem(
+            EmeraldArmorMaterial.INSTANCE,
+            ArmorItem.Type.HELMET,
+            new Item.Properties()
+                .fireResistant()
+                .rarity(Rarity.EPIC)
+        )
+    );
+
+    public static final Item EMERALD_CHESTPLATE = register(
+        "emerald_chestplate",
+        new ArmorItem(
+            EmeraldArmorMaterial.INSTANCE,
+            ArmorItem.Type.CHESTPLATE,
+            new Item.Properties()
+                .fireResistant()
+                .rarity(Rarity.EPIC)
+        )
+    );
+
+    public static final Item EMERALD_LEGGINGS = register(
+        "emerald_leggings",
+        new ArmorItem(
+            EmeraldArmorMaterial.INSTANCE,
+            ArmorItem.Type.LEGGINGS,
+            new Item.Properties()
+                .fireResistant()
+                .rarity(Rarity.EPIC)
+        )
+    );
+
+    public static final Item EMERALD_BOOTS = register(
+        "emerald_boots",
+        new ArmorItem(
+            EmeraldArmorMaterial.INSTANCE,
+            ArmorItem.Type.BOOTS,
+            new Item.Properties()
+                .fireResistant()
+                .rarity(Rarity.EPIC)
+        )
+    );
 
     private ModItems() {
     }
 
     private static Item register(String id, Item item) {
-        return Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(ChaoticDimensions.MOD_ID, id), item);
+        return Registry.register(
+            BuiltInRegistries.ITEM,
+            new ResourceLocation(
+                ChaoticDimensions.MOD_ID,
+                id
+            ),
+            item
+        );
     }
 
-    /** The canonical crafted form of the sword, including both of its defining enchantments. */
+    /**
+     * Canonical Sapphire Sword stack used after it actually enters a player's
+     * inventory. Creative tabs intentionally use the raw item instead.
+     */
     public static ItemStack createSapphireSword() {
-        ItemStack result = new ItemStack(SAPPHIRE_SWORD);
-        EnchantmentHelper.setEnchantments(Map.of(
-            ModEnchantments.SAPPHIRIC, 1,
-            ModEnchantments.DHEATHIC, 1), result);
+        ItemStack result =
+            new ItemStack(SAPPHIRE_SWORD);
+
+        EnchantmentHelper.setEnchantments(
+            Map.of(
+                ModEnchantments.SAPPHIRIC,
+                1,
+                ModEnchantments.DHEATHIC,
+                1
+            ),
+            result
+        );
+
         return result;
     }
 
-    public static ItemStack createSapphireTool(SapphireToolType type) {
-        ItemStack result = new ItemStack(type.item());
-        Map<net.minecraft.world.item.enchantment.Enchantment, Integer> enchantments = switch (type) {
-            case PICKAXE -> Map.of(Enchantments.BLOCK_FORTUNE, 50, Enchantments.BLOCK_EFFICIENCY, 50, Enchantments.UNBREAKING, 50);
-            case AXE -> Map.of(Enchantments.BLOCK_FORTUNE, 50, Enchantments.BLOCK_EFFICIENCY, 50,
-                Enchantments.UNBREAKING, 50, Enchantments.SHARPNESS, 50);
-            case SHOVEL, HOE -> Map.of(Enchantments.BLOCK_EFFICIENCY, 50, Enchantments.UNBREAKING, 50);
-        };
-        EnchantmentHelper.setEnchantments(enchantments, result);
+    public static ItemStack createSapphireTool(
+        SapphireToolType type
+    ) {
+        ItemStack result =
+            new ItemStack(type.item());
+
+        Map<
+            net.minecraft.world.item.enchantment.Enchantment,
+            Integer
+        > enchantments =
+            switch (type) {
+                case PICKAXE -> Map.of(
+                    Enchantments.BLOCK_FORTUNE,
+                    50,
+                    Enchantments.BLOCK_EFFICIENCY,
+                    50,
+                    Enchantments.UNBREAKING,
+                    50
+                );
+                case AXE -> Map.of(
+                    Enchantments.BLOCK_FORTUNE,
+                    50,
+                    Enchantments.BLOCK_EFFICIENCY,
+                    50,
+                    Enchantments.UNBREAKING,
+                    50,
+                    Enchantments.SHARPNESS,
+                    50
+                );
+                case SHOVEL, HOE -> Map.of(
+                    Enchantments.BLOCK_EFFICIENCY,
+                    50,
+                    Enchantments.UNBREAKING,
+                    50
+                );
+            };
+
+        EnchantmentHelper.setEnchantments(
+            enchantments,
+            result
+        );
+
         return result;
+    }
+
+    public static boolean isSapphireGear(
+        ItemStack stack
+    ) {
+        return stack.is(SAPPHIRE_SWORD)
+            || stack.is(SAPPHIRE_PICKAXE)
+            || stack.is(SAPPHIRE_AXE)
+            || stack.is(SAPPHIRE_SHOVEL)
+            || stack.is(SAPPHIRE_HOE);
+    }
+
+    public static boolean isEmeraldGear(
+        ItemStack stack
+    ) {
+        return stack.is(EMERALD_SWORD)
+            || stack.is(EMERALD_PICKAXE)
+            || stack.is(EMERALD_AXE)
+            || stack.is(EMERALD_SHOVEL)
+            || stack.is(EMERALD_HOE)
+            || stack.is(EMERALD_HELMET)
+            || stack.is(EMERALD_CHESTPLATE)
+            || stack.is(EMERALD_LEGGINGS)
+            || stack.is(EMERALD_BOOTS);
+    }
+
+    public static boolean isEmeraldArmor(
+        ItemStack stack
+    ) {
+        return stack.is(EMERALD_HELMET)
+            || stack.is(EMERALD_CHESTPLATE)
+            || stack.is(EMERALD_LEGGINGS)
+            || stack.is(EMERALD_BOOTS);
     }
 
     public enum SapphireToolType {
-        PICKAXE(SAPPHIRE_PICKAXE), AXE(SAPPHIRE_AXE), SHOVEL(SAPPHIRE_SHOVEL), HOE(SAPPHIRE_HOE);
+        PICKAXE(SAPPHIRE_PICKAXE),
+        AXE(SAPPHIRE_AXE),
+        SHOVEL(SAPPHIRE_SHOVEL),
+        HOE(SAPPHIRE_HOE);
 
         private final Item item;
 
@@ -73,6 +598,6 @@ public final class ModItems {
     }
 
     public static void initialize() {
-        // Entries belong only to the Chaotic Dimensions category family.
+        // Static fields perform registry insertion.
     }
 }

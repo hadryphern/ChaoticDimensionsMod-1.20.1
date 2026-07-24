@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:clamp",
+  "input": {
+    "type": "minecraft:add",
+    "argument1": {
+      "type": "minecraft:add",
+      "argument1": {
+        "type": "minecraft:mul",
+        "argument1": 1.2,
+        "argument2": "chaoticd:aurora/isolated_islands"
+      },
+      "argument2": {
+        "type": "minecraft:mul",
+        "argument1": -0.2,
+        "argument2": "chaoticd:aurora/cluster_field"
+      }
+    },
+    "argument2": {
+      "type": "minecraft:add",
+      "argument1": {
+        "type": "minecraft:mul",
+        "argument1": 0.1,
+        "argument2": "chaoticd:aurora/edges"
+      },
+      "argument2": -0.82
+    }
+  },
+  "min": -2.0,
+  "max": 0.7
+}

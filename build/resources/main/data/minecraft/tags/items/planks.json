@@ -1,6 +1,8 @@
 {
   "replace": false,
   "values": [
-    "chaoticd:pastel_aurora_planks"
+    "chaoticd:pastel_aurora_planks",
+    "chaoticd:shadow_planks",
+    "chaoticd:crystal_planks"
   ]
 }
