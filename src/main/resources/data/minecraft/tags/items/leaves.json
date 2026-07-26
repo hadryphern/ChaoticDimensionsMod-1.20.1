@@ -1,6 +1,9 @@
 {
   "replace": false,
   "values": [
+    "chaoticd:aurora_pinkko_leaves",
+    "chaoticd:aurora_souless_leaves",
+    "chaoticd:aurora_sky_leaves",
     "chaoticd:crystal_leaves_1",
     "chaoticd:crystal_leaves_2",
     "chaoticd:crystal_leaves_3"

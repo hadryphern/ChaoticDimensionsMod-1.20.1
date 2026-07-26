@@ -30,19 +30,34 @@ public final class AuroraAssetsValidator {
         ROOT.resolve("data/chaoticd");
 
     private static final Set<String> REQUIRED_BLOCKS = Set.of(
-        "pastel_soil",
-        "pastel_grass",
-        "pastel_aurora_stone",
-        "pastel_aurora_log",
-        "pastel_aurora_wood",
-        "stripped_pastel_aurora_log",
-        "stripped_pastel_aurora_wood",
-        "pastel_aurora_planks",
-        "pastel_pink_leaves",
-        "pastel_purple_leaves",
-        "pastel_blue_leaves",
-        "sapphire_ore",
+        "aurora_dirt",
+        "aurora_grass_block",
+        "aurora_stone",
+        "aurora_pinkko_log",
+        "stripped_aurora_pinkko_log",
+        "aurora_pinkko_planks",
+        "aurora_pinkko_leaves",
+        "aurora_pinkko_sapling",
+        "aurora_souless_log",
+        "stripped_aurora_souless_log",
+        "aurora_souless_planks",
+        "aurora_souless_leaves",
+        "aurora_souless_sapling",
+        "aurora_sky_log",
+        "stripped_aurora_sky_log",
+        "aurora_sky_planks",
+        "aurora_sky_leaves",
+        "aurora_sky_sapling",
+        "ruby_ore",
+        "jax_ore",
         "rosalita_ore",
+        "nether_ruby_ore",
+        "nether_jax_ore",
+        "nether_rosalita_ore",
+        "aurora_ruby_ore",
+        "aurora_jax_ore",
+        "aurora_rosalita_ore",
+        "aurora_sapphire_ore",
         "shadow_soil",
         "shadow_grass",
         "shadow_stone",
@@ -55,20 +70,41 @@ public final class AuroraAssetsValidator {
     );
 
     private static final Set<String> REQUIRED_BLOCK_TEXTURES = Set.of(
-        "pastel_soil",
-        "pastel_grass",
-        "pastel_grass_side",
-        "pastel_aurora_stone",
-        "pastel_aurora_log",
-        "pastel_aurora_log_top",
-        "stripped_pastel_aurora_log",
-        "stripped_pastel_aurora_log_top",
-        "pastel_aurora_planks",
-        "pastel_pink_leaves",
-        "pastel_purple_leaves",
-        "pastel_blue_leaves",
-        "sapphire_ore",
+        "aurora_dirt",
+        "aurora_grass_block",
+        "aurora_grass_block_top",
+        "aurora_stone",
+        "aurora_pinkko_log",
+        "aurora_pinkko_log_top",
+        "stripped_aurora_pinkko_log",
+        "stripped_aurora_pinkko_log_top",
+        "aurora_pinkko_planks",
+        "aurora_pinkko_sappling",
+        "aurora_souless_log",
+        "aurora_souless_log_top",
+        "stripped_aurora_souless_log",
+        "stripped_aurora_souless_log_top",
+        "aurora_souless_planks",
+        "aurora_souless_sappling",
+        "aurora_sky_log",
+        "aurora_sky_log_top",
+        "stripped_aurora_sky_log",
+        "stripped_aurora_sky_log_top",
+        "aurora_sky_planks",
+        "aurora_sky_sappling",
+        "aurora_leaves_1",
+        "aurora_leaves_2",
+        "aurora_leaves_3",
+        "ruby_ore",
+        "jaxy_ore",
         "rosalita_ore",
+        "nether_ruby_ore",
+        "nether_jax_ore",
+        "nether_rosalita",
+        "aurora_ruby_ore",
+        "aurora_jaxy_ore",
+        "aurora_rosalita_ore",
+        "aurora_sapphire_ore",
         "shadow_soil",
         "shadow_grass",
         "shadow_grass_side",
@@ -82,10 +118,16 @@ public final class AuroraAssetsValidator {
     );
 
     private static final Set<String> LEAF_TEXTURES = Set.of(
-        "pastel_pink_leaves",
-        "pastel_purple_leaves",
-        "pastel_blue_leaves",
+        "aurora_leaves_1",
+        "aurora_leaves_2",
+        "aurora_leaves_3",
         "shadow_leaves"
+    );
+
+    private static final Set<String> SAPLING_TEXTURES = Set.of(
+        "aurora_pinkko_sappling",
+        "aurora_souless_sappling",
+        "aurora_sky_sappling"
     );
 
     private static final List<String> EMERALD_ITEMS = List.of(
@@ -99,6 +141,11 @@ public final class AuroraAssetsValidator {
         "emerald_chestplate",
         "emerald_leggings",
         "emerald_boots",
+        "titanium_helmet",
+        "titanium_chestplate",
+        "titanium_leggings",
+        "titanium_boots",
+        "aurora_pearl",
         "dream_fluid_bucket",
         "crystaline_see"
     );
@@ -219,9 +266,9 @@ public final class AuroraAssetsValidator {
             );
 
             check(
-                image.getWidth() == 128
-                    && image.getHeight() == 128,
-                "Block texture is not 128x128: "
+                image.getWidth() == image.getHeight()
+                    && (image.getWidth() == 16 || image.getWidth() == 128),
+                "Block texture must be square 16x16 or 128x128: "
                     + file
             );
 
@@ -254,6 +301,11 @@ public final class AuroraAssetsValidator {
                         + id
                         + "="
                         + ratio
+                );
+            } else if (SAPLING_TEXTURES.contains(id)) {
+                check(
+                    transparent > 0,
+                    "Sapling texture must contain transparent pixels: " + id
                 );
             } else {
                 check(
@@ -400,6 +452,10 @@ public final class AuroraAssetsValidator {
 
         validateArmorLayer("emerald_layer_1.png");
         validateArmorLayer("emerald_layer_2.png");
+        validateArmorLayer("ruby_layer_1.png");
+        validateArmorLayer("ruby_layer_2.png");
+        validateArmorLayer("titanium_layer_1.png");
+        validateArmorLayer("titanium_layer_2.png");
 
         requireFile(
             DATA.resolve(
@@ -504,7 +560,7 @@ public final class AuroraAssetsValidator {
 
         requireFile(
             DATA.resolve(
-                "tags/blocks/pastel_aurora_logs.json"
+                "tags/blocks/aurora_logs.json"
             )
         );
 

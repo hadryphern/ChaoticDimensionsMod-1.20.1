@@ -11,7 +11,6 @@ import net.blue.chaoticd.content.ModItemGroups;
 import net.blue.chaoticd.content.ModItems;
 import net.blue.chaoticd.content.ModLootTables;
 import net.blue.chaoticd.content.ModPotions;
-import net.blue.chaoticd.content.ModRecipes;
 import net.blue.chaoticd.gameplay.ChaoticGearInitialization;
 import net.blue.chaoticd.gameplay.DreamFluidSystems;
 import net.blue.chaoticd.gameplay.EmeraldLuckSystems;
@@ -60,8 +59,6 @@ public final class ChaoticDimensions implements ModInitializer {
         ModRarities.bootstrap();
 
         ModItemGroups.initialize();
-
-        ModRecipes.initialize();
 
         ModGameplayEvents.initialize();
 

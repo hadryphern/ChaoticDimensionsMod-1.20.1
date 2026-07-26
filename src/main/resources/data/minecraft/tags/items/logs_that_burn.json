@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "chaoticd:crystal_log"
+    "chaoticd:crystal_log",
+    "#chaoticd:aurora_logs"
   ]
 }

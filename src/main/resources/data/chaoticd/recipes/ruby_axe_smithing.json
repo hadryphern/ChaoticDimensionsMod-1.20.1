@@ -4,7 +4,7 @@
     "item": "chaoticd:ruby_plate"
   },
   "base": {
-    "item": "minecraft:netherite_axe"
+    "item": "chaoticd:emerald_axe"
   },
   "addition": {
     "item": "chaoticd:ruby"

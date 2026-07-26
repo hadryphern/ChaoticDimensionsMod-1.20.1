@@ -4,33 +4,33 @@ import net.blue.chaoticd.content.ModItems;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.crafting.Ingredient;
 
-/** Basic Titanium tool material restored from the legacy content set. */
+/** Titanium is the requested three-times-Ruby tool material. */
 public enum TitaniumTier implements Tier {
     INSTANCE;
 
     @Override
     public int getUses() {
-        return 2_500;
+        return 24_372;
     }
 
     @Override
     public float getSpeed() {
-        return 10.0F;
+        return 108.0F;
     }
 
     @Override
     public float getAttackDamageBonus() {
-        return 4.0F;
+        return 48.0F;
     }
 
     @Override
     public int getLevel() {
-        return 4;
+        return 6;
     }
 
     @Override
     public int getEnchantmentValue() {
-        return 18;
+        return 90;
     }
 
     @Override

@@ -4,7 +4,7 @@
     "item": "chaoticd:ruby_plate"
   },
   "base": {
-    "item": "minecraft:netherite_leggings"
+    "item": "chaoticd:emerald_leggings"
   },
   "addition": {
     "item": "chaoticd:ruby"

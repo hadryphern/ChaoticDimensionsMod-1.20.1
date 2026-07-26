@@ -2,6 +2,14 @@
   "replace": false,
   "values": [
     "chaoticd:ruby_ore",
+    "chaoticd:jax_ore",
+    "chaoticd:nether_ruby_ore",
+    "chaoticd:nether_jax_ore",
+    "chaoticd:nether_rosalita_ore",
+    "chaoticd:aurora_ruby_ore",
+    "chaoticd:aurora_jax_ore",
+    "chaoticd:aurora_rosalita_ore",
+    "chaoticd:aurora_sapphire_ore",
     "chaoticd:ruby_block",
     "chaoticd:titanium_ore",
     "chaoticd:titanium_block"

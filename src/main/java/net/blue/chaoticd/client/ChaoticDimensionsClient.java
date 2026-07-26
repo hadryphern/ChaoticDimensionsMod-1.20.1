@@ -23,10 +23,20 @@ public final class ChaoticDimensionsClient implements ClientModInitializer {
             ModBlocks.PASTEL_PINK_LEAVES,
             ModBlocks.PASTEL_PURPLE_LEAVES,
             ModBlocks.PASTEL_BLUE_LEAVES,
+            ModBlocks.AURORA_PINKKO_LEAVES,
+            ModBlocks.AURORA_SOULESS_LEAVES,
+            ModBlocks.AURORA_SKY_LEAVES,
             ModBlocks.SHADOW_LEAVES,
             ModBlocks.CRYSTAL_LEAVES_1,
             ModBlocks.CRYSTAL_LEAVES_2,
             ModBlocks.CRYSTAL_LEAVES_3
+        );
+
+        BlockRenderLayerMap.INSTANCE.putBlocks(
+            RenderType.cutout(),
+            ModBlocks.AURORA_PINKKO_SAPLING,
+            ModBlocks.AURORA_SOULESS_SAPLING,
+            ModBlocks.AURORA_SKY_SAPLING
         );
 
         BlockRenderLayerMap.INSTANCE.putBlocks(

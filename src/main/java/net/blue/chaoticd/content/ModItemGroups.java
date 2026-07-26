@@ -39,19 +39,42 @@ public final class ModItemGroups {
     }
 
     private static void addBlocks(CreativeModeTab.Output entries) {
-        entries.accept(ModBlocks.PASTEL_AURORA_LOG);
-        entries.accept(ModBlocks.PASTEL_AURORA_WOOD);
-        entries.accept(ModBlocks.STRIPPED_PASTEL_AURORA_LOG);
-        entries.accept(ModBlocks.STRIPPED_PASTEL_AURORA_WOOD);
-        entries.accept(ModBlocks.PASTEL_AURORA_PLANKS);
-        entries.accept(ModBlocks.PASTEL_PINK_LEAVES);
-        entries.accept(ModBlocks.PASTEL_PURPLE_LEAVES);
-        entries.accept(ModBlocks.PASTEL_BLUE_LEAVES);
-        entries.accept(ModBlocks.PASTEL_GRASS);
-        entries.accept(ModBlocks.PASTEL_SOIL);
-        entries.accept(ModBlocks.PASTEL_AURORA_STONE);
-        entries.accept(ModBlocks.SAPPHIRE_ORE);
+        entries.accept(ModBlocks.AURORA_GRASS_BLOCK);
+        entries.accept(ModBlocks.AURORA_DIRT);
+        entries.accept(ModBlocks.AURORA_STONE);
+
+        addAuroraWood(entries,
+            ModBlocks.AURORA_PINKKO_LOG,
+            ModBlocks.STRIPPED_AURORA_PINKKO_LOG,
+            ModBlocks.AURORA_PINKKO_PLANKS,
+            ModBlocks.AURORA_PINKKO_LEAVES,
+            ModBlocks.AURORA_PINKKO_SAPLING);
+        addAuroraWood(entries,
+            ModBlocks.AURORA_SOULESS_LOG,
+            ModBlocks.STRIPPED_AURORA_SOULESS_LOG,
+            ModBlocks.AURORA_SOULESS_PLANKS,
+            ModBlocks.AURORA_SOULESS_LEAVES,
+            ModBlocks.AURORA_SOULESS_SAPLING);
+        addAuroraWood(entries,
+            ModBlocks.AURORA_SKY_LOG,
+            ModBlocks.STRIPPED_AURORA_SKY_LOG,
+            ModBlocks.AURORA_SKY_PLANKS,
+            ModBlocks.AURORA_SKY_LEAVES,
+            ModBlocks.AURORA_SKY_SAPLING);
+
+        entries.accept(ModBlocks.RUBY_ORE);
+        entries.accept(ModBlocks.JAX_ORE);
         entries.accept(ModBlocks.ROSALITA_ORE);
+        entries.accept(ModBlocks.NETHER_RUBY_ORE);
+        entries.accept(ModBlocks.NETHER_JAX_ORE);
+        entries.accept(ModBlocks.NETHER_ROSALITA_ORE);
+        entries.accept(ModBlocks.AURORA_RUBY_ORE);
+        entries.accept(ModBlocks.AURORA_JAX_ORE);
+        entries.accept(ModBlocks.AURORA_ROSALITA_ORE);
+        entries.accept(ModBlocks.AURORA_SAPPHIRE_ORE);
+        entries.accept(ModBlocks.TITANIUM_ORE);
+        entries.accept(ModBlocks.TITANIUM_BLOCK);
+        entries.accept(ModBlocks.RUBY_BLOCK);
 
         entries.accept(ModBlocks.SHADOW_LOG);
         entries.accept(ModBlocks.SHADOW_WOOD);
@@ -62,11 +85,6 @@ public final class ModItemGroups {
         entries.accept(ModBlocks.SHADOW_GRASS);
         entries.accept(ModBlocks.SHADOW_SOIL);
         entries.accept(ModBlocks.SHADOW_STONE);
-
-        entries.accept(ModBlocks.RUBY_ORE);
-        entries.accept(ModBlocks.RUBY_BLOCK);
-        entries.accept(ModBlocks.TITANIUM_ORE);
-        entries.accept(ModBlocks.TITANIUM_BLOCK);
 
         entries.accept(ModBlocks.CRYSTAL_DIRT);
         entries.accept(ModBlocks.CRYSTAL_GRASS_BLOCK);
@@ -84,18 +102,6 @@ public final class ModItemGroups {
     }
 
     private static void addToolsAndWeapons(CreativeModeTab.Output entries) {
-        entries.accept(ModItems.SAPPHIRE_SWORD);
-        entries.accept(ModItems.SAPPHIRE_AXE);
-        entries.accept(ModItems.SAPPHIRE_PICKAXE);
-        entries.accept(ModItems.SAPPHIRE_SHOVEL);
-        entries.accept(ModItems.SAPPHIRE_HOE);
-
-        entries.accept(ModItems.TITANIUM_SWORD);
-        entries.accept(ModItems.TITANIUM_AXE);
-        entries.accept(ModItems.TITANIUM_PICKAXE);
-        entries.accept(ModItems.TITANIUM_SHOVEL);
-        entries.accept(ModItems.TITANIUM_HOE);
-
         entries.accept(ModItems.EMERALD_SWORD);
         entries.accept(ModItems.EMERALD_AXE);
         entries.accept(ModItems.EMERALD_PICKAXE);
@@ -107,6 +113,18 @@ public final class ModItemGroups {
         entries.accept(ModItems.RUBY_PICKAXE);
         entries.accept(ModItems.RUBY_SHOVEL);
         entries.accept(ModItems.RUBY_HOE);
+
+        entries.accept(ModItems.TITANIUM_SWORD);
+        entries.accept(ModItems.TITANIUM_AXE);
+        entries.accept(ModItems.TITANIUM_PICKAXE);
+        entries.accept(ModItems.TITANIUM_SHOVEL);
+        entries.accept(ModItems.TITANIUM_HOE);
+
+        entries.accept(ModItems.SAPPHIRE_SWORD);
+        entries.accept(ModItems.SAPPHIRE_AXE);
+        entries.accept(ModItems.SAPPHIRE_PICKAXE);
+        entries.accept(ModItems.SAPPHIRE_SHOVEL);
+        entries.accept(ModItems.SAPPHIRE_HOE);
     }
 
     private static void addMaterialsAndOres(CreativeModeTab.Output entries) {
@@ -132,6 +150,11 @@ public final class ModItemGroups {
         entries.accept(ModItems.RUBY_CHESTPLATE);
         entries.accept(ModItems.RUBY_LEGGINGS);
         entries.accept(ModItems.RUBY_BOOTS);
+
+        entries.accept(ModItems.TITANIUM_HELMET);
+        entries.accept(ModItems.TITANIUM_CHESTPLATE);
+        entries.accept(ModItems.TITANIUM_LEGGINGS);
+        entries.accept(ModItems.TITANIUM_BOOTS);
     }
 
     private static void addEnchantments(CreativeModeTab.Output entries) {
@@ -187,7 +210,23 @@ public final class ModItemGroups {
         entries.accept(ModItems.DREAM_FLUID_BUCKET);
         entries.accept(ModItems.CRYSTALINE_SEE);
         entries.accept(ModItems.CRYSTALINE_EYE);
+        entries.accept(ModItems.AURORA_PEARL);
         entries.accept(ModItems.LEATHER_BACKPACK);
+    }
+
+    private static void addAuroraWood(
+        CreativeModeTab.Output entries,
+        net.minecraft.world.level.block.Block log,
+        net.minecraft.world.level.block.Block strippedLog,
+        net.minecraft.world.level.block.Block planks,
+        net.minecraft.world.level.block.Block leaves,
+        net.minecraft.world.level.block.Block sapling
+    ) {
+        entries.accept(log);
+        entries.accept(strippedLog);
+        entries.accept(planks);
+        entries.accept(leaves);
+        entries.accept(sapling);
     }
 
     public static void initialize() {

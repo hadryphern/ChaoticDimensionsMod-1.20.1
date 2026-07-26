@@ -2,6 +2,7 @@
   "replace": false,
   "values": [
     "#chaoticd:pastel_aurora_logs",
+    "#chaoticd:aurora_logs",
     "#chaoticd:shadow_logs"
   ]
 }

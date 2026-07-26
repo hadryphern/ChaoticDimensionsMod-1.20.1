@@ -145,7 +145,7 @@ public final class AuroraWorldgenValidator {
         );
 
         require(
-            ModBlocks.PASTEL_AURORA_STONE,
+            ModBlocks.AURORA_STONE,
             "Aurora blocks were not initialized"
         );
 
@@ -243,7 +243,7 @@ public final class AuroraWorldgenValidator {
 
             check(
                 settings.defaultBlock()
-                    .is(ModBlocks.PASTEL_AURORA_STONE),
+                    .is(ModBlocks.AURORA_STONE),
                 "Unexpected default terrain block"
             );
 

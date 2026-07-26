@@ -97,6 +97,65 @@ public final class ModBlocks {
         leaves(MapColor.COLOR_LIGHT_BLUE)
     );
 
+    /*
+     * Aurora's current wood palette.  The older pastel blocks stay registered
+     * only so existing development worlds can still be opened; all new terrain
+     * and trees use the explicit Aurora blocks below.
+     */
+    public static final Block AURORA_DIRT = register(
+        "aurora_dirt",
+        new Block(BlockBehaviour.Properties.copy(Blocks.DIRT)
+            .mapColor(MapColor.SNOW)
+            .sound(SoundType.GRAVEL)
+            .isValidSpawn((state, level, pos, type) -> false))
+    );
+
+    public static final Block AURORA_GRASS_BLOCK = register(
+        "aurora_grass_block",
+        new AuroraGrassBlock(BlockBehaviour.Properties.copy(Blocks.GRASS_BLOCK)
+            .mapColor(MapColor.COLOR_PINK)
+            .sound(SoundType.GRASS)
+            .isValidSpawn((state, level, pos, type) -> false))
+    );
+
+    public static final Block AURORA_STONE = register(
+        "aurora_stone",
+        new Block(BlockBehaviour.Properties.copy(Blocks.STONE)
+            .mapColor(MapColor.QUARTZ)
+            .requiresCorrectToolForDrops()
+            .isValidSpawn((state, level, pos, type) -> false))
+    );
+
+    public static final Block AURORA_PINKKO_LOG = auroraLog("aurora_pinkko_log", MapColor.COLOR_PINK);
+    public static final Block STRIPPED_AURORA_PINKKO_LOG = auroraLog(
+        "stripped_aurora_pinkko_log", MapColor.COLOR_PINK);
+    public static final Block AURORA_PINKKO_PLANKS = auroraPlanks(
+        "aurora_pinkko_planks", MapColor.COLOR_PINK);
+    public static final Block AURORA_PINKKO_LEAVES = register(
+        "aurora_pinkko_leaves", leaves(MapColor.COLOR_PINK));
+    public static final Block AURORA_PINKKO_SAPLING = auroraSapling(
+        "aurora_pinkko_sapling", MapColor.COLOR_PINK);
+
+    public static final Block AURORA_SOULESS_LOG = auroraLog("aurora_souless_log", MapColor.COLOR_PURPLE);
+    public static final Block STRIPPED_AURORA_SOULESS_LOG = auroraLog(
+        "stripped_aurora_souless_log", MapColor.COLOR_PURPLE);
+    public static final Block AURORA_SOULESS_PLANKS = auroraPlanks(
+        "aurora_souless_planks", MapColor.COLOR_PURPLE);
+    public static final Block AURORA_SOULESS_LEAVES = register(
+        "aurora_souless_leaves", leaves(MapColor.COLOR_PURPLE));
+    public static final Block AURORA_SOULESS_SAPLING = auroraSapling(
+        "aurora_souless_sapling", MapColor.COLOR_PURPLE);
+
+    public static final Block AURORA_SKY_LOG = auroraLog("aurora_sky_log", MapColor.COLOR_LIGHT_BLUE);
+    public static final Block STRIPPED_AURORA_SKY_LOG = auroraLog(
+        "stripped_aurora_sky_log", MapColor.COLOR_LIGHT_BLUE);
+    public static final Block AURORA_SKY_PLANKS = auroraPlanks(
+        "aurora_sky_planks", MapColor.COLOR_LIGHT_BLUE);
+    public static final Block AURORA_SKY_LEAVES = register(
+        "aurora_sky_leaves", leaves(MapColor.COLOR_LIGHT_BLUE));
+    public static final Block AURORA_SKY_SAPLING = auroraSapling(
+        "aurora_sky_sapling", MapColor.COLOR_LIGHT_BLUE);
+
     public static final Block SAPPHIRE_ORE = register(
         "sapphire_ore",
         new DropExperienceBlock(
@@ -116,6 +175,78 @@ public final class ModBlocks {
                 .requiresCorrectToolForDrops()
                 .isValidSpawn((state, level, pos, type) -> false),
             UniformInt.of(3, 7)
+        )
+    );
+
+    /** Jax has no supplied item texture yet, so its ores deliberately drop themselves. */
+    public static final Block JAX_ORE = register(
+        "jax_ore",
+        new Block(BlockBehaviour.Properties.copy(Blocks.DIAMOND_ORE)
+            .mapColor(MapColor.COLOR_PURPLE)
+            .requiresCorrectToolForDrops())
+    );
+
+    public static final Block NETHER_RUBY_ORE = register(
+        "nether_ruby_ore",
+        new DropExperienceBlock(
+            BlockBehaviour.Properties.copy(Blocks.NETHER_GOLD_ORE)
+                .mapColor(MapColor.COLOR_RED)
+                .requiresCorrectToolForDrops(),
+            UniformInt.of(4, 8)
+        )
+    );
+
+    public static final Block NETHER_JAX_ORE = register(
+        "nether_jax_ore",
+        new Block(BlockBehaviour.Properties.copy(Blocks.NETHER_QUARTZ_ORE)
+            .mapColor(MapColor.COLOR_PURPLE)
+            .requiresCorrectToolForDrops())
+    );
+
+    public static final Block NETHER_ROSALITA_ORE = register(
+        "nether_rosalita_ore",
+        new DropExperienceBlock(
+            BlockBehaviour.Properties.copy(Blocks.NETHER_GOLD_ORE)
+                .mapColor(MapColor.COLOR_PINK)
+                .requiresCorrectToolForDrops(),
+            UniformInt.of(5, 9)
+        )
+    );
+
+    public static final Block AURORA_RUBY_ORE = register(
+        "aurora_ruby_ore",
+        new DropExperienceBlock(
+            BlockBehaviour.Properties.copy(Blocks.DIAMOND_ORE)
+                .mapColor(MapColor.COLOR_RED)
+                .requiresCorrectToolForDrops(),
+            UniformInt.of(5, 10)
+        )
+    );
+
+    public static final Block AURORA_JAX_ORE = register(
+        "aurora_jax_ore",
+        new Block(BlockBehaviour.Properties.copy(Blocks.DIAMOND_ORE)
+            .mapColor(MapColor.COLOR_PURPLE)
+            .requiresCorrectToolForDrops())
+    );
+
+    public static final Block AURORA_ROSALITA_ORE = register(
+        "aurora_rosalita_ore",
+        new DropExperienceBlock(
+            BlockBehaviour.Properties.copy(Blocks.DIAMOND_ORE)
+                .mapColor(MapColor.COLOR_PINK)
+                .requiresCorrectToolForDrops(),
+            UniformInt.of(6, 11)
+        )
+    );
+
+    public static final Block AURORA_SAPPHIRE_ORE = register(
+        "aurora_sapphire_ore",
+        new DropExperienceBlock(
+            BlockBehaviour.Properties.copy(Blocks.DIAMOND_ORE)
+                .mapColor(MapColor.COLOR_LIGHT_BLUE)
+                .requiresCorrectToolForDrops(),
+            UniformInt.of(6, 12)
         )
     );
 
@@ -307,6 +438,30 @@ public final class ModBlocks {
         return new LeavesBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES).mapColor(color));
     }
 
+    private static Block auroraLog(String id, MapColor color) {
+        return register(id, new RotatedPillarBlock(
+            BlockBehaviour.Properties.copy(Blocks.OAK_LOG).mapColor(color)));
+    }
+
+    private static Block auroraPlanks(String id, MapColor color) {
+        return register(id, new Block(
+            BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS).mapColor(color)));
+    }
+
+    private static Block auroraSapling(String id, MapColor color) {
+        /*
+         * These are decorative saplings for now.  Aurora trees are generated
+         * by the custom worldgen feature; a growable sapling will be added
+         * together with its dedicated growth rules rather than pointing to a
+         * vanilla tree by mistake.
+         */
+        return register(id, new Block(
+            BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)
+                .mapColor(color)
+                .noCollission()
+                .instabreak()));
+    }
+
     private static Block register(String id, Block block) {
         ResourceLocation key = new ResourceLocation(ChaoticDimensions.MOD_ID, id);
         Registry.register(BuiltInRegistries.BLOCK, key, block);
@@ -322,6 +477,9 @@ public final class ModBlocks {
     public static void initialize() {
         StrippableBlockRegistry.register(PASTEL_AURORA_LOG, STRIPPED_PASTEL_AURORA_LOG);
         StrippableBlockRegistry.register(PASTEL_AURORA_WOOD, STRIPPED_PASTEL_AURORA_WOOD);
+        StrippableBlockRegistry.register(AURORA_PINKKO_LOG, STRIPPED_AURORA_PINKKO_LOG);
+        StrippableBlockRegistry.register(AURORA_SOULESS_LOG, STRIPPED_AURORA_SOULESS_LOG);
+        StrippableBlockRegistry.register(AURORA_SKY_LOG, STRIPPED_AURORA_SKY_LOG);
         StrippableBlockRegistry.register(SHADOW_LOG, STRIPPED_SHADOW_LOG);
         StrippableBlockRegistry.register(SHADOW_WOOD, STRIPPED_SHADOW_WOOD);
 
@@ -335,6 +493,16 @@ public final class ModBlocks {
         flammables.add(PASTEL_PINK_LEAVES, 30, 60);
         flammables.add(PASTEL_PURPLE_LEAVES, 30, 60);
         flammables.add(PASTEL_BLUE_LEAVES, 30, 60);
+
+        addAuroraWoodFlammability(flammables,
+            AURORA_PINKKO_LOG, STRIPPED_AURORA_PINKKO_LOG, AURORA_PINKKO_PLANKS,
+            AURORA_PINKKO_LEAVES, AURORA_PINKKO_SAPLING);
+        addAuroraWoodFlammability(flammables,
+            AURORA_SOULESS_LOG, STRIPPED_AURORA_SOULESS_LOG, AURORA_SOULESS_PLANKS,
+            AURORA_SOULESS_LEAVES, AURORA_SOULESS_SAPLING);
+        addAuroraWoodFlammability(flammables,
+            AURORA_SKY_LOG, STRIPPED_AURORA_SKY_LOG, AURORA_SKY_PLANKS,
+            AURORA_SKY_LEAVES, AURORA_SKY_SAPLING);
 
         flammables.add(SHADOW_LOG, 5, 5);
         flammables.add(SHADOW_WOOD, 5, 5);
@@ -352,6 +520,12 @@ public final class ModBlocks {
         CompostingChanceRegistry.INSTANCE.add(PASTEL_PINK_LEAVES, 0.3F);
         CompostingChanceRegistry.INSTANCE.add(PASTEL_PURPLE_LEAVES, 0.3F);
         CompostingChanceRegistry.INSTANCE.add(PASTEL_BLUE_LEAVES, 0.3F);
+        CompostingChanceRegistry.INSTANCE.add(AURORA_PINKKO_LEAVES, 0.3F);
+        CompostingChanceRegistry.INSTANCE.add(AURORA_SOULESS_LEAVES, 0.3F);
+        CompostingChanceRegistry.INSTANCE.add(AURORA_SKY_LEAVES, 0.3F);
+        CompostingChanceRegistry.INSTANCE.add(AURORA_PINKKO_SAPLING, 0.3F);
+        CompostingChanceRegistry.INSTANCE.add(AURORA_SOULESS_SAPLING, 0.3F);
+        CompostingChanceRegistry.INSTANCE.add(AURORA_SKY_SAPLING, 0.3F);
         CompostingChanceRegistry.INSTANCE.add(CRYSTAL_LEAVES_1, 0.3F);
         CompostingChanceRegistry.INSTANCE.add(CRYSTAL_LEAVES_2, 0.3F);
         CompostingChanceRegistry.INSTANCE.add(CRYSTAL_LEAVES_3, 0.3F);
@@ -359,5 +533,20 @@ public final class ModBlocks {
         CompostingChanceRegistry.INSTANCE.add(CRYSTAL_YELLOW_PLANT, 0.65F);
         CompostingChanceRegistry.INSTANCE.add(CRYSTAL_BLUE_PLANT, 0.65F);
         CompostingChanceRegistry.INSTANCE.add(CRYSTAL_GREEN_PLANT, 0.65F);
+    }
+
+    private static void addAuroraWoodFlammability(
+        FlammableBlockRegistry flammables,
+        Block log,
+        Block strippedLog,
+        Block planks,
+        Block leaves,
+        Block sapling
+    ) {
+        flammables.add(log, 5, 5);
+        flammables.add(strippedLog, 5, 5);
+        flammables.add(planks, 5, 20);
+        flammables.add(leaves, 30, 60);
+        flammables.add(sapling, 60, 100);
     }
 }

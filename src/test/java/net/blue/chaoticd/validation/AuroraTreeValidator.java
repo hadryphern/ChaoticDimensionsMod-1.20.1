@@ -65,7 +65,7 @@ public final class AuroraTreeValidator {
         reopenIntrusiveRegistry(BuiltInRegistries.FLUID);
 
         require(
-            ModBlocks.PASTEL_AURORA_LOG,
+            ModBlocks.AURORA_PINKKO_LOG,
             "Aurora blocks were not initialized"
         );
 
@@ -276,11 +276,16 @@ public final class AuroraTreeValidator {
             );
         }
 
+        int configuredFoliageVariants = configuration.treePalette().isEmpty()
+            ? configuration.foliagePalette().size()
+            : (int) configuration.treePalette().stream()
+                .map(AuroraTreeConfiguration.TreePalette::leafState)
+                .map(state -> BuiltInRegistries.BLOCK.getKey(state.getBlock()))
+                .distinct()
+                .count();
+
         check(
-            foliageColors.size()
-                == configuration
-                    .foliagePalette()
-                    .size(),
+            foliageColors.size() == configuredFoliageVariants,
             "Not every configured foliage color was selected"
         );
 

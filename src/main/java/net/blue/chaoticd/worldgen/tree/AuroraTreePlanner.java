@@ -15,6 +15,7 @@ import java.util.Set;
 import net.blue.chaoticd.worldgen.tree.AuroraTreeConfiguration.CanopySettings;
 import net.blue.chaoticd.worldgen.tree.AuroraTreeConfiguration.FoliageChoice;
 import net.blue.chaoticd.worldgen.tree.AuroraTreeConfiguration.ShapeSettings;
+import net.blue.chaoticd.worldgen.tree.AuroraTreeConfiguration.TreePalette;
 import net.blue.chaoticd.worldgen.tree.AuroraTreeConfiguration.TreeProfile;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -34,7 +35,13 @@ public final class AuroraTreePlanner {
     public static TreePlan plan(AuroraTreeConfiguration configuration, long worldSeed, BlockPos origin) {
         RandomSource random = RandomSource.create(mix64(worldSeed ^ origin.asLong() ^ TREE_SALT));
         TreeProfile profile = chooseWeighted(configuration.profiles(), TreeProfile::weight, random);
-        FoliageChoice foliage = chooseWeighted(configuration.foliagePalette(), FoliageChoice::weight, random);
+        TreePalette palette = configuration.treePalette().isEmpty()
+            ? null
+            : chooseWeighted(configuration.treePalette(), TreePalette::weight, random);
+        BlockState trunkState = palette == null ? configuration.trunkState() : palette.trunkState();
+        BlockState leafState = palette == null
+            ? chooseWeighted(configuration.foliagePalette(), FoliageChoice::weight, random).state()
+            : palette.leafState();
         int height = between(random, profile.size().minHeight(), profile.size().maxHeight());
         int baseWidth = between(random, profile.size().minTrunkWidth(), profile.size().maxTrunkWidth());
         int segments = Math.min(height, between(random, profile.size().minSegments(), profile.size().maxSegments()));
@@ -43,13 +50,13 @@ public final class AuroraTreePlanner {
         LinkedHashSet<BlockPos> requiredGround = new LinkedHashSet<>();
         ArrayList<BlockPos> trunkCenters = new ArrayList<>(height);
         ShapeSettings shape = profile.shape();
-        growTrunk(configuration.trunkState(), origin, height, baseWidth, segments, shape,
+        growTrunk(trunkState, origin, height, baseWidth, segments, shape,
             configuration.maxHorizontalReach(), random, logs, requiredGround, trunkCenters);
 
         ArrayList<BlockPos> branchTips = new ArrayList<>();
-        growBranches(configuration.trunkState(), profile, origin, trunkCenters,
+        growBranches(trunkState, profile, origin, trunkCenters,
             configuration.maxHorizontalReach(), random, logs, branchTips);
-        growRoots(configuration.trunkState(), profile, origin, baseWidth,
+        growRoots(trunkState, profile, origin, baseWidth,
             configuration.maxHorizontalReach(), random, logs, requiredGround);
         branchTips.removeIf(tip -> isFullyEnclosedByLogs(tip, logs.keySet()));
 
@@ -60,7 +67,7 @@ public final class AuroraTreePlanner {
             random, leafCandidates);
         leafCandidates.removeAll(logs.keySet());
         LinkedHashMap<BlockPos, BlockState> leaves = connectLeavesToLogs(
-            foliage.state(), logs.keySet(), leafCandidates);
+            leafState, logs.keySet(), leafCandidates);
 
         return new TreePlan(
             profile.name(),

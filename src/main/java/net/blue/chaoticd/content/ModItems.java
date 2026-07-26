@@ -10,6 +10,7 @@ import net.blue.chaoticd.content.item.EmeraldTier;
 import net.blue.chaoticd.content.item.LeatherBackpackItem;
 import net.blue.chaoticd.content.item.RubyArmorMaterial;
 import net.blue.chaoticd.content.item.RubyTier;
+import net.blue.chaoticd.content.item.TitaniumArmorMaterial;
 import net.blue.chaoticd.content.item.TitaniumTier;
 import net.blue.chaoticd.content.item.SapphireSwordItem;
 import net.blue.chaoticd.content.item.SapphireTier;
@@ -220,6 +221,42 @@ public final class ModItems {
         new HoeItem(TitaniumTier.INSTANCE, -3, 0.0F, new Item.Properties())
     );
 
+    public static final Item TITANIUM_HELMET = register(
+        "titanium_helmet",
+        new ArmorItem(
+            TitaniumArmorMaterial.INSTANCE,
+            ArmorItem.Type.HELMET,
+            new Item.Properties().fireResistant().rarity(Rarity.EPIC)
+        )
+    );
+
+    public static final Item TITANIUM_CHESTPLATE = register(
+        "titanium_chestplate",
+        new ArmorItem(
+            TitaniumArmorMaterial.INSTANCE,
+            ArmorItem.Type.CHESTPLATE,
+            new Item.Properties().fireResistant().rarity(Rarity.EPIC)
+        )
+    );
+
+    public static final Item TITANIUM_LEGGINGS = register(
+        "titanium_leggings",
+        new ArmorItem(
+            TitaniumArmorMaterial.INSTANCE,
+            ArmorItem.Type.LEGGINGS,
+            new Item.Properties().fireResistant().rarity(Rarity.EPIC)
+        )
+    );
+
+    public static final Item TITANIUM_BOOTS = register(
+        "titanium_boots",
+        new ArmorItem(
+            TitaniumArmorMaterial.INSTANCE,
+            ArmorItem.Type.BOOTS,
+            new Item.Properties().fireResistant().rarity(Rarity.EPIC)
+        )
+    );
+
     public static final Item RUBY_NUGGET = register(
         "ruby_nugget",
         new Item(new Item.Properties().fireResistant().rarity(Rarity.EPIC))
@@ -319,6 +356,11 @@ public final class ModItems {
             ArmorItem.Type.BOOTS,
             new Item.Properties().fireResistant().rarity(Rarity.EPIC)
         )
+    );
+
+    public static final Item AURORA_PEARL = register(
+        "aurora_pearl",
+        new Item(new Item.Properties().stacksTo(16).rarity(Rarity.RARE))
     );
 
     public static final Item DIMENSION_PIG_SPAWN_EGG = register(

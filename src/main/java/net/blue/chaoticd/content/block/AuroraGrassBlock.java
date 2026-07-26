@@ -65,7 +65,7 @@ public final class AuroraGrassBlock extends GrassBlock {
         BlockPos neighbourPos
     ) {
         if (direction == Direction.UP && !canRemainGrass(state, level, pos)) {
-            return ModBlocks.PASTEL_SOIL.defaultBlockState();
+            return ModBlocks.AURORA_DIRT.defaultBlockState();
         }
 
         return super.updateShape(state, direction, neighbourState, level, pos, neighbourPos);
@@ -74,7 +74,7 @@ public final class AuroraGrassBlock extends GrassBlock {
     @Override
     public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
         if (!canRemainGrass(state, level, pos)) {
-            level.setBlockAndUpdate(pos, ModBlocks.PASTEL_SOIL.defaultBlockState());
+            level.setBlockAndUpdate(pos, ModBlocks.AURORA_DIRT.defaultBlockState());
             return;
         }
 
@@ -91,7 +91,7 @@ public final class AuroraGrassBlock extends GrassBlock {
                 random.nextInt(3) - 1
             );
 
-            if (level.getBlockState(targetPos).is(ModBlocks.PASTEL_SOIL)
+            if (level.getBlockState(targetPos).is(ModBlocks.AURORA_DIRT)
                 && canSpreadTo(spreadingState, level, targetPos)) {
                 boolean snowy = level.getBlockState(targetPos.above()).is(Blocks.SNOW);
                 level.setBlockAndUpdate(targetPos, spreadingState.setValue(SNOWY, snowy));

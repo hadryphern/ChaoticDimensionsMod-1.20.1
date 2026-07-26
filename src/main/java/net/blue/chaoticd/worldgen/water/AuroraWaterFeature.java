@@ -110,13 +110,13 @@ public final class AuroraWaterFeature extends Feature<AuroraWaterConfiguration> 
                     setBlock(
                         level,
                         new BlockPos(x, floorY, z),
-                        ModBlocks.PASTEL_AURORA_STONE.defaultBlockState()
+                        ModBlocks.AURORA_STONE.defaultBlockState()
                     );
 
                     setBlock(
                         level,
                         new BlockPos(x, floorY - 1, z),
-                        ModBlocks.PASTEL_AURORA_STONE.defaultBlockState()
+                        ModBlocks.AURORA_STONE.defaultBlockState()
                     );
 
                     for (int y = floorY + 1; y <= waterY; y++) {
@@ -151,13 +151,13 @@ public final class AuroraWaterFeature extends Feature<AuroraWaterConfiguration> 
                     setBlock(
                         level,
                         rim,
-                        ModBlocks.PASTEL_GRASS.defaultBlockState()
+                        ModBlocks.AURORA_GRASS_BLOCK.defaultBlockState()
                     );
 
                     setBlock(
                         level,
                         rim.below(),
-                        ModBlocks.PASTEL_SOIL.defaultBlockState()
+                        ModBlocks.AURORA_DIRT.defaultBlockState()
                     );
                 }
             }
@@ -333,7 +333,7 @@ public final class AuroraWaterFeature extends Feature<AuroraWaterConfiguration> 
                         setBlock(
                             level,
                             new BlockPos(x, y, z),
-                            ModBlocks.PASTEL_AURORA_STONE
+                            ModBlocks.AURORA_STONE
                                 .defaultBlockState()
                         );
                     }
@@ -361,7 +361,7 @@ public final class AuroraWaterFeature extends Feature<AuroraWaterConfiguration> 
                         setBlock(
                             level,
                             new BlockPos(x, y, z),
-                            ModBlocks.PASTEL_AURORA_STONE
+                            ModBlocks.AURORA_STONE
                                 .defaultBlockState()
                         );
                     }
@@ -369,13 +369,13 @@ public final class AuroraWaterFeature extends Feature<AuroraWaterConfiguration> 
                     setBlock(
                         level,
                         new BlockPos(x, waterY - 1, z),
-                        ModBlocks.PASTEL_SOIL.defaultBlockState()
+                        ModBlocks.AURORA_DIRT.defaultBlockState()
                     );
 
                     setBlock(
                         level,
                         new BlockPos(x, waterY, z),
-                        ModBlocks.PASTEL_GRASS.defaultBlockState()
+                        ModBlocks.AURORA_GRASS_BLOCK.defaultBlockState()
                     );
                 }
             }
@@ -681,9 +681,9 @@ public final class AuroraWaterFeature extends Feature<AuroraWaterConfiguration> 
     }
 
     private static boolean isAuroraTerrain(BlockState state) {
-        return state.is(ModBlocks.PASTEL_GRASS)
-            || state.is(ModBlocks.PASTEL_SOIL)
-            || state.is(ModBlocks.PASTEL_AURORA_STONE);
+        return state.is(ModBlocks.AURORA_GRASS_BLOCK)
+            || state.is(ModBlocks.AURORA_DIRT)
+            || state.is(ModBlocks.AURORA_STONE);
     }
 
     private static void setWater(
