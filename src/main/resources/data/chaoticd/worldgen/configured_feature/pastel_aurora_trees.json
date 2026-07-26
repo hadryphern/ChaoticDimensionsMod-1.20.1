@@ -18,15 +18,38 @@
         "Name": "chaoticd:aurora_dirt"
       }
     ],
-    "tree_palette": [
+    "trunk_palette": [
       {
-        "trunk_state": {
+        "state": {
           "Name": "chaoticd:aurora_pinkko_log",
           "Properties": {
             "axis": "y"
           }
         },
-        "leaf_state": {
+        "weight": 1
+      },
+      {
+        "state": {
+          "Name": "chaoticd:aurora_souless_log",
+          "Properties": {
+            "axis": "y"
+          }
+        },
+        "weight": 1
+      },
+      {
+        "state": {
+          "Name": "chaoticd:aurora_sky_log",
+          "Properties": {
+            "axis": "y"
+          }
+        },
+        "weight": 1
+      }
+    ],
+    "foliage_palette": [
+      {
+        "state": {
           "Name": "chaoticd:aurora_pinkko_leaves",
           "Properties": {
             "distance": "7",
@@ -37,13 +60,7 @@
         "weight": 1
       },
       {
-        "trunk_state": {
-          "Name": "chaoticd:aurora_souless_log",
-          "Properties": {
-            "axis": "y"
-          }
-        },
-        "leaf_state": {
+        "state": {
           "Name": "chaoticd:aurora_souless_leaves",
           "Properties": {
             "distance": "7",
@@ -54,13 +71,7 @@
         "weight": 1
       },
       {
-        "trunk_state": {
-          "Name": "chaoticd:aurora_sky_log",
-          "Properties": {
-            "axis": "y"
-          }
-        },
-        "leaf_state": {
+        "state": {
           "Name": "chaoticd:aurora_sky_leaves",
           "Properties": {
             "distance": "7",

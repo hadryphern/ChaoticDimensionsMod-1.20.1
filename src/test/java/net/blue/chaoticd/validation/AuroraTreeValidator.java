@@ -86,6 +86,12 @@ public final class AuroraTreeValidator {
         Set<String> foliageColors =
             new HashSet<>();
 
+        Set<String> trunkColors =
+            new HashSet<>();
+
+        Set<String> trunkLeafPairs =
+            new HashSet<>();
+
         Set<Long> normalizedSignatures =
             new HashSet<>();
 
@@ -201,17 +207,23 @@ public final class AuroraTreeValidator {
                 )
             );
 
-            foliageColors.add(
-                BuiltInRegistries.BLOCK
-                    .getKey(
-                        plan.leaves()
-                            .values()
-                            .iterator()
-                            .next()
-                            .getBlock()
-                    )
-                    .toString()
+            String trunk = blockId(
+                plan.logs()
+                    .values()
+                    .iterator()
+                    .next()
             );
+
+            String leaves = blockId(
+                plan.leaves()
+                    .values()
+                    .iterator()
+                    .next()
+            );
+
+            trunkColors.add(trunk);
+            foliageColors.add(leaves);
+            trunkLeafPairs.add(trunk + "|" + leaves);
 
             boolean isStraight =
                 plan.trunkCenters()
@@ -276,17 +288,54 @@ public final class AuroraTreeValidator {
             );
         }
 
-        int configuredFoliageVariants = configuration.treePalette().isEmpty()
-            ? configuration.foliagePalette().size()
-            : (int) configuration.treePalette().stream()
-                .map(AuroraTreeConfiguration.TreePalette::leafState)
-                .map(state -> BuiltInRegistries.BLOCK.getKey(state.getBlock()))
-                .distinct()
-                .count();
+        Set<String> configuredTrunks = new HashSet<>();
+        Set<String> configuredLeaves = new HashSet<>();
+        Set<String> configuredPairs = new HashSet<>();
+
+        if (configuration.treePalette().isEmpty()) {
+            if (configuration.trunkPalette().isEmpty()) {
+                configuredTrunks.add(blockId(configuration.trunkState()));
+            } else {
+                configuration.trunkPalette().forEach(choice ->
+                    configuredTrunks.add(blockId(choice.state()))
+                );
+            }
+
+            configuration.foliagePalette().forEach(choice ->
+                configuredLeaves.add(blockId(choice.state()))
+            );
+
+            for (String trunk : configuredTrunks) {
+                for (String leaves : configuredLeaves) {
+                    configuredPairs.add(trunk + "|" + leaves);
+                }
+            }
+        } else {
+            configuration.treePalette().forEach(choice -> {
+                String trunk = blockId(choice.trunkState());
+                String leaves = blockId(choice.leafState());
+                configuredTrunks.add(trunk);
+                configuredLeaves.add(leaves);
+                configuredPairs.add(trunk + "|" + leaves);
+            });
+        }
 
         check(
-            foliageColors.size() == configuredFoliageVariants,
-            "Not every configured foliage color was selected"
+            trunkColors.equals(configuredTrunks),
+            "Not every configured trunk was selected: expected "
+                + configuredTrunks + ", got " + trunkColors
+        );
+
+        check(
+            foliageColors.equals(configuredLeaves),
+            "Not every configured foliage color was selected: expected "
+                + configuredLeaves + ", got " + foliageColors
+        );
+
+        check(
+            trunkLeafPairs.equals(configuredPairs),
+            "Tree trunk/foliage selection is not independent: expected "
+                + configuredPairs + ", got " + trunkLeafPairs
         );
 
         check(
@@ -312,13 +361,15 @@ public final class AuroraTreeValidator {
 
         System.out.printf(
             "AURORA TREE VALIDATION PASSED: "
-                + "samples=%d profiles=%s colors=%s "
+                + "samples=%d profiles=%s trunks=%s leaves=%s combinations=%d "
                 + "straight=%d curved=%d "
                 + "height=%d..%d logs=%d..%d "
                 + "leaves=%d..%d unique=%.1f%%%n",
             SAMPLE_COUNT,
             profiles,
+            trunkColors,
             foliageColors,
+            trunkLeafPairs.size(),
             straight,
             curved,
             minimumHeight,
@@ -361,6 +412,14 @@ public final class AuroraTreeValidator {
                     }
                 );
         }
+    }
+
+    private static String blockId(
+        net.minecraft.world.level.block.state.BlockState state
+    ) {
+        return BuiltInRegistries.BLOCK
+            .getKey(state.getBlock())
+            .toString();
     }
 
     private static void validatePlan(

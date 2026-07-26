@@ -17,6 +17,7 @@ import net.blue.chaoticd.worldgen.tree.AuroraTreeConfiguration.FoliageChoice;
 import net.blue.chaoticd.worldgen.tree.AuroraTreeConfiguration.ShapeSettings;
 import net.blue.chaoticd.worldgen.tree.AuroraTreeConfiguration.TreePalette;
 import net.blue.chaoticd.worldgen.tree.AuroraTreeConfiguration.TreeProfile;
+import net.blue.chaoticd.worldgen.tree.AuroraTreeConfiguration.TrunkChoice;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
@@ -38,7 +39,11 @@ public final class AuroraTreePlanner {
         TreePalette palette = configuration.treePalette().isEmpty()
             ? null
             : chooseWeighted(configuration.treePalette(), TreePalette::weight, random);
-        BlockState trunkState = palette == null ? configuration.trunkState() : palette.trunkState();
+        BlockState trunkState = palette != null
+            ? palette.trunkState()
+            : configuration.trunkPalette().isEmpty()
+                ? configuration.trunkState()
+                : chooseWeighted(configuration.trunkPalette(), TrunkChoice::weight, random).state();
         BlockState leafState = palette == null
             ? chooseWeighted(configuration.foliagePalette(), FoliageChoice::weight, random).state()
             : palette.leafState();

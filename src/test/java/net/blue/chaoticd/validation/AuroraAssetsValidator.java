@@ -1,5 +1,6 @@
 package net.blue.chaoticd.validation;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -545,7 +546,8 @@ public final class AuroraAssetsValidator {
         );
     }
 
-    private static void validateRequiredTags() {
+    private static void validateRequiredTags()
+        throws IOException {
         requireFile(
             DATA.resolve(
                 "tags/fluids/dream_fluid.json"
@@ -568,6 +570,29 @@ public final class AuroraAssetsValidator {
             DATA.resolve(
                 "tags/blocks/shadow_logs.json"
             )
+        );
+
+        Path dirtTag = ROOT.resolve(
+            "data/minecraft/tags/blocks/dirt.json"
+        );
+
+        requireFile(dirtTag);
+
+        JsonArray values = readJson(dirtTag)
+            .getAsJsonObject()
+            .getAsJsonArray("values");
+
+        Set<String> dirtBlocks = new LinkedHashSet<>();
+
+        for (JsonElement value : values) {
+            dirtBlocks.add(value.getAsString());
+        }
+
+        check(
+            dirtBlocks.contains("chaoticd:aurora_dirt")
+                && dirtBlocks.contains("chaoticd:aurora_grass_block"),
+            "Aurora surface blocks are missing from #minecraft:dirt; "
+                + "tree, flower and ground-cover survival predicates would reject them"
         );
     }
 
