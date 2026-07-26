@@ -582,9 +582,11 @@ public final class AuroraWorldgenValidator {
             components.smallIntermediateIslands,
             components.averageNearestGap,
             components.largestShare,
+            components.largestCells / (double) (side * side),
             windows.denseWindows,
             windows.emptyWindows,
             windows.totalWindows,
+            windows.maxLandRatio,
             largestEmptySpan(land),
             landColumns == 0
                 ? 0
@@ -885,6 +887,7 @@ public final class AuroraWorldgenValidator {
                 ? 0.0D
                 : nearestGapSum
                     / nearestGapSamples,
+            largestSize,
             totalSize == 0
                 ? 0.0D
                 : largestSize
@@ -942,6 +945,7 @@ public final class AuroraWorldgenValidator {
         int dense = 0;
         int empty = 0;
         int total = 0;
+        double maximumRatio = 0.0D;
 
         int diameter =
             WINDOW_RADIUS * 2 + 1;
@@ -991,6 +995,11 @@ public final class AuroraWorldgenValidator {
                     landSamples
                         / (double) area;
 
+                maximumRatio = Math.max(
+                    maximumRatio,
+                    ratio
+                );
+
                 if (ratio >= 0.42D) {
                     dense++;
                 }
@@ -1006,7 +1015,8 @@ public final class AuroraWorldgenValidator {
         return new WindowStats(
             dense,
             empty,
-            total
+            total,
+            maximumRatio
         );
     }
 
@@ -1524,6 +1534,22 @@ public final class AuroraWorldgenValidator {
                 + seed
         );
 
+        check(
+            stats.largestComponentAreaRatio <= 0.18D,
+            "A single Aurora island became a continuous plateau near "
+                + name
+                + " for seed "
+                + seed
+        );
+
+        check(
+            stats.maxWindowLandRatio <= 0.78D,
+            "Aurora has an unbroken terrain sheet in a local window near "
+                + name
+                + " for seed "
+                + seed
+        );
+
         if (stats.landRatio > 0.0D) {
             check(
                 stats.minimumHeight >= 65
@@ -1868,6 +1894,7 @@ public final class AuroraWorldgenValidator {
         int isolatedComponents,
         int smallIntermediateIslands,
         double averageNearestGap,
+        int largestCells,
         double largestShare
     ) {
     }
@@ -1875,7 +1902,8 @@ public final class AuroraWorldgenValidator {
     private record WindowStats(
         int denseWindows,
         int emptyWindows,
-        int totalWindows
+        int totalWindows,
+        double maxLandRatio
     ) {
     }
 
@@ -1888,9 +1916,11 @@ public final class AuroraWorldgenValidator {
         int smallIntermediateIslands,
         double averageNearestGap,
         double largestComponentShare,
+        double largestComponentAreaRatio,
         int denseWindows,
         int emptyWindows,
         int totalWindows,
+        double maxWindowLandRatio,
         int largestEmptySpan,
         int minimumHeight,
         int maximumHeight,
@@ -1904,7 +1934,7 @@ public final class AuroraWorldgenValidator {
             return String.format(
                 "land=%.1f%% groups=%d near=%d/%d "
                     + "isolated=%d small=%d gap=%.0f "
-                    + "largest=%.0f%% windows=%d/%d/%d "
+                    + "largest=%.0f%%/%.1f%% windows=%d/%d/%d(%.0f%%) "
                     + "void=%d y=%d..%d thickness=%.1f/%d",
                 landRatio * 100.0D,
                 components,
@@ -1914,9 +1944,11 @@ public final class AuroraWorldgenValidator {
                 smallIntermediateIslands,
                 averageNearestGap,
                 largestComponentShare * 100.0D,
+                largestComponentAreaRatio * 100.0D,
                 denseWindows,
                 emptyWindows,
                 totalWindows,
+                maxWindowLandRatio * 100.0D,
                 largestEmptySpan,
                 minimumHeight,
                 maximumHeight,
