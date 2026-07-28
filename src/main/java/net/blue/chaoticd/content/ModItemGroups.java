@@ -156,6 +156,21 @@ public final class ModItemGroups {
     private static void addMaterialsAndOres(CreativeModeTab.Output entries) {
         entries.accept(ModItems.SAPPHIRE_GEM);
         entries.accept(ModItems.ROSALITA_GEM);
+        entries.accept(ModItems.SHADOW_SOUL);
+        entries.accept(ModItems.VORTEX_GEM);
+        entries.accept(ModItems.VORTEX_SOUL);
+        entries.accept(ModItems.VOID_SOUL);
+        entries.accept(ModItems.DEMONITH);
+        entries.accept(ModItems.AURORA_SOUL);
+        entries.accept(ModItems.CRYSTALINE_SOUL);
+        entries.accept(ModItems.THE_CRYSTALINE);
+        entries.accept(ModItems.DEMONIC_SOULD);
+        entries.accept(ModItems.THE_UNDERGUER);
+        entries.accept(ModItems.THE_CALICE_QUEEN);
+        entries.accept(ModItems.MONTHRA_SCALE);
+        entries.accept(ModItems.CRYSTALINE_SIGIL);
+        entries.accept(ModItems.UNDERGUER_SIGIL);
+        entries.accept(ModItems.VOID);
         entries.accept(ModItems.TITANIUM_INGOT);
         entries.accept(ModItems.TITAN_SOULD);
         entries.accept(ModItems.JAXY_GEM);

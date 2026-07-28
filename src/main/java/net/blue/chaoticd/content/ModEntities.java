@@ -5,6 +5,7 @@ import net.blue.chaoticd.content.entity.LegacyCowEntity;
 import net.blue.chaoticd.content.entity.LegacyCreeperEntity;
 import net.blue.chaoticd.content.entity.LegacyMobVariant;
 import net.blue.chaoticd.content.entity.LegacyPigEntity;
+import net.blue.chaoticd.content.entity.SirOrensEntity;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -14,9 +15,18 @@ import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.entity.animal.Cow;
 import net.minecraft.world.entity.animal.Pig;
 import net.minecraft.world.entity.monster.Creeper;
+import net.minecraft.world.entity.npc.Villager;
 
 /** Legacy entities are registered for spawn eggs only; no biome spawn is added. */
 public final class ModEntities {
+    /** The one-owner merchant that appears after a player's first Aurora visit. */
+    public static final EntityType<SirOrensEntity> SIR_ORENS = register(
+        "sir_orens",
+        "villager",
+        EntityType.Builder.<SirOrensEntity>of(SirOrensEntity::new, MobCategory.CREATURE)
+            .sized(0.6F, 1.95F)
+    );
+
     public static final EntityType<LegacyPigEntity> DIMENSION_PIG = register(
         "dimension_pig",
         "pig",
@@ -103,6 +113,7 @@ public final class ModEntities {
     }
 
     public static void initialize() {
+        FabricDefaultAttributeRegistry.register(SIR_ORENS, Villager.createAttributes());
         FabricDefaultAttributeRegistry.register(DIMENSION_PIG, Pig.createAttributes());
         FabricDefaultAttributeRegistry.register(GOLD_DIMENSION_PIG, Pig.createAttributes());
         FabricDefaultAttributeRegistry.register(APPLE_COW, Cow.createAttributes());

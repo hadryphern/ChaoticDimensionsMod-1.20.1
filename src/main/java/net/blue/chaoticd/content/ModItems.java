@@ -180,6 +180,24 @@ public final class ModItems {
         new Item(new Item.Properties())
     );
 
+    /* Sir. Orens trade materials. They deliberately have no crafting recipes:
+     * the custom merchant is the first system that consumes or awards them. */
+    public static final Item SHADOW_SOUL = tradeMaterial("shadow_soul");
+    public static final Item VORTEX_GEM = tradeMaterial("vortex_gem");
+    public static final Item VORTEX_SOUL = tradeMaterial("vortex_soul");
+    public static final Item VOID_SOUL = tradeMaterial("void_soul");
+    public static final Item DEMONITH = tradeMaterial("demonith");
+    public static final Item AURORA_SOUL = tradeMaterial("aurora_soul");
+    public static final Item CRYSTALINE_SOUL = tradeMaterial("crystaline_soul");
+    public static final Item THE_CRYSTALINE = tradeMaterial("the_crystaline");
+    public static final Item DEMONIC_SOULD = tradeMaterial("demonic_sould");
+    public static final Item THE_UNDERGUER = tradeMaterial("the_underguer");
+    public static final Item THE_CALICE_QUEEN = tradeMaterial("the_calice_queen");
+    public static final Item MONTHRA_SCALE = tradeMaterial("monthra_scale");
+    public static final Item CRYSTALINE_SIGIL = tradeMaterial("crystaline_sigil");
+    public static final Item UNDERGUER_SIGIL = tradeMaterial("underguer_sigil");
+    public static final Item VOID = tradeMaterial("void");
+
     public static final Item WATER_INGOT = register(
         "water_ingot",
         new Item(new Item.Properties())
@@ -627,6 +645,10 @@ public final class ModItems {
             ),
             item
         );
+    }
+
+    private static Item tradeMaterial(String id) {
+        return register(id, new Item(new Item.Properties().fireResistant()));
     }
 
     /**

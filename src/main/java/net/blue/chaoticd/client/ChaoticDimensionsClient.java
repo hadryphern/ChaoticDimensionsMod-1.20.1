@@ -1,16 +1,20 @@
 package net.blue.chaoticd.client;
 
 import net.blue.chaoticd.client.entity.LegacyMobRenderer;
+import net.blue.chaoticd.client.entity.SirOrensRenderer;
+import net.blue.chaoticd.client.screen.SirOrensTradeScreen;
 import net.blue.chaoticd.client.visual.AuroraVisuals;
 import net.blue.chaoticd.client.visual.ShadowVisuals;
 import net.blue.chaoticd.content.ModBlocks;
 import net.blue.chaoticd.content.ModEntities;
 import net.blue.chaoticd.content.ModFluids;
+import net.blue.chaoticd.content.ModMenus;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.gui.screens.MenuScreens;
 
 public final class ChaoticDimensionsClient implements ClientModInitializer {
     @Override
@@ -65,6 +69,10 @@ public final class ChaoticDimensionsClient implements ClientModInitializer {
         FluidRenderHandlerRegistry.INSTANCE.register(ModFluids.FLOWING_DREAM_FLUID, new DreamFluidRenderHandler());
 
         EntityRendererRegistry.register(
+            ModEntities.SIR_ORENS,
+            SirOrensRenderer::new
+        );
+        EntityRendererRegistry.register(
             ModEntities.DIMENSION_PIG,
             context -> new LegacyMobRenderer<>(context)
         );
@@ -92,5 +100,7 @@ public final class ChaoticDimensionsClient implements ClientModInitializer {
             ModEntities.CRYSTAL_CREEPER,
             context -> new LegacyMobRenderer<>(context)
         );
+
+        MenuScreens.register(ModMenus.SIR_ORENS_TRADES, SirOrensTradeScreen::new);
     }
 }
