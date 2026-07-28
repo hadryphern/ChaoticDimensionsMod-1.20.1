@@ -87,6 +87,39 @@ public final class SirOrensSpawnSystem {
         ServerLifecycleEvents.SERVER_STOPPED.register(server -> BED_PLACEMENT_HINTS.clear());
     }
 
+    /**
+     * Creates an owner-bound Sir. Orens beside a player for development and
+     * balance testing. This intentionally does not mark the player's real
+     * Aurora-home arrival as complete, so the normal one-time home spawn still
+     * works independently when it is earned in-game.
+     */
+    public static boolean summonForTesting(ServerPlayer player) {
+        ServerLevel level = player.serverLevel();
+        BlockPos spawnPos = findTestSpawnPosition(level, player.blockPosition());
+
+        if (spawnPos == null) {
+            return false;
+        }
+
+        SirOrensEntity villager = ModEntities.SIR_ORENS.create(level);
+
+        if (villager == null) {
+            return false;
+        }
+
+        villager.moveTo(
+            spawnPos.getX() + 0.5D,
+            spawnPos.getY(),
+            spawnPos.getZ() + 0.5D,
+            player.getYRot(),
+            0.0F
+        );
+        configureSirOrens(villager, spawnPos, player.getUUID());
+        villager.addTag("chaoticd:sir_orens_test");
+
+        return level.addFreshEntity(villager);
+    }
+
     private static void afterPlayerChangesWorld(
         ServerPlayer player,
         ServerLevel origin,
@@ -439,6 +472,29 @@ public final class SirOrensSpawnSystem {
             && isSolid(level, pos.below())
             && isEmptyCollision(level, pos)
             && isEmptyCollision(level, pos.above());
+    }
+
+    @Nullable
+    private static BlockPos findTestSpawnPosition(ServerLevel level, BlockPos playerPos) {
+        for (int radius = 2; radius <= 5; radius++) {
+            for (int xOffset = -radius; xOffset <= radius; xOffset++) {
+                for (int zOffset = -radius; zOffset <= radius; zOffset++) {
+                    if (Math.abs(xOffset) != radius && Math.abs(zOffset) != radius) {
+                        continue;
+                    }
+
+                    for (int yOffset = 2; yOffset >= -3; yOffset--) {
+                        BlockPos candidate = playerPos.offset(xOffset, yOffset, zOffset);
+
+                        if (isSafeStandingSpace(level, candidate)) {
+                            return candidate;
+                        }
+                    }
+                }
+            }
+        }
+
+        return null;
     }
 
     private static boolean isSolid(ServerLevel level, BlockPos pos) {

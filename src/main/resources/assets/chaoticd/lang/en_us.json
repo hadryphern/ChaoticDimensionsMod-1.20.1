@@ -272,5 +272,8 @@
   "message.chaoticd.sir_orens_too_far": "Move closer to Sir. Orens to trade.",
   "message.chaoticd.sir_orens_trade_locked": "Complete a trade from Sir. Orens' current level first.",
   "message.chaoticd.sir_orens_missing_items": "You do not have all items required for this trade.",
-  "message.chaoticd.sir_orens_trade_complete": "Trade completed."
+  "message.chaoticd.sir_orens_trade_complete": "Trade completed.",
+  "command.chaoticd.sir_orens.summoned": "Sir. Orens was summoned for testing.",
+  "command.chaoticd.sir_orens.no_space": "There is not enough safe space to summon Sir. Orens.",
+  "command.chaoticd.sir_orens.players_only": "This command can only be used by a player."
 }

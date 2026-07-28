@@ -272,5 +272,8 @@
   "message.chaoticd.sir_orens_too_far": "Chegue mais perto de Sir. Orens para negociar.",
   "message.chaoticd.sir_orens_trade_locked": "Conclua primeiro uma troca do nível atual de Sir. Orens.",
   "message.chaoticd.sir_orens_missing_items": "Você não possui todos os itens exigidos para esta troca.",
-  "message.chaoticd.sir_orens_trade_complete": "Troca concluída."
+  "message.chaoticd.sir_orens_trade_complete": "Troca concluída.",
+  "command.chaoticd.sir_orens.summoned": "Sir. Orens foi invocado para teste.",
+  "command.chaoticd.sir_orens.no_space": "Não há espaço seguro suficiente para invocar Sir. Orens.",
+  "command.chaoticd.sir_orens.players_only": "Este comando só pode ser usado por um jogador."
 }

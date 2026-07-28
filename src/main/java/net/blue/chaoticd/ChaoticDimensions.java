@@ -17,6 +17,7 @@ import net.blue.chaoticd.gameplay.CrystalHarvestRules;
 import net.blue.chaoticd.gameplay.DreamFluidSystems;
 import net.blue.chaoticd.gameplay.EmeraldLuckSystems;
 import net.blue.chaoticd.gameplay.SirOrensSpawnSystem;
+import net.blue.chaoticd.gameplay.SirOrensCommands;
 import net.blue.chaoticd.worldgen.LegacyWorldgen;
 import net.blue.chaoticd.worldgen.ModWorldgenFeatures;
 import net.blue.chaoticd.worldgen.ShadowDimensionSystems;
@@ -54,6 +55,7 @@ public final class ChaoticDimensions implements ModInitializer {
         DreamFluidSystems.initialize();
         CrystalHarvestRules.initialize();
         SirOrensSpawnSystem.initialize();
+        SirOrensCommands.initialize();
 
         ChaoticGearInitialization.initialize();
         EmeraldLuckSystems.initialize();
