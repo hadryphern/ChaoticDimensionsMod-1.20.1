@@ -39,32 +39,42 @@ public final class ModItemGroups {
     }
 
     private static void addBlocks(CreativeModeTab.Output entries) {
+        entries.accept(ModBlocks.SAPPHIRE_ORE);
         entries.accept(ModBlocks.AURORA_GRASS_BLOCK);
         entries.accept(ModBlocks.AURORA_DIRT);
         entries.accept(ModBlocks.AURORA_STONE);
 
         addAuroraWood(entries,
             ModBlocks.AURORA_PINKKO_LOG,
+            ModBlocks.AURORA_PINKKO_WOOD,
             ModBlocks.STRIPPED_AURORA_PINKKO_LOG,
+            ModBlocks.STRIPPED_AURORA_PINKKO_WOOD,
             ModBlocks.AURORA_PINKKO_PLANKS,
             ModBlocks.AURORA_PINKKO_LEAVES,
             ModBlocks.AURORA_PINKKO_SAPLING);
         addAuroraWood(entries,
             ModBlocks.AURORA_SOULESS_LOG,
+            ModBlocks.AURORA_SOULESS_WOOD,
             ModBlocks.STRIPPED_AURORA_SOULESS_LOG,
+            ModBlocks.STRIPPED_AURORA_SOULESS_WOOD,
             ModBlocks.AURORA_SOULESS_PLANKS,
             ModBlocks.AURORA_SOULESS_LEAVES,
             ModBlocks.AURORA_SOULESS_SAPLING);
         addAuroraWood(entries,
             ModBlocks.AURORA_SKY_LOG,
+            ModBlocks.AURORA_SKY_WOOD,
             ModBlocks.STRIPPED_AURORA_SKY_LOG,
+            ModBlocks.STRIPPED_AURORA_SKY_WOOD,
             ModBlocks.AURORA_SKY_PLANKS,
             ModBlocks.AURORA_SKY_LEAVES,
             ModBlocks.AURORA_SKY_SAPLING);
 
         entries.accept(ModBlocks.RUBY_ORE);
+        entries.accept(ModBlocks.DEEPSLATE_RUBY_ORE);
         entries.accept(ModBlocks.JAX_ORE);
+        entries.accept(ModBlocks.DEEPSLATE_JAXY_ORE);
         entries.accept(ModBlocks.ROSALITA_ORE);
+        entries.accept(ModBlocks.DEEPSLATE_ROSALITA_ORE);
         entries.accept(ModBlocks.NETHER_RUBY_ORE);
         entries.accept(ModBlocks.NETHER_JAX_ORE);
         entries.accept(ModBlocks.NETHER_ROSALITA_ORE);
@@ -73,8 +83,11 @@ public final class ModItemGroups {
         entries.accept(ModBlocks.AURORA_ROSALITA_ORE);
         entries.accept(ModBlocks.AURORA_SAPPHIRE_ORE);
         entries.accept(ModBlocks.TITANIUM_ORE);
+        entries.accept(ModBlocks.DEEPSLATE_TITANIUM_ORE);
         entries.accept(ModBlocks.TITANIUM_BLOCK);
         entries.accept(ModBlocks.RUBY_BLOCK);
+        entries.accept(ModBlocks.JAXY_BLOCK);
+        entries.accept(ModBlocks.ROSALITA_BLOCK);
 
         entries.accept(ModBlocks.SHADOW_LOG);
         entries.accept(ModBlocks.SHADOW_WOOD);
@@ -82,6 +95,7 @@ public final class ModItemGroups {
         entries.accept(ModBlocks.STRIPPED_SHADOW_WOOD);
         entries.accept(ModBlocks.SHADOW_PLANKS);
         entries.accept(ModBlocks.SHADOW_LEAVES);
+        entries.accept(ModBlocks.SHADOW_SAPLING);
         entries.accept(ModBlocks.SHADOW_GRASS);
         entries.accept(ModBlocks.SHADOW_SOIL);
         entries.accept(ModBlocks.SHADOW_STONE);
@@ -114,11 +128,23 @@ public final class ModItemGroups {
         entries.accept(ModItems.RUBY_SHOVEL);
         entries.accept(ModItems.RUBY_HOE);
 
+        entries.accept(ModItems.JAXY_SWORD);
+        entries.accept(ModItems.JAXY_AXE);
+        entries.accept(ModItems.JAXY_PICKAXE);
+        entries.accept(ModItems.JAXY_SHOVEL);
+        entries.accept(ModItems.JAXY_HOE);
+
         entries.accept(ModItems.TITANIUM_SWORD);
         entries.accept(ModItems.TITANIUM_AXE);
         entries.accept(ModItems.TITANIUM_PICKAXE);
         entries.accept(ModItems.TITANIUM_SHOVEL);
         entries.accept(ModItems.TITANIUM_HOE);
+
+        entries.accept(ModItems.ROSALITA_SWORD);
+        entries.accept(ModItems.ROSALITA_AXE);
+        entries.accept(ModItems.ROSALITA_PICKAXE);
+        entries.accept(ModItems.ROSALITA_SHOVEL);
+        entries.accept(ModItems.ROSALITA_HOE);
 
         entries.accept(ModItems.SAPPHIRE_SWORD);
         entries.accept(ModItems.SAPPHIRE_AXE);
@@ -130,7 +156,11 @@ public final class ModItemGroups {
     private static void addMaterialsAndOres(CreativeModeTab.Output entries) {
         entries.accept(ModItems.SAPPHIRE_GEM);
         entries.accept(ModItems.ROSALITA_GEM);
+        entries.accept(ModItems.ROSALITA_TEMPLATE);
         entries.accept(ModItems.TITANIUM_INGOT);
+        entries.accept(ModItems.TITAN_SOULD);
+        entries.accept(ModItems.JAXY_GEM);
+        entries.accept(ModItems.SOLAR_OBSIDIAN);
         entries.accept(ModItems.EMERALD_INGOT);
         entries.accept(ModItems.RUBY_NUGGET);
         entries.accept(ModItems.RUBY);
@@ -151,10 +181,20 @@ public final class ModItemGroups {
         entries.accept(ModItems.RUBY_LEGGINGS);
         entries.accept(ModItems.RUBY_BOOTS);
 
+        entries.accept(ModItems.JAXY_HELMET);
+        entries.accept(ModItems.JAXY_CHESTPLATE);
+        entries.accept(ModItems.JAXY_LEGGINGS);
+        entries.accept(ModItems.JAXY_BOOTS);
+
         entries.accept(ModItems.TITANIUM_HELMET);
         entries.accept(ModItems.TITANIUM_CHESTPLATE);
         entries.accept(ModItems.TITANIUM_LEGGINGS);
         entries.accept(ModItems.TITANIUM_BOOTS);
+
+        entries.accept(ModItems.ROSALITA_HELMET);
+        entries.accept(ModItems.ROSALITA_CHESTPLATE);
+        entries.accept(ModItems.ROSALITA_LEGGINGS);
+        entries.accept(ModItems.ROSALITA_BOOTS);
     }
 
     private static void addEnchantments(CreativeModeTab.Output entries) {
@@ -217,13 +257,17 @@ public final class ModItemGroups {
     private static void addAuroraWood(
         CreativeModeTab.Output entries,
         net.minecraft.world.level.block.Block log,
+        net.minecraft.world.level.block.Block wood,
         net.minecraft.world.level.block.Block strippedLog,
+        net.minecraft.world.level.block.Block strippedWood,
         net.minecraft.world.level.block.Block planks,
         net.minecraft.world.level.block.Block leaves,
         net.minecraft.world.level.block.Block sapling
     ) {
         entries.accept(log);
+        entries.accept(wood);
         entries.accept(strippedLog);
+        entries.accept(strippedWood);
         entries.accept(planks);
         entries.accept(leaves);
         entries.accept(sapling);

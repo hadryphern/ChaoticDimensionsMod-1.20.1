@@ -1,6 +1,6 @@
 {
   "carvers": {},
-  "downfall": 0.0,
+  "downfall": 1.0,
   "effects": {
     "fog_color": 459787,
     "sky_color": 196869,
@@ -26,7 +26,7 @@
     ],
     []
   ],
-  "has_precipitation": false,
+  "has_precipitation": true,
   "spawn_costs": {},
   "spawners": {
     "ambient": [],

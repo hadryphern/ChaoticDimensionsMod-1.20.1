@@ -1,10 +1,10 @@
 {
   "type": "minecraft:smithing_transform",
   "template": {
-    "item": "chaoticd:ruby_plate"
+    "item": "chaoticd:titan_sould"
   },
   "base": {
-    "item": "chaoticd:ruby_boots"
+    "item": "chaoticd:jaxy_boots"
   },
   "addition": {
     "item": "chaoticd:titanium_ingot"

@@ -13,27 +13,27 @@ public final class SapphireTier implements Tier {
 
     @Override
     public int getUses() {
-        return 3000;
+        return 2_031_000;
     }
 
     @Override
     public float getSpeed() {
-        return 12.0F;
+        return 9_000.0F;
     }
 
     @Override
     public float getAttackDamageBonus() {
-        return 0.0F;
+        return 4_000.0F;
     }
 
     @Override
     public int getLevel() {
-        return 4;
+        return 9;
     }
 
     @Override
     public int getEnchantmentValue() {
-        return 25;
+        return 15_000;
     }
 
     @Override

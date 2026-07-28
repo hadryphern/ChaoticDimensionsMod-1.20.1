@@ -7,7 +7,11 @@ import net.blue.chaoticd.content.item.CrystalineSeeItem;
 import net.blue.chaoticd.content.item.DeathTotemItem;
 import net.blue.chaoticd.content.item.EmeraldArmorMaterial;
 import net.blue.chaoticd.content.item.EmeraldTier;
+import net.blue.chaoticd.content.item.JaxyArmorMaterial;
+import net.blue.chaoticd.content.item.JaxyTier;
 import net.blue.chaoticd.content.item.LeatherBackpackItem;
+import net.blue.chaoticd.content.item.RosalitaArmorMaterial;
+import net.blue.chaoticd.content.item.RosalitaTier;
 import net.blue.chaoticd.content.item.RubyArmorMaterial;
 import net.blue.chaoticd.content.item.RubyTier;
 import net.blue.chaoticd.content.item.TitaniumArmorMaterial;
@@ -26,7 +30,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.PickaxeItem;
-import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.SpawnEggItem;
 import net.minecraft.world.item.ShovelItem;
 import net.minecraft.world.item.SwordItem;
@@ -37,21 +40,21 @@ import net.minecraft.world.item.enchantment.Enchantments;
 public final class ModItems {
     public static final Item SAPPHIRE_GEM = register(
         "sapphire_gem",
-        new Item(new Item.Properties())
+        new Item(new Item.Properties().fireResistant())
     );
 
     public static final Item SAPPHIRE_SWORD = register(
         "sapphire_sword",
-        new SapphireSwordItem(new Item.Properties())
+        new SapphireSwordItem(new Item.Properties().fireResistant())
     );
 
     public static final Item SAPPHIRE_PICKAXE = register(
         "sapphire_pickaxe",
         new PickaxeItem(
             SapphireTier.INSTANCE,
-            1,
+            1_999,
             -2.8F,
-            new Item.Properties()
+            new Item.Properties().fireResistant()
         )
     );
 
@@ -59,9 +62,9 @@ public final class ModItems {
         "sapphire_axe",
         new AxeItem(
             SapphireTier.INSTANCE,
-            7.0F,
+            5_999.0F,
             -3.0F,
-            new Item.Properties()
+            new Item.Properties().fireResistant()
         )
     );
 
@@ -69,9 +72,9 @@ public final class ModItems {
         "sapphire_shovel",
         new ShovelItem(
             SapphireTier.INSTANCE,
-            1.5F,
+            2_499.0F,
             -3.0F,
-            new Item.Properties()
+            new Item.Properties().fireResistant()
         )
     );
 
@@ -79,9 +82,9 @@ public final class ModItems {
         "sapphire_hoe",
         new HoeItem(
             SapphireTier.INSTANCE,
-            -2,
+            -3_001,
             -1.0F,
-            new Item.Properties()
+            new Item.Properties().fireResistant()
         )
     );
 
@@ -104,7 +107,6 @@ public final class ModItems {
             new Item.Properties()
                 .stacksTo(1)
                 .fireResistant()
-                .rarity(Rarity.EPIC)
         )
     );
 
@@ -113,7 +115,6 @@ public final class ModItems {
         new Item(
             new Item.Properties()
                 .fireResistant()
-                .rarity(Rarity.EPIC)
         )
     );
 
@@ -124,7 +125,6 @@ public final class ModItems {
             new Item.Properties()
                 .craftRemainder(Items.BUCKET)
                 .stacksTo(1)
-                .rarity(Rarity.EPIC)
         )
     );
 
@@ -133,7 +133,6 @@ public final class ModItems {
         new CrystalineSeeItem(
             new Item.Properties()
                 .stacksTo(16)
-                .rarity(Rarity.EPIC)
         )
     );
 
@@ -141,7 +140,7 @@ public final class ModItems {
 
     public static final Item CRYSTALINE_EYE = register(
         "crystaline_eye",
-        new Item(new Item.Properties().stacksTo(16).rarity(Rarity.RARE))
+        new Item(new Item.Properties().stacksTo(16))
     );
 
     public static final Item GOLD_SPECIAL_APPLE = register(
@@ -178,17 +177,23 @@ public final class ModItems {
 
     public static final Item ROSALITA_GEM = register(
         "rosalita_gem",
-        new Item(new Item.Properties().rarity(Rarity.RARE))
+        new Item(new Item.Properties())
+    );
+
+    /** Future-gated upgrade template for the Rosalita stage. */
+    public static final Item ROSALITA_TEMPLATE = register(
+        "rosalita_template",
+        new Item(new Item.Properties().stacksTo(16).fireResistant())
     );
 
     public static final Item WATER_INGOT = register(
         "water_ingot",
-        new Item(new Item.Properties().rarity(Rarity.RARE))
+        new Item(new Item.Properties())
     );
 
     public static final Item LAVA_INGOT = register(
         "lava_ingot",
-        new Item(new Item.Properties().fireResistant().rarity(Rarity.RARE))
+        new Item(new Item.Properties().fireResistant())
     );
 
     public static final Item TITANIUM_INGOT = register(
@@ -196,29 +201,96 @@ public final class ModItems {
         new Item(new Item.Properties())
     );
 
+    /** Smithing template named Titan Sould in-game, following the supplied plan. */
+    public static final Item TITAN_SOULD = register(
+        "titan_sould",
+        new Item(new Item.Properties().stacksTo(16).fireResistant())
+    );
+
+    /** Jaxy material mined from Jax/Jaxy ore variants. */
+    public static final Item JAXY_GEM = register(
+        "jaxy_gem",
+        new Item(new Item.Properties().fireResistant())
+    );
+
+    /** Smithing template named Solar Obsidian in-game. */
+    public static final Item SOLAR_OBSIDIAN = register(
+        "solar_obsidian",
+        new Item(new Item.Properties().stacksTo(16).fireResistant())
+    );
+
+    public static final Item JAXY_SWORD = register(
+        "jaxy_sword",
+        new SwordItem(JaxyTier.INSTANCE, 31, -2.4F, new Item.Properties().fireResistant())
+    );
+
+    public static final Item JAXY_PICKAXE = register(
+        "jaxy_pickaxe",
+        new PickaxeItem(JaxyTier.INSTANCE, 15, -2.8F, new Item.Properties().fireResistant())
+    );
+
+    public static final Item JAXY_AXE = register(
+        "jaxy_axe",
+        new AxeItem(JaxyTier.INSTANCE, 47.0F, -3.0F, new Item.Properties().fireResistant())
+    );
+
+    public static final Item JAXY_SHOVEL = register(
+        "jaxy_shovel",
+        new ShovelItem(JaxyTier.INSTANCE, 19.0F, -3.0F, new Item.Properties().fireResistant())
+    );
+
+    public static final Item JAXY_HOE = register(
+        "jaxy_hoe",
+        new HoeItem(JaxyTier.INSTANCE, -25, 0.0F, new Item.Properties().fireResistant())
+    );
+
+    public static final Item JAXY_HELMET = register(
+        "jaxy_helmet",
+        new ArmorItem(JaxyArmorMaterial.INSTANCE, ArmorItem.Type.HELMET,
+            new Item.Properties().fireResistant())
+    );
+
+    public static final Item JAXY_CHESTPLATE = register(
+        "jaxy_chestplate",
+        new ArmorItem(JaxyArmorMaterial.INSTANCE, ArmorItem.Type.CHESTPLATE,
+            new Item.Properties().fireResistant())
+    );
+
+    public static final Item JAXY_LEGGINGS = register(
+        "jaxy_leggings",
+        new ArmorItem(JaxyArmorMaterial.INSTANCE, ArmorItem.Type.LEGGINGS,
+            new Item.Properties().fireResistant())
+    );
+
+    public static final Item JAXY_BOOTS = register(
+        "jaxy_boots",
+        new ArmorItem(JaxyArmorMaterial.INSTANCE, ArmorItem.Type.BOOTS,
+            new Item.Properties().fireResistant())
+    );
+
     public static final Item TITANIUM_SWORD = register(
         "titanium_sword",
-        new SwordItem(TitaniumTier.INSTANCE, 3, -2.4F, new Item.Properties())
+        new SwordItem(TitaniumTier.INSTANCE, 159, -2.4F, new Item.Properties().fireResistant())
     );
 
     public static final Item TITANIUM_PICKAXE = register(
         "titanium_pickaxe",
-        new PickaxeItem(TitaniumTier.INSTANCE, 1, -2.8F, new Item.Properties())
+        new PickaxeItem(TitaniumTier.INSTANCE, 79, -2.8F, new Item.Properties().fireResistant())
     );
 
     public static final Item TITANIUM_AXE = register(
         "titanium_axe",
-        new AxeItem(TitaniumTier.INSTANCE, 6.0F, -3.0F, new Item.Properties())
+        new AxeItem(TitaniumTier.INSTANCE, 239.0F, -3.0F, new Item.Properties().fireResistant())
     );
 
     public static final Item TITANIUM_SHOVEL = register(
         "titanium_shovel",
-        new ShovelItem(TitaniumTier.INSTANCE, 1.5F, -3.0F, new Item.Properties())
+        new ShovelItem(TitaniumTier.INSTANCE, 99.0F, -3.0F, new Item.Properties().fireResistant())
     );
 
     public static final Item TITANIUM_HOE = register(
         "titanium_hoe",
-        new HoeItem(TitaniumTier.INSTANCE, -3, 0.0F, new Item.Properties())
+        new HoeItem(TitaniumTier.INSTANCE, -121, 0.0F, new Item.Properties().fireResistant())
     );
 
     public static final Item TITANIUM_HELMET = register(
@@ -226,7 +298,7 @@ public final class ModItems {
         new ArmorItem(
             TitaniumArmorMaterial.INSTANCE,
             ArmorItem.Type.HELMET,
-            new Item.Properties().fireResistant().rarity(Rarity.EPIC)
+            new Item.Properties().fireResistant()
         )
     );
 
@@ -235,7 +307,7 @@ public final class ModItems {
         new ArmorItem(
             TitaniumArmorMaterial.INSTANCE,
             ArmorItem.Type.CHESTPLATE,
-            new Item.Properties().fireResistant().rarity(Rarity.EPIC)
+            new Item.Properties().fireResistant()
         )
     );
 
@@ -244,7 +316,7 @@ public final class ModItems {
         new ArmorItem(
             TitaniumArmorMaterial.INSTANCE,
             ArmorItem.Type.LEGGINGS,
-            new Item.Properties().fireResistant().rarity(Rarity.EPIC)
+            new Item.Properties().fireResistant()
         )
     );
 
@@ -253,32 +325,81 @@ public final class ModItems {
         new ArmorItem(
             TitaniumArmorMaterial.INSTANCE,
             ArmorItem.Type.BOOTS,
-            new Item.Properties().fireResistant().rarity(Rarity.EPIC)
+            new Item.Properties().fireResistant()
         )
+    );
+
+    public static final Item ROSALITA_SWORD = register(
+        "rosalita_sword",
+        new SwordItem(RosalitaTier.INSTANCE, 399, -2.4F, new Item.Properties().fireResistant())
+    );
+
+    public static final Item ROSALITA_PICKAXE = register(
+        "rosalita_pickaxe",
+        new PickaxeItem(RosalitaTier.INSTANCE, 199, -2.8F, new Item.Properties().fireResistant())
+    );
+
+    public static final Item ROSALITA_AXE = register(
+        "rosalita_axe",
+        new AxeItem(RosalitaTier.INSTANCE, 599.0F, -3.0F, new Item.Properties().fireResistant())
+    );
+
+    public static final Item ROSALITA_SHOVEL = register(
+        "rosalita_shovel",
+        new ShovelItem(RosalitaTier.INSTANCE, 249.0F, -3.0F, new Item.Properties().fireResistant())
+    );
+
+    public static final Item ROSALITA_HOE = register(
+        "rosalita_hoe",
+        new HoeItem(RosalitaTier.INSTANCE, -301, 0.0F, new Item.Properties().fireResistant())
+    );
+
+    public static final Item ROSALITA_HELMET = register(
+        "rosalita_helmet",
+        new ArmorItem(RosalitaArmorMaterial.INSTANCE, ArmorItem.Type.HELMET,
+            new Item.Properties().fireResistant())
+    );
+
+    public static final Item ROSALITA_CHESTPLATE = register(
+        "rosalita_chestplate",
+        new ArmorItem(RosalitaArmorMaterial.INSTANCE, ArmorItem.Type.CHESTPLATE,
+            new Item.Properties().fireResistant())
+    );
+
+    public static final Item ROSALITA_LEGGINGS = register(
+        "rosalita_leggings",
+        new ArmorItem(RosalitaArmorMaterial.INSTANCE, ArmorItem.Type.LEGGINGS,
+            new Item.Properties().fireResistant())
+    );
+
+    public static final Item ROSALITA_BOOTS = register(
+        "rosalita_boots",
+        new ArmorItem(RosalitaArmorMaterial.INSTANCE, ArmorItem.Type.BOOTS,
+            new Item.Properties().fireResistant())
     );
 
     public static final Item RUBY_NUGGET = register(
         "ruby_nugget",
-        new Item(new Item.Properties().fireResistant().rarity(Rarity.EPIC))
+        new Item(new Item.Properties().fireResistant())
     );
 
     public static final Item RUBY = register(
         "ruby",
-        new Item(new Item.Properties().fireResistant().rarity(Rarity.EPIC))
+        new Item(new Item.Properties().fireResistant())
     );
 
     public static final Item RUBY_PLATE = register(
         "ruby_plate",
-        new Item(new Item.Properties().fireResistant().rarity(Rarity.EPIC))
+        new Item(new Item.Properties().fireResistant())
     );
 
     public static final Item RUBY_SWORD = register(
         "ruby_sword",
         new SwordItem(
             RubyTier.INSTANCE,
-            14,
+            15,
             -2.0F,
-            new Item.Properties().fireResistant().rarity(Rarity.EPIC)
+            new Item.Properties().fireResistant()
         )
     );
 
@@ -286,9 +407,9 @@ public final class ModItems {
         "ruby_pickaxe",
         new PickaxeItem(
             RubyTier.INSTANCE,
-            6,
+            7,
             -2.4F,
-            new Item.Properties().fireResistant().rarity(Rarity.EPIC)
+            new Item.Properties().fireResistant()
         )
     );
 
@@ -296,9 +417,9 @@ public final class ModItems {
         "ruby_axe",
         new AxeItem(
             RubyTier.INSTANCE,
-            22.0F,
+            23.0F,
             -2.6F,
-            new Item.Properties().fireResistant().rarity(Rarity.EPIC)
+            new Item.Properties().fireResistant()
         )
     );
 
@@ -306,9 +427,9 @@ public final class ModItems {
         "ruby_shovel",
         new ShovelItem(
             RubyTier.INSTANCE,
-            8.0F,
+            9.0F,
             -2.4F,
-            new Item.Properties().fireResistant().rarity(Rarity.EPIC)
+            new Item.Properties().fireResistant()
         )
     );
 
@@ -316,9 +437,9 @@ public final class ModItems {
         "ruby_hoe",
         new HoeItem(
             RubyTier.INSTANCE,
-            -8,
+            -13,
             0.0F,
-            new Item.Properties().fireResistant().rarity(Rarity.EPIC)
+            new Item.Properties().fireResistant()
         )
     );
 
@@ -327,7 +448,7 @@ public final class ModItems {
         new ArmorItem(
             RubyArmorMaterial.INSTANCE,
             ArmorItem.Type.HELMET,
-            new Item.Properties().fireResistant().rarity(Rarity.EPIC)
+            new Item.Properties().fireResistant()
         )
     );
 
@@ -336,7 +457,7 @@ public final class ModItems {
         new ArmorItem(
             RubyArmorMaterial.INSTANCE,
             ArmorItem.Type.CHESTPLATE,
-            new Item.Properties().fireResistant().rarity(Rarity.EPIC)
+            new Item.Properties().fireResistant()
         )
     );
 
@@ -345,7 +466,7 @@ public final class ModItems {
         new ArmorItem(
             RubyArmorMaterial.INSTANCE,
             ArmorItem.Type.LEGGINGS,
-            new Item.Properties().fireResistant().rarity(Rarity.EPIC)
+            new Item.Properties().fireResistant()
         )
     );
 
@@ -354,13 +475,13 @@ public final class ModItems {
         new ArmorItem(
             RubyArmorMaterial.INSTANCE,
             ArmorItem.Type.BOOTS,
-            new Item.Properties().fireResistant().rarity(Rarity.EPIC)
+            new Item.Properties().fireResistant()
         )
     );
 
     public static final Item AURORA_PEARL = register(
         "aurora_pearl",
-        new Item(new Item.Properties().stacksTo(16).rarity(Rarity.RARE))
+        new Item(new Item.Properties().stacksTo(16))
     );
 
     public static final Item DIMENSION_PIG_SPAWN_EGG = register(
@@ -413,7 +534,6 @@ public final class ModItems {
             -2.4F,
             new Item.Properties()
                 .fireResistant()
-                .rarity(Rarity.EPIC)
         )
     );
 
@@ -425,7 +545,6 @@ public final class ModItems {
             -2.8F,
             new Item.Properties()
                 .fireResistant()
-                .rarity(Rarity.EPIC)
         )
     );
 
@@ -437,7 +556,6 @@ public final class ModItems {
             -3.0F,
             new Item.Properties()
                 .fireResistant()
-                .rarity(Rarity.EPIC)
         )
     );
 
@@ -449,7 +567,6 @@ public final class ModItems {
             -3.0F,
             new Item.Properties()
                 .fireResistant()
-                .rarity(Rarity.EPIC)
         )
     );
 
@@ -457,11 +574,10 @@ public final class ModItems {
         "emerald_hoe",
         new HoeItem(
             EmeraldTier.INSTANCE,
-            -4,
+            -7,
             0.0F,
             new Item.Properties()
                 .fireResistant()
-                .rarity(Rarity.EPIC)
         )
     );
 
@@ -472,7 +588,6 @@ public final class ModItems {
             ArmorItem.Type.HELMET,
             new Item.Properties()
                 .fireResistant()
-                .rarity(Rarity.EPIC)
         )
     );
 
@@ -483,7 +598,6 @@ public final class ModItems {
             ArmorItem.Type.CHESTPLATE,
             new Item.Properties()
                 .fireResistant()
-                .rarity(Rarity.EPIC)
         )
     );
 
@@ -494,7 +608,6 @@ public final class ModItems {
             ArmorItem.Type.LEGGINGS,
             new Item.Properties()
                 .fireResistant()
-                .rarity(Rarity.EPIC)
         )
     );
 
@@ -505,7 +618,6 @@ public final class ModItems {
             ArmorItem.Type.BOOTS,
             new Item.Properties()
                 .fireResistant()
-                .rarity(Rarity.EPIC)
         )
     );
 

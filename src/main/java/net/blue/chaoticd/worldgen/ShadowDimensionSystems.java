@@ -46,6 +46,9 @@ public final class ShadowDimensionSystems {
     private static final int CURSE_REFRESH_TICKS = 20;
     private static final int CURSE_DURATION_TICKS = 60;
     private static final int DAMAGE_INTERVAL_TICKS = 60;
+    private static final int SHADOW_STORM_DURATION_TICKS = 1_000_000;
+    private static final int SHADOW_STORM_REFRESH_TICKS = 200;
+    private static final int DEATH_TOTEM_NIGHT_VISION_DURATION = 999_999;
     private static final float SHADOW_DAMAGE = 2.0F;
     private static final double DROPPED_TOTEM_SEARCH_RADIUS = 6.0D;
 
@@ -75,9 +78,15 @@ public final class ShadowDimensionSystems {
         }
 
         if (level.dimension().equals(SHADOW_DIMENSION)) {
+            enforceShadowStorm(level);
+
             for (ServerPlayer player : List.copyOf(level.players())) {
                 if (handleDroppedDeathTotem(level, player)) {
                     continue;
+                }
+
+                if (hasDeathTotem(player)) {
+                    grantDeathTotemNightVision(player);
                 }
 
                 if (isProtected(player)) {
@@ -137,18 +146,17 @@ public final class ShadowDimensionSystems {
         ItemStack returnedTotem = dropped.getItem().copy();
         dropped.discard();
 
-        if (!player.getInventory().add(returnedTotem)) {
-            player.getInventory().setItem(
-                player.getInventory().selected,
-                returnedTotem
-            );
-        }
+        boolean dropAfterTeleport = !player.getInventory().add(returnedTotem);
 
         player.containerMenu.broadcastChanges();
+        grantDeathTotemNightVision(player);
 
         ServerLevel aurora = player.server.getLevel(AURORA_DIMENSION);
 
         if (aurora == null) {
+            if (dropAfterTeleport) {
+                player.drop(returnedTotem, false);
+            }
             player.displayClientMessage(
                 Component.translatable("message.chaoticd.aurora_unavailable"),
                 false
@@ -159,11 +167,21 @@ public final class ShadowDimensionSystems {
         clearShadowCurse(player);
 
         AuroraSafeArrival.find(aurora).ifPresentOrElse(
-            arrival -> teleport(player, aurora, arrival),
-            () -> player.displayClientMessage(
-                Component.translatable("message.chaoticd.aurora_no_safe_arrival"),
-                false
-            )
+            arrival -> {
+                teleport(player, aurora, arrival);
+                if (dropAfterTeleport) {
+                    player.drop(returnedTotem, false);
+                }
+            },
+            () -> {
+                if (dropAfterTeleport) {
+                    player.drop(returnedTotem, false);
+                }
+                player.displayClientMessage(
+                    Component.translatable("message.chaoticd.aurora_no_safe_arrival"),
+                    false
+                );
+            }
         );
 
         return true;
@@ -171,6 +189,58 @@ public final class ShadowDimensionSystems {
 
     private static boolean isProtected(ServerPlayer player) {
         return player.getOffhandItem().is(ModItems.DEATH_TOTEM);
+    }
+
+    /**
+     * Receiving a Death Totem in Shadow grants the requested near-infinite
+     * Night Vision immediately, even before the player decides whether to put
+     * it in the offhand for protection from the Shadow curse.
+     */
+    private static boolean hasDeathTotem(ServerPlayer player) {
+        for (int slot = 0; slot < player.getInventory().getContainerSize(); slot++) {
+            if (player.getInventory().getItem(slot).is(ModItems.DEATH_TOTEM)) {
+                return true;
+            }
+        }
+        return player.containerMenu.getCarried().is(ModItems.DEATH_TOTEM);
+    }
+
+    /** Keeps Shadow's storm active even after its natural weather timer expires. */
+    private static void enforceShadowStorm(ServerLevel level) {
+        if (!level.isRaining()
+            || !level.isThundering()
+            || level.getGameTime() % SHADOW_STORM_REFRESH_TICKS == 0L) {
+            level.setWeatherParameters(
+                0,
+                SHADOW_STORM_DURATION_TICKS,
+                true,
+                true
+            );
+        }
+    }
+
+    /**
+     * A collected Death Totem grants near-infinite Night Vision in Shadow.
+     */
+    private static void grantDeathTotemNightVision(ServerPlayer player) {
+        MobEffectInstance current = player.getEffect(MobEffects.NIGHT_VISION);
+
+        if (current != null
+            && current.getDuration()
+                > DEATH_TOTEM_NIGHT_VISION_DURATION - CURSE_REFRESH_TICKS) {
+            return;
+        }
+
+        player.addEffect(
+            new MobEffectInstance(
+                MobEffects.NIGHT_VISION,
+                DEATH_TOTEM_NIGHT_VISION_DURATION,
+                0,
+                true,
+                false,
+                true
+            )
+        );
     }
 
     private static void applyShadowCurse(ServerLevel level, ServerPlayer player) {
@@ -275,8 +345,9 @@ public final class ShadowDimensionSystems {
 
             if (newInventory.getItem(slot).isEmpty()) {
                 newInventory.setItem(slot, copy);
-            } else {
-                newInventory.add(copy);
+            } else if (!newInventory.add(copy)) {
+                // A full respawn inventory must not delete a retained Totem.
+                newPlayer.drop(copy, false);
             }
 
             missing -= copy.getCount();

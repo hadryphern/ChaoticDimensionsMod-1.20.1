@@ -4,6 +4,10 @@
     "chaoticd:pastel_soil",
     "chaoticd:pastel_grass",
     "chaoticd:aurora_dirt",
-    "chaoticd:aurora_grass_block"
+    "chaoticd:aurora_grass_block",
+    "chaoticd:shadow_soil",
+    "chaoticd:shadow_grass",
+    "chaoticd:crystal_dirt",
+    "chaoticd:crystal_grass_block"
   ]
 }

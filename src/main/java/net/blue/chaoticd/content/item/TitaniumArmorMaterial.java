@@ -9,7 +9,8 @@ import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.crafting.Ingredient;
 
 /**
- * Titanium is the direct three-times-Ruby armor upgrade.
+ * Titanium is the direct five-times-Jaxy armor upgrade (forty times
+ * Netherite's baseline material values).
  *
  * <p>Its durability, defense, enchantability, toughness and knockback
  * resistance intentionally follow the requested endgame-scale progression.
@@ -19,7 +20,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 public enum TitaniumArmorMaterial implements ArmorMaterial {
     INSTANCE;
 
-    private static final int DURABILITY_MULTIPLIER = 444;
+    private static final int DURABILITY_MULTIPLIER = 1_480;
 
     @Override
     public int getDurabilityForType(ArmorItem.Type type) {
@@ -34,16 +35,16 @@ public enum TitaniumArmorMaterial implements ArmorMaterial {
     @Override
     public int getDefenseForType(ArmorItem.Type type) {
         return switch (type) {
-            case BOOTS -> 36;
-            case LEGGINGS -> 72;
-            case CHESTPLATE -> 96;
-            case HELMET -> 36;
+            case BOOTS -> 120;
+            case LEGGINGS -> 240;
+            case CHESTPLATE -> 320;
+            case HELMET -> 120;
         };
     }
 
     @Override
     public int getEnchantmentValue() {
-        return 90;
+        return 600;
     }
 
     @Override
@@ -63,11 +64,11 @@ public enum TitaniumArmorMaterial implements ArmorMaterial {
 
     @Override
     public float getToughness() {
-        return 36.0F;
+        return 120.0F;
     }
 
     @Override
     public float getKnockbackResistance() {
-        return 1.2F;
+        return 4.0F;
     }
 }

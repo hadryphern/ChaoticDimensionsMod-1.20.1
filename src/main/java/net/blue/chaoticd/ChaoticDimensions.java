@@ -12,9 +12,9 @@ import net.blue.chaoticd.content.ModItems;
 import net.blue.chaoticd.content.ModLootTables;
 import net.blue.chaoticd.content.ModPotions;
 import net.blue.chaoticd.gameplay.ChaoticGearInitialization;
+import net.blue.chaoticd.gameplay.CrystalHarvestRules;
 import net.blue.chaoticd.gameplay.DreamFluidSystems;
 import net.blue.chaoticd.gameplay.EmeraldLuckSystems;
-import net.blue.chaoticd.rarity.ModRarities;
 import net.blue.chaoticd.worldgen.LegacyWorldgen;
 import net.blue.chaoticd.worldgen.ModWorldgenFeatures;
 import net.blue.chaoticd.worldgen.ShadowDimensionSystems;
@@ -49,14 +49,13 @@ public final class ChaoticDimensions implements ModInitializer {
 
         ShadowDimensionSystems.initialize();
         DreamFluidSystems.initialize();
+        CrystalHarvestRules.initialize();
 
         ChaoticGearInitialization.initialize();
         EmeraldLuckSystems.initialize();
 
         ModLootTables.initialize();
         ModPotions.initialize();
-
-        ModRarities.bootstrap();
 
         ModItemGroups.initialize();
 

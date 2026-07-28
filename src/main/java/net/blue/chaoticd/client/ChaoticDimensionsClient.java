@@ -15,6 +15,7 @@ import net.minecraft.client.renderer.RenderType;
 public final class ChaoticDimensionsClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
+        SapphiricVisuals.initialize();
         AuroraVisuals.initialize();
         ShadowVisuals.initialize();
 
@@ -36,11 +37,18 @@ public final class ChaoticDimensionsClient implements ClientModInitializer {
             RenderType.cutout(),
             ModBlocks.AURORA_PINKKO_SAPLING,
             ModBlocks.AURORA_SOULESS_SAPLING,
-            ModBlocks.AURORA_SKY_SAPLING
+            ModBlocks.AURORA_SKY_SAPLING,
+            ModBlocks.SHADOW_SAPLING
         );
 
         BlockRenderLayerMap.INSTANCE.putBlocks(
             RenderType.cutout(),
+            ModBlocks.CRYSTAL_DIRT,
+            ModBlocks.CRYSTAL_GRASS_BLOCK,
+            ModBlocks.CRYSTAL_LOG,
+            ModBlocks.CRYSTAL_PLANKS,
+            ModBlocks.CRYSTAL_FURNACE,
+            ModBlocks.CRYSTAL_CRAFTING_TABLE,
             ModBlocks.CRYSTAL_RED_PLANT,
             ModBlocks.CRYSTAL_YELLOW_PLANT,
             ModBlocks.CRYSTAL_BLUE_PLANT,

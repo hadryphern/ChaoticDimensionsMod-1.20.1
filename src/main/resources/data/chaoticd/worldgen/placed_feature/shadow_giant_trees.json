@@ -2,6 +2,10 @@
   "feature": "chaoticd:shadow_giant_trees",
   "placement": [
     {
+      "type": "minecraft:count",
+      "count": 20
+    },
+    {
       "type": "minecraft:rarity_filter",
       "chance": 10
     },

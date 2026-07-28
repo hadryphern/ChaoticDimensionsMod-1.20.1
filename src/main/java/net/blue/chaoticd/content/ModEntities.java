@@ -19,6 +19,7 @@ import net.minecraft.world.entity.monster.Creeper;
 public final class ModEntities {
     public static final EntityType<LegacyPigEntity> DIMENSION_PIG = register(
         "dimension_pig",
+        "pig",
         EntityType.Builder.<LegacyPigEntity>of(
             (type, level) -> new LegacyPigEntity(type, level, LegacyMobVariant.DIMENSION_PIG),
             MobCategory.CREATURE
@@ -27,6 +28,7 @@ public final class ModEntities {
 
     public static final EntityType<LegacyPigEntity> GOLD_DIMENSION_PIG = register(
         "gold_dimension_pig",
+        "pig",
         EntityType.Builder.<LegacyPigEntity>of(
             (type, level) -> new LegacyPigEntity(type, level, LegacyMobVariant.GOLD_DIMENSION_PIG),
             MobCategory.CREATURE
@@ -35,6 +37,7 @@ public final class ModEntities {
 
     public static final EntityType<LegacyCowEntity> APPLE_COW = register(
         "apple_cow",
+        "cow",
         EntityType.Builder.<LegacyCowEntity>of(
             (type, level) -> new LegacyCowEntity(type, level, LegacyMobVariant.APPLE_COW),
             MobCategory.CREATURE
@@ -43,6 +46,7 @@ public final class ModEntities {
 
     public static final EntityType<LegacyCowEntity> GOLDEN_APPLE_COW = register(
         "golden_apple_cow",
+        "cow",
         EntityType.Builder.<LegacyCowEntity>of(
             (type, level) -> new LegacyCowEntity(type, level, LegacyMobVariant.GOLDEN_APPLE_COW),
             MobCategory.CREATURE
@@ -51,6 +55,7 @@ public final class ModEntities {
 
     public static final EntityType<LegacyCowEntity> CRYSTAL_APPLE_COW = register(
         "crystal_apple_cow",
+        "cow",
         EntityType.Builder.<LegacyCowEntity>of(
             (type, level) -> new LegacyCowEntity(type, level, LegacyMobVariant.CRYSTAL_APPLE_COW),
             MobCategory.CREATURE
@@ -59,6 +64,7 @@ public final class ModEntities {
 
     public static final EntityType<LegacyCowEntity> CRYSTAL_GOLDEN_APPLE = register(
         "crystal_golden_apple",
+        "cow",
         EntityType.Builder.<LegacyCowEntity>of(
             (type, level) -> new LegacyCowEntity(type, level, LegacyMobVariant.CRYSTAL_GOLDEN_APPLE),
             MobCategory.CREATURE
@@ -67,6 +73,7 @@ public final class ModEntities {
 
     public static final EntityType<LegacyCreeperEntity> CRYSTAL_CREEPER = register(
         "crystal_creeper",
+        "creeper",
         EntityType.Builder.<LegacyCreeperEntity>of(
             (type, level) -> new LegacyCreeperEntity(type, level, LegacyMobVariant.CRYSTAL_CREEPER),
             MobCategory.MONSTER
@@ -78,12 +85,20 @@ public final class ModEntities {
 
     private static <T extends net.minecraft.world.entity.Entity> EntityType<T> register(
         String id,
+        String vanillaDataFixerId,
         EntityType.Builder<T> builder
     ) {
         return Registry.register(
             BuiltInRegistries.ENTITY_TYPE,
             new ResourceLocation(ChaoticDimensions.MOD_ID, id),
-            builder.clientTrackingRange(8).build(id)
+            /*
+             * These legacy entities inherit vanilla Pig, Cow or Creeper data
+             * and do not define extra persistent fields.  Supplying that
+             * vanilla choice id lets Minecraft resolve the DataFixer schema
+             * instead of emitting a startup error for every custom registry
+             * id.
+             */
+            builder.clientTrackingRange(8).build(vanillaDataFixerId)
         );
     }
 

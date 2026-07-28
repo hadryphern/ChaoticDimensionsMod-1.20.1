@@ -4,6 +4,7 @@ import net.blue.chaoticd.ChaoticDimensions;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.levelgen.structure.Structure;
 import net.minecraft.world.level.material.Fluid;
 
@@ -13,6 +14,13 @@ public final class ModTags {
         TagKey.create(
             Registries.FLUID,
             id("dream_fluid")
+        );
+
+    /** All blocks governed by Crystal's Silk Touch harvesting rule. */
+    public static final TagKey<Block> CRYSTAL_SENSITIVE =
+        TagKey.create(
+            Registries.BLOCK,
+            id("crystal_sensitive")
         );
 
     /**

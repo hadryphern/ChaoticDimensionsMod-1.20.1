@@ -306,11 +306,7 @@ public final class ChaoticGearInitialization {
             Enchantment enchantment :
                 selected
         ) {
-            int maximumLevel =
-                Math.max(
-                    1,
-                    enchantment.getMaxLevel()
-                );
+            int maximumLevel = vanillaMaximumLevel(enchantment);
 
             int level =
                 1
@@ -561,5 +557,40 @@ public final class ChaoticGearInitialization {
         }
 
         return true;
+    }
+
+    /**
+     * The mod deliberately raises the global maximum levels for several
+     * vanilla enchantments. Emerald gear is intended to roll only ordinary
+     * vanilla levels, so it must not query the globally patched max level.
+     */
+    private static int vanillaMaximumLevel(Enchantment enchantment) {
+        if (enchantment == Enchantments.SHARPNESS
+            || enchantment == Enchantments.SMITE
+            || enchantment == Enchantments.BANE_OF_ARTHROPODS
+            || enchantment == Enchantments.BLOCK_EFFICIENCY) {
+            return 5;
+        }
+        if (enchantment == Enchantments.ALL_DAMAGE_PROTECTION
+            || enchantment == Enchantments.FIRE_PROTECTION
+            || enchantment == Enchantments.BLAST_PROTECTION
+            || enchantment == Enchantments.PROJECTILE_PROTECTION
+            || enchantment == Enchantments.FALL_PROTECTION) {
+            return 4;
+        }
+        if (enchantment == Enchantments.UNBREAKING
+            || enchantment == Enchantments.MOB_LOOTING
+            || enchantment == Enchantments.BLOCK_FORTUNE
+            || enchantment == Enchantments.RESPIRATION
+            || enchantment == Enchantments.THORNS
+            || enchantment == Enchantments.DEPTH_STRIDER
+            || enchantment == Enchantments.SWEEPING_EDGE) {
+            return 3;
+        }
+        if (enchantment == Enchantments.KNOCKBACK
+            || enchantment == Enchantments.FIRE_ASPECT) {
+            return 2;
+        }
+        return 1;
     }
 }

@@ -4,7 +4,7 @@ import net.blue.chaoticd.content.ModItems;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.crafting.Ingredient;
 
-/** Tool material that is exactly twice the Emerald material attributes. */
+/** Tool material that is exactly four times the Netherite material attributes. */
 public enum RubyTier implements Tier {
     INSTANCE;
 
@@ -25,7 +25,8 @@ public enum RubyTier implements Tier {
 
     @Override
     public int getLevel() {
-        return 5;
+        // Ruby opens the Jaxy harvest gate.
+        return 6;
     }
 
     @Override

@@ -30,7 +30,8 @@ public enum EmeraldTier implements Tier {
 
     @Override
     public int getLevel() {
-        return 4;
+        // Ruby ore is the first post-Netherite harvest gate.
+        return 5;
     }
 
     @Override

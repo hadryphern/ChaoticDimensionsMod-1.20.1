@@ -33,6 +33,7 @@ import org.jetbrains.annotations.Nullable;
  * it spreads slowly, loses more height per block and cannot create infinite
  * source blocks. The block class handles the heavy movement slowdown.</p>
  */
+@SuppressWarnings("deprecation") // 1.20.1 still requires deprecated FlowingFluid extension hooks.
 public abstract class DreamFluid extends FlowingFluid {
     @Override
     public Fluid getFlowing() {

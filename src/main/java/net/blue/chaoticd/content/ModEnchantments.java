@@ -68,27 +68,33 @@ public final class ModEnchantments {
         ItemGroupEvents.modifyEntriesEvent(
             CreativeModeTabs.TOOLS_AND_UTILITIES
         ).register(entries -> {
-            addBooks(entries, Enchantments.SHARPNESS, 15);
-            addBooks(entries, Enchantments.UNBREAKING, 10);
-            addBooks(entries, Enchantments.ALL_DAMAGE_PROTECTION, 15);
-            addBooks(entries, Enchantments.FIRE_PROTECTION, 15);
-            addBooks(entries, Enchantments.BLAST_PROTECTION, 15);
-            addBooks(entries, Enchantments.PROJECTILE_PROTECTION, 15);
-            addBooks(entries, Enchantments.FALL_PROTECTION, 15);
-            addBooks(entries, Enchantments.THORNS, 15);
-            addBooks(entries, Enchantments.BLOCK_EFFICIENCY, 10);
-            addBooks(entries, Enchantments.KNOCKBACK, 20);
-            addBooks(entries, Enchantments.SMITE, 10);
-            addBooks(entries, Enchantments.BANE_OF_ARTHROPODS, 10);
-            addBooks(entries, Enchantments.SWEEPING_EDGE, 10);
-            addBooks(entries, Enchantments.FIRE_ASPECT, 10);
-            addBooks(entries, Enchantments.MOB_LOOTING, 10);
-            addBooks(entries, Enchantments.BLOCK_FORTUNE, 10);
-            addBooks(entries, DISPARADA, 5);
-
+            /* Vanilla has already inserted its normal levels. Only append the
+             * extended levels so search and the tab do not contain duplicates. */
+            addBooks(entries, Enchantments.SHARPNESS, 6, 15);
+            addBooks(entries, Enchantments.UNBREAKING, 4, 10);
+            addBooks(entries, Enchantments.ALL_DAMAGE_PROTECTION, 5, 15);
+            addBooks(entries, Enchantments.FIRE_PROTECTION, 5, 15);
+            addBooks(entries, Enchantments.BLAST_PROTECTION, 5, 15);
+            addBooks(entries, Enchantments.PROJECTILE_PROTECTION, 5, 15);
+            addBooks(entries, Enchantments.FALL_PROTECTION, 5, 15);
+            addBooks(entries, Enchantments.THORNS, 4, 15);
+            addBooks(entries, Enchantments.BLOCK_EFFICIENCY, 6, 10);
+            addBooks(entries, Enchantments.KNOCKBACK, 3, 20);
+            addBooks(entries, Enchantments.SMITE, 6, 10);
+            addBooks(entries, Enchantments.BANE_OF_ARTHROPODS, 6, 10);
+            addBooks(entries, Enchantments.SWEEPING_EDGE, 4, 10);
+            addBooks(entries, Enchantments.FIRE_ASPECT, 3, 10);
+            addBooks(entries, Enchantments.MOB_LOOTING, 4, 10);
+            addBooks(entries, Enchantments.BLOCK_FORTUNE, 4, 10);
             /*
-             * Luck is intentionally omitted. It cannot be obtained as a book,
-             * through villagers or through the enchantment table.
+             * Every Chaotic Dimensions enchantment, including Disparada, is
+             * intentionally kept in the mod's own creative tab. This vanilla
+             * tab contains only the normal vanilla books and their extended
+             * levels, together in one ordered sequence.
+             *
+             * Luck is intentionally omitted from either book list. It cannot
+             * be obtained as a book, through villagers or through the
+             * enchantment table.
              */
         });
     }
@@ -96,9 +102,10 @@ public final class ModEnchantments {
     private static void addBooks(
         FabricItemGroupEntries entries,
         Enchantment enchantment,
+        int firstLevel,
         int maxLevel
     ) {
-        for (int level = 1; level <= maxLevel; level++) {
+        for (int level = firstLevel; level <= maxLevel; level++) {
             entries.accept(
                 EnchantedBookItem.createForEnchantment(
                     new EnchantmentInstance(enchantment, level)

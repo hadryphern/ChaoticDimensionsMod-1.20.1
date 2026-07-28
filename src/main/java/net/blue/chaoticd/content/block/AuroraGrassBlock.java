@@ -1,6 +1,5 @@
 package net.blue.chaoticd.content.block;
 
-import net.blue.chaoticd.content.ModBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -8,6 +7,7 @@ import net.minecraft.tags.FluidTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.GrassBlock;
 import net.minecraft.world.level.block.SnowLayerBlock;
@@ -15,10 +15,13 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.lighting.LightEngine;
 
-/** Grass that spreads only across Aurora soil and immediately becomes soil when covered. */
+/** Grass that spreads only across its paired soil and immediately becomes soil when covered. */
 public final class AuroraGrassBlock extends GrassBlock {
-    public AuroraGrassBlock(BlockBehaviour.Properties properties) {
+    private final Block soil;
+
+    public AuroraGrassBlock(BlockBehaviour.Properties properties, Block soil) {
         super(properties);
+        this.soil = soil;
     }
 
     private static boolean canRemainGrass(BlockState state, LevelReader level, BlockPos pos) {
@@ -65,7 +68,7 @@ public final class AuroraGrassBlock extends GrassBlock {
         BlockPos neighbourPos
     ) {
         if (direction == Direction.UP && !canRemainGrass(state, level, pos)) {
-            return ModBlocks.AURORA_DIRT.defaultBlockState();
+            return soil.defaultBlockState();
         }
 
         return super.updateShape(state, direction, neighbourState, level, pos, neighbourPos);
@@ -74,7 +77,7 @@ public final class AuroraGrassBlock extends GrassBlock {
     @Override
     public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
         if (!canRemainGrass(state, level, pos)) {
-            level.setBlockAndUpdate(pos, ModBlocks.AURORA_DIRT.defaultBlockState());
+            level.setBlockAndUpdate(pos, soil.defaultBlockState());
             return;
         }
 
@@ -91,7 +94,7 @@ public final class AuroraGrassBlock extends GrassBlock {
                 random.nextInt(3) - 1
             );
 
-            if (level.getBlockState(targetPos).is(ModBlocks.AURORA_DIRT)
+            if (level.getBlockState(targetPos).is(soil)
                 && canSpreadTo(spreadingState, level, targetPos)) {
                 boolean snowy = level.getBlockState(targetPos.above()).is(Blocks.SNOW);
                 level.setBlockAndUpdate(targetPos, spreadingState.setValue(SNOWY, snowy));

@@ -30,6 +30,7 @@ public final class DreamFluidBlock extends LiquidBlock {
     }
 
     @Override
+    @SuppressWarnings("deprecation") // LiquidBlock's 1.20.1 entity hook is deprecated upstream but required here.
     public void entityInside(
         BlockState state,
         Level level,

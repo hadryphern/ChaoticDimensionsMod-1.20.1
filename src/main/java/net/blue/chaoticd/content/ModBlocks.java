@@ -2,6 +2,7 @@ package net.blue.chaoticd.content;
 
 import net.blue.chaoticd.ChaoticDimensions;
 import net.blue.chaoticd.content.block.AuroraGrassBlock;
+import net.blue.chaoticd.content.block.CrystalCraftingTableBlock;
 import net.blue.chaoticd.content.block.CrystalFurnaceBlock;
 import net.blue.chaoticd.content.block.DreamFluidBlock;
 import net.blue.chaoticd.content.block.ShadowGrassBlock;
@@ -17,7 +18,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.level.block.CraftingTableBlock;
+import net.minecraft.world.level.block.AbstractFurnaceBlock;
 import net.minecraft.world.level.block.DropExperienceBlock;
 import net.minecraft.world.level.block.FlowerBlock;
 import net.minecraft.world.level.block.LeavesBlock;
@@ -41,7 +42,7 @@ public final class ModBlocks {
         new AuroraGrassBlock(BlockBehaviour.Properties.copy(Blocks.GRASS_BLOCK)
             .mapColor(MapColor.COLOR_PINK)
             .sound(SoundType.GRASS)
-            .isValidSpawn((state, level, pos, type) -> false))
+            .isValidSpawn((state, level, pos, type) -> false), PASTEL_SOIL)
     );
 
     public static final Block PASTEL_AURORA_STONE = register(
@@ -115,7 +116,7 @@ public final class ModBlocks {
         new AuroraGrassBlock(BlockBehaviour.Properties.copy(Blocks.GRASS_BLOCK)
             .mapColor(MapColor.COLOR_PINK)
             .sound(SoundType.GRASS)
-            .isValidSpawn((state, level, pos, type) -> false))
+            .isValidSpawn((state, level, pos, type) -> false), AURORA_DIRT)
     );
 
     public static final Block AURORA_STONE = register(
@@ -127,8 +128,11 @@ public final class ModBlocks {
     );
 
     public static final Block AURORA_PINKKO_LOG = auroraLog("aurora_pinkko_log", MapColor.COLOR_PINK);
+    public static final Block AURORA_PINKKO_WOOD = auroraWood("aurora_pinkko_wood", MapColor.COLOR_PINK);
     public static final Block STRIPPED_AURORA_PINKKO_LOG = auroraLog(
         "stripped_aurora_pinkko_log", MapColor.COLOR_PINK);
+    public static final Block STRIPPED_AURORA_PINKKO_WOOD = auroraWood(
+        "stripped_aurora_pinkko_wood", MapColor.COLOR_PINK);
     public static final Block AURORA_PINKKO_PLANKS = auroraPlanks(
         "aurora_pinkko_planks", MapColor.COLOR_PINK);
     public static final Block AURORA_PINKKO_LEAVES = register(
@@ -137,8 +141,11 @@ public final class ModBlocks {
         "aurora_pinkko_sapling", MapColor.COLOR_PINK);
 
     public static final Block AURORA_SOULESS_LOG = auroraLog("aurora_souless_log", MapColor.COLOR_PURPLE);
+    public static final Block AURORA_SOULESS_WOOD = auroraWood("aurora_souless_wood", MapColor.COLOR_PURPLE);
     public static final Block STRIPPED_AURORA_SOULESS_LOG = auroraLog(
         "stripped_aurora_souless_log", MapColor.COLOR_PURPLE);
+    public static final Block STRIPPED_AURORA_SOULESS_WOOD = auroraWood(
+        "stripped_aurora_souless_wood", MapColor.COLOR_PURPLE);
     public static final Block AURORA_SOULESS_PLANKS = auroraPlanks(
         "aurora_souless_planks", MapColor.COLOR_PURPLE);
     public static final Block AURORA_SOULESS_LEAVES = register(
@@ -147,8 +154,11 @@ public final class ModBlocks {
         "aurora_souless_sapling", MapColor.COLOR_PURPLE);
 
     public static final Block AURORA_SKY_LOG = auroraLog("aurora_sky_log", MapColor.COLOR_LIGHT_BLUE);
+    public static final Block AURORA_SKY_WOOD = auroraWood("aurora_sky_wood", MapColor.COLOR_LIGHT_BLUE);
     public static final Block STRIPPED_AURORA_SKY_LOG = auroraLog(
         "stripped_aurora_sky_log", MapColor.COLOR_LIGHT_BLUE);
+    public static final Block STRIPPED_AURORA_SKY_WOOD = auroraWood(
+        "stripped_aurora_sky_wood", MapColor.COLOR_LIGHT_BLUE);
     public static final Block AURORA_SKY_PLANKS = auroraPlanks(
         "aurora_sky_planks", MapColor.COLOR_LIGHT_BLUE);
     public static final Block AURORA_SKY_LEAVES = register(
@@ -309,6 +319,17 @@ public final class ModBlocks {
         leaves(MapColor.COLOR_BLACK)
     );
 
+    /** Decorative Shadow sapling supplied with the current Shadow wood assets. */
+    public static final Block SHADOW_SAPLING = register(
+        "shadow_sapling",
+        new Block(
+            BlockBehaviour.Properties.copy(Blocks.DARK_OAK_SAPLING)
+                .mapColor(MapColor.COLOR_BLACK)
+                .noCollission()
+                .instabreak()
+        )
+    );
+
 
 
     public static final Block RUBY_ORE = register(
@@ -327,6 +348,16 @@ public final class ModBlocks {
             BlockBehaviour.Properties.copy(Blocks.DIAMOND_BLOCK)
                 .mapColor(MapColor.COLOR_RED)
                 .requiresCorrectToolForDrops()
+        )
+    );
+
+    public static final Block DEEPSLATE_RUBY_ORE = register(
+        "deepslate_ruby_ore",
+        new DropExperienceBlock(
+            BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_DIAMOND_ORE)
+                .mapColor(MapColor.COLOR_RED)
+                .requiresCorrectToolForDrops(),
+            UniformInt.of(7, 12)
         )
     );
 
@@ -349,24 +380,73 @@ public final class ModBlocks {
         )
     );
 
+    public static final Block DEEPSLATE_TITANIUM_ORE = register(
+        "deepslate_titanium_ore",
+        new DropExperienceBlock(
+            BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_IRON_ORE)
+                .mapColor(MapColor.METAL)
+                .requiresCorrectToolForDrops(),
+            UniformInt.of(2, 5)
+        )
+    );
+
+    public static final Block DEEPSLATE_JAXY_ORE = register(
+        "deepslate_jaxy_ore",
+        new Block(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_DIAMOND_ORE)
+            .mapColor(MapColor.COLOR_PURPLE)
+            .requiresCorrectToolForDrops())
+    );
+
+    public static final Block DEEPSLATE_ROSALITA_ORE = register(
+        "deepslate_rosalita_ore",
+        new DropExperienceBlock(
+            BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_DIAMOND_ORE)
+                .mapColor(MapColor.COLOR_PINK)
+                .requiresCorrectToolForDrops(),
+            UniformInt.of(6, 11)
+        )
+    );
+
+    public static final Block JAXY_BLOCK = register(
+        "jaxy_block",
+        new Block(BlockBehaviour.Properties.copy(Blocks.DIAMOND_BLOCK)
+            .mapColor(MapColor.COLOR_PURPLE)
+            .requiresCorrectToolForDrops())
+    );
+
+    public static final Block ROSALITA_BLOCK = register(
+        "rosalita_block",
+        new Block(BlockBehaviour.Properties.copy(Blocks.DIAMOND_BLOCK)
+            .mapColor(MapColor.COLOR_PINK)
+            .requiresCorrectToolForDrops())
+    );
+
     public static final Block CRYSTAL_DIRT = register(
         "crystal_dirt",
-        new Block(BlockBehaviour.Properties.copy(Blocks.DIRT).mapColor(MapColor.COLOR_PURPLE))
+        new Block(BlockBehaviour.Properties.copy(Blocks.DIRT)
+            .mapColor(MapColor.COLOR_PURPLE)
+            .noOcclusion())
     );
 
     public static final Block CRYSTAL_GRASS_BLOCK = register(
         "crystal_grass_block",
-        new Block(BlockBehaviour.Properties.copy(Blocks.GRASS_BLOCK).mapColor(MapColor.COLOR_PURPLE))
+        new Block(BlockBehaviour.Properties.copy(Blocks.GRASS_BLOCK)
+            .mapColor(MapColor.COLOR_PURPLE)
+            .noOcclusion())
     );
 
     public static final Block CRYSTAL_LOG = register(
         "crystal_log",
-        new Block(BlockBehaviour.Properties.copy(Blocks.OAK_LOG).mapColor(MapColor.COLOR_PURPLE))
+        new Block(BlockBehaviour.Properties.copy(Blocks.OAK_LOG)
+            .mapColor(MapColor.COLOR_PURPLE)
+            .noOcclusion())
     );
 
     public static final Block CRYSTAL_PLANKS = register(
         "crystal_planks",
-        new Block(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS).mapColor(MapColor.COLOR_PURPLE))
+        new Block(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)
+            .mapColor(MapColor.COLOR_PURPLE)
+            .noOcclusion())
     );
 
     public static final Block CRYSTAL_LEAVES_1 = register(
@@ -406,12 +486,16 @@ public final class ModBlocks {
 
     public static final Block CRYSTAL_FURNACE = register(
         "crystal_furnace",
-        new CrystalFurnaceBlock(BlockBehaviour.Properties.copy(Blocks.FURNACE))
+        new CrystalFurnaceBlock(crystalFurnaceProperties())
     );
 
     public static final Block CRYSTAL_CRAFTING_TABLE = register(
         "crystal_crafting_table",
-        new CraftingTableBlock(BlockBehaviour.Properties.copy(Blocks.CRAFTING_TABLE))
+        new CrystalCraftingTableBlock(
+            BlockBehaviour.Properties.copy(Blocks.CRAFTING_TABLE)
+                .mapColor(MapColor.COLOR_PURPLE)
+                .noOcclusion()
+        )
     );
 
     public static final Block DREAM_FLUID = registerBlockOnly(
@@ -434,6 +518,19 @@ public final class ModBlocks {
         );
     }
 
+    /**
+     * Furnace-equivalent behavior without vanilla's pickaxe-only drop gate.
+     * Crystal harvesting is enforced centrally by {@code CrystalHarvestRules}.
+     */
+    private static BlockBehaviour.Properties crystalFurnaceProperties() {
+        return BlockBehaviour.Properties.of()
+            .mapColor(MapColor.COLOR_PURPLE)
+            .strength(3.5F)
+            .sound(SoundType.STONE)
+            .lightLevel(state -> state.getValue(AbstractFurnaceBlock.LIT) ? 13 : 0)
+            .noOcclusion();
+    }
+
     private static LeavesBlock leaves(MapColor color) {
         return new LeavesBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES).mapColor(color));
     }
@@ -441,6 +538,11 @@ public final class ModBlocks {
     private static Block auroraLog(String id, MapColor color) {
         return register(id, new RotatedPillarBlock(
             BlockBehaviour.Properties.copy(Blocks.OAK_LOG).mapColor(color)));
+    }
+
+    private static Block auroraWood(String id, MapColor color) {
+        return register(id, new RotatedPillarBlock(
+            BlockBehaviour.Properties.copy(Blocks.OAK_WOOD).mapColor(color)));
     }
 
     private static Block auroraPlanks(String id, MapColor color) {
@@ -478,8 +580,11 @@ public final class ModBlocks {
         StrippableBlockRegistry.register(PASTEL_AURORA_LOG, STRIPPED_PASTEL_AURORA_LOG);
         StrippableBlockRegistry.register(PASTEL_AURORA_WOOD, STRIPPED_PASTEL_AURORA_WOOD);
         StrippableBlockRegistry.register(AURORA_PINKKO_LOG, STRIPPED_AURORA_PINKKO_LOG);
+        StrippableBlockRegistry.register(AURORA_PINKKO_WOOD, STRIPPED_AURORA_PINKKO_WOOD);
         StrippableBlockRegistry.register(AURORA_SOULESS_LOG, STRIPPED_AURORA_SOULESS_LOG);
+        StrippableBlockRegistry.register(AURORA_SOULESS_WOOD, STRIPPED_AURORA_SOULESS_WOOD);
         StrippableBlockRegistry.register(AURORA_SKY_LOG, STRIPPED_AURORA_SKY_LOG);
+        StrippableBlockRegistry.register(AURORA_SKY_WOOD, STRIPPED_AURORA_SKY_WOOD);
         StrippableBlockRegistry.register(SHADOW_LOG, STRIPPED_SHADOW_LOG);
         StrippableBlockRegistry.register(SHADOW_WOOD, STRIPPED_SHADOW_WOOD);
 
@@ -495,13 +600,16 @@ public final class ModBlocks {
         flammables.add(PASTEL_BLUE_LEAVES, 30, 60);
 
         addAuroraWoodFlammability(flammables,
-            AURORA_PINKKO_LOG, STRIPPED_AURORA_PINKKO_LOG, AURORA_PINKKO_PLANKS,
+            AURORA_PINKKO_LOG, AURORA_PINKKO_WOOD, STRIPPED_AURORA_PINKKO_LOG, STRIPPED_AURORA_PINKKO_WOOD,
+            AURORA_PINKKO_PLANKS,
             AURORA_PINKKO_LEAVES, AURORA_PINKKO_SAPLING);
         addAuroraWoodFlammability(flammables,
-            AURORA_SOULESS_LOG, STRIPPED_AURORA_SOULESS_LOG, AURORA_SOULESS_PLANKS,
+            AURORA_SOULESS_LOG, AURORA_SOULESS_WOOD, STRIPPED_AURORA_SOULESS_LOG, STRIPPED_AURORA_SOULESS_WOOD,
+            AURORA_SOULESS_PLANKS,
             AURORA_SOULESS_LEAVES, AURORA_SOULESS_SAPLING);
         addAuroraWoodFlammability(flammables,
-            AURORA_SKY_LOG, STRIPPED_AURORA_SKY_LOG, AURORA_SKY_PLANKS,
+            AURORA_SKY_LOG, AURORA_SKY_WOOD, STRIPPED_AURORA_SKY_LOG, STRIPPED_AURORA_SKY_WOOD,
+            AURORA_SKY_PLANKS,
             AURORA_SKY_LEAVES, AURORA_SKY_SAPLING);
 
         flammables.add(SHADOW_LOG, 5, 5);
@@ -510,6 +618,7 @@ public final class ModBlocks {
         flammables.add(STRIPPED_SHADOW_WOOD, 5, 5);
         flammables.add(SHADOW_PLANKS, 5, 20);
         flammables.add(SHADOW_LEAVES, 30, 60);
+        flammables.add(SHADOW_SAPLING, 60, 100);
 
         flammables.add(CRYSTAL_LOG, 5, 5);
         flammables.add(CRYSTAL_PLANKS, 5, 20);
@@ -526,6 +635,7 @@ public final class ModBlocks {
         CompostingChanceRegistry.INSTANCE.add(AURORA_PINKKO_SAPLING, 0.3F);
         CompostingChanceRegistry.INSTANCE.add(AURORA_SOULESS_SAPLING, 0.3F);
         CompostingChanceRegistry.INSTANCE.add(AURORA_SKY_SAPLING, 0.3F);
+        CompostingChanceRegistry.INSTANCE.add(SHADOW_SAPLING, 0.3F);
         CompostingChanceRegistry.INSTANCE.add(CRYSTAL_LEAVES_1, 0.3F);
         CompostingChanceRegistry.INSTANCE.add(CRYSTAL_LEAVES_2, 0.3F);
         CompostingChanceRegistry.INSTANCE.add(CRYSTAL_LEAVES_3, 0.3F);
@@ -538,13 +648,17 @@ public final class ModBlocks {
     private static void addAuroraWoodFlammability(
         FlammableBlockRegistry flammables,
         Block log,
+        Block wood,
         Block strippedLog,
+        Block strippedWood,
         Block planks,
         Block leaves,
         Block sapling
     ) {
         flammables.add(log, 5, 5);
+        flammables.add(wood, 5, 5);
         flammables.add(strippedLog, 5, 5);
+        flammables.add(strippedWood, 5, 5);
         flammables.add(planks, 5, 20);
         flammables.add(leaves, 30, 60);
         flammables.add(sapling, 60, 100);

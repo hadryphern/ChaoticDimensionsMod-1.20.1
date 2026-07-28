@@ -93,14 +93,6 @@ tasks.register('validateAuroraTrees', JavaExec) {
     dependsOn testClasses
 }
 
-tasks.register('validateRarityApi', JavaExec) {
-    group = 'verification'
-    description = 'Validates rarity balance, resolution priority, animations, Unicode and Component styles.'
-    classpath = sourceSets.test.runtimeClasspath
-    mainClass = 'net.blue.chaoticd.validation.RarityApiValidator'
-    dependsOn testClasses
-}
-
 tasks.register('validateAuroraVisuals', JavaExec) {
     group = 'verification'
     description = 'Validates Aurora visual registry data, atmosphere tuning, cloud layers and rainbow geometry.'
@@ -110,5 +102,5 @@ tasks.register('validateAuroraVisuals', JavaExec) {
 }
 
 tasks.named('check') {
-    dependsOn validateAuroraAssets, validateAuroraWorldgen, validateAuroraTrees, validateRarityApi, validateAuroraVisuals
+    dependsOn validateAuroraAssets, validateAuroraWorldgen, validateAuroraTrees, validateAuroraVisuals
 }

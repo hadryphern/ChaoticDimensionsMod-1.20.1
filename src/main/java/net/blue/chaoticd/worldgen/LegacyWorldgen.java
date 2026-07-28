@@ -18,6 +18,7 @@ public final class LegacyWorldgen {
 
     private static final ResourceKey<PlacedFeature> JAX_ORE = feature("jax_ore");
     private static final ResourceKey<PlacedFeature> ROSALITA_ORE = feature("rosalita_ore");
+    private static final ResourceKey<PlacedFeature> TITANIUM_ORE = feature("titanium_ore");
     private static final ResourceKey<PlacedFeature> NETHER_RUBY_ORE = feature("nether_ruby_ore");
     private static final ResourceKey<PlacedFeature> NETHER_JAX_ORE = feature("nether_jax_ore");
     private static final ResourceKey<PlacedFeature> NETHER_ROSALITA_ORE = feature("nether_rosalita_ore");
@@ -40,6 +41,11 @@ public final class LegacyWorldgen {
             BiomeSelectors.foundInOverworld(),
             GenerationStep.Decoration.UNDERGROUND_ORES,
             ROSALITA_ORE
+        );
+        BiomeModifications.addFeature(
+            BiomeSelectors.foundInOverworld(),
+            GenerationStep.Decoration.UNDERGROUND_ORES,
+            TITANIUM_ORE
         );
 
         BiomeModifications.addFeature(

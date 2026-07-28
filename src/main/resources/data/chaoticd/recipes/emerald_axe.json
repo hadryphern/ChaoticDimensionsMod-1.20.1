@@ -1,13 +1,13 @@
 {
   "type": "minecraft:smithing_transform",
   "template": {
-    "item": "minecraft:emerald"
+    "item": "chaoticd:emerald_ingot"
   },
   "base": {
     "item": "minecraft:netherite_axe"
   },
   "addition": {
-    "item": "chaoticd:emerald_ingot"
+    "item": "minecraft:emerald"
   },
   "result": {
     "item": "chaoticd:emerald_axe"
