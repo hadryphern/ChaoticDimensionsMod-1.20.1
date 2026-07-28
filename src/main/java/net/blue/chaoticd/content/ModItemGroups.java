@@ -156,7 +156,6 @@ public final class ModItemGroups {
     private static void addMaterialsAndOres(CreativeModeTab.Output entries) {
         entries.accept(ModItems.SAPPHIRE_GEM);
         entries.accept(ModItems.ROSALITA_GEM);
-        entries.accept(ModItems.ROSALITA_TEMPLATE);
         entries.accept(ModItems.TITANIUM_INGOT);
         entries.accept(ModItems.TITAN_SOULD);
         entries.accept(ModItems.JAXY_GEM);

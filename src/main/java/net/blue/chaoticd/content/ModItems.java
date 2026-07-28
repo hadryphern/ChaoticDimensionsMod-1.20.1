@@ -180,12 +180,6 @@ public final class ModItems {
         new Item(new Item.Properties())
     );
 
-    /** Future-gated upgrade template for the Rosalita stage. */
-    public static final Item ROSALITA_TEMPLATE = register(
-        "rosalita_template",
-        new Item(new Item.Properties().stacksTo(16).fireResistant())
-    );
-
     public static final Item WATER_INGOT = register(
         "water_ingot",
         new Item(new Item.Properties())

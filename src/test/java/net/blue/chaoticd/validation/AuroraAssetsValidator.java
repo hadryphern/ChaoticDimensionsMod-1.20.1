@@ -192,7 +192,6 @@ public final class AuroraAssetsValidator {
     private static final List<String> PROGRESSION_ITEM_MODELS = List.of(
         "ruby_plate",
         "rosalita_gem",
-        "rosalita_template",
         "titan_sould",
         "jaxy_gem",
         "solar_obsidian",
@@ -214,17 +213,6 @@ public final class AuroraAssetsValidator {
         "rosalita_chestplate",
         "rosalita_leggings",
         "rosalita_boots"
-    );
-
-    /**
-     * Smithing-template sprites intentionally live under textures/block so
-     * their item models can reference the supplied source PNGs directly.
-     */
-    private static final List<String> TEMPLATE_TEXTURES = List.of(
-        "ruby_template_ore",
-        "jaxy_template_ore",
-        "titanium_template_ore",
-        "rosalita_template_ore"
     );
 
     /**
@@ -326,7 +314,6 @@ public final class AuroraAssetsValidator {
         "block.chaoticd.deepslate_rosalita_ore",
         "block.chaoticd.jaxy_block",
         "block.chaoticd.rosalita_block",
-        "item.chaoticd.rosalita_template",
         "item.chaoticd.titan_sould",
         "item.chaoticd.jaxy_gem",
         "item.chaoticd.solar_obsidian",
@@ -809,46 +796,6 @@ public final class AuroraAssetsValidator {
         for (String id : PROGRESSION_ITEM_MODELS) {
             requireFile(
                 ASSETS.resolve("models/item/" + id + ".json")
-            );
-        }
-
-        for (String id : TEMPLATE_TEXTURES) {
-            Path texture = ASSETS.resolve(
-                "textures/block/" + id + ".png"
-            );
-            requireFile(texture);
-
-            BufferedImage image = ImageIO.read(texture.toFile());
-
-            check(
-                image != null,
-                "Unreadable smithing-template texture: " + texture
-            );
-
-            check(
-                image.getWidth() == 16 && image.getHeight() == 16,
-                "Smithing-template texture is not 16x16: " + texture
-            );
-
-            boolean hasTransparency = false;
-
-            for (int y = 0; y < image.getHeight(); y++) {
-                for (int x = 0; x < image.getWidth(); x++) {
-                    if ((image.getRGB(x, y) >>> 24) == 0) {
-                        hasTransparency = true;
-                        break;
-                    }
-                }
-
-                if (hasTransparency) {
-                    break;
-                }
-            }
-
-            check(
-                hasTransparency,
-                "Smithing-template texture must contain transparent pixels: "
-                    + texture
             );
         }
 
