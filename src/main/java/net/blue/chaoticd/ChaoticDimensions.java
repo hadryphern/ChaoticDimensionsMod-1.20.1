@@ -18,6 +18,7 @@ import net.blue.chaoticd.gameplay.DreamFluidSystems;
 import net.blue.chaoticd.gameplay.EmeraldLuckSystems;
 import net.blue.chaoticd.gameplay.SirOrensSpawnSystem;
 import net.blue.chaoticd.gameplay.SirOrensCommands;
+import net.blue.chaoticd.network.StackSizeProtocol;
 import net.blue.chaoticd.worldgen.LegacyWorldgen;
 import net.blue.chaoticd.worldgen.ModWorldgenFeatures;
 import net.blue.chaoticd.worldgen.ShadowDimensionSystems;
@@ -38,6 +39,8 @@ public final class ChaoticDimensions implements ModInitializer {
     public void onInitialize() {
 
         GeckoLib.initialize();
+
+        StackSizeProtocol.initializeServer();
 
         ModEnchantments.initialize();
         ModEffects.initialize();

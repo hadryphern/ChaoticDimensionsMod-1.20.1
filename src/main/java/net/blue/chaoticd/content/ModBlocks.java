@@ -424,29 +424,25 @@ public final class ModBlocks {
     public static final Block CRYSTAL_DIRT = register(
         "crystal_dirt",
         new Block(BlockBehaviour.Properties.copy(Blocks.DIRT)
-            .mapColor(MapColor.COLOR_PURPLE)
-            .noOcclusion())
+            .mapColor(MapColor.COLOR_PURPLE))
     );
 
     public static final Block CRYSTAL_GRASS_BLOCK = register(
         "crystal_grass_block",
         new Block(BlockBehaviour.Properties.copy(Blocks.GRASS_BLOCK)
-            .mapColor(MapColor.COLOR_PURPLE)
-            .noOcclusion())
+            .mapColor(MapColor.COLOR_PURPLE))
     );
 
     public static final Block CRYSTAL_LOG = register(
         "crystal_log",
         new Block(BlockBehaviour.Properties.copy(Blocks.OAK_LOG)
-            .mapColor(MapColor.COLOR_PURPLE)
-            .noOcclusion())
+            .mapColor(MapColor.COLOR_PURPLE))
     );
 
     public static final Block CRYSTAL_PLANKS = register(
         "crystal_planks",
         new Block(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)
-            .mapColor(MapColor.COLOR_PURPLE)
-            .noOcclusion())
+            .mapColor(MapColor.COLOR_PURPLE))
     );
 
     public static final Block CRYSTAL_LEAVES_1 = register(
@@ -494,7 +490,6 @@ public final class ModBlocks {
         new CrystalCraftingTableBlock(
             BlockBehaviour.Properties.copy(Blocks.CRAFTING_TABLE)
                 .mapColor(MapColor.COLOR_PURPLE)
-                .noOcclusion()
         )
     );
 
@@ -527,8 +522,7 @@ public final class ModBlocks {
             .mapColor(MapColor.COLOR_PURPLE)
             .strength(3.5F)
             .sound(SoundType.STONE)
-            .lightLevel(state -> state.getValue(AbstractFurnaceBlock.LIT) ? 13 : 0)
-            .noOcclusion();
+            .lightLevel(state -> state.getValue(AbstractFurnaceBlock.LIT) ? 13 : 0);
     }
 
     private static LeavesBlock leaves(MapColor color) {

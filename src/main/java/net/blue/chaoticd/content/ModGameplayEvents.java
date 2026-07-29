@@ -3,6 +3,7 @@ package net.blue.chaoticd.content;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
+import net.blue.chaoticd.gameplay.DimensionSoulDrops;
 import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
 import net.minecraft.core.NonNullList;
 import net.minecraft.world.damagesource.DamageSource;
@@ -137,6 +138,8 @@ public final class ModGameplayEvents {
     }
 
     private static void onDeath(LivingEntity entity, DamageSource source) {
+        DimensionSoulDrops.onLivingEntityDeath(entity);
+
         if (entity.getType() == EntityType.ENDER_DRAGON) {
             entity.spawnAtLocation(EnchantedBookItem.createForEnchantment(
                 new EnchantmentInstance(ModEnchantments.DHEATHIC, 1)));

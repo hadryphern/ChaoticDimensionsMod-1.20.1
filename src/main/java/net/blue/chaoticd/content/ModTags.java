@@ -4,6 +4,7 @@ import net.blue.chaoticd.ChaoticDimensions;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.levelgen.structure.Structure;
 import net.minecraft.world.level.material.Fluid;
@@ -42,6 +43,16 @@ public final class ModTags {
             Registries.STRUCTURE,
             id("dream_fluid_overworld")
         );
+
+    /** Entity classifications used by the dimension-specific soul drops. */
+    public static final TagKey<EntityType<?>> AURORA_COMMON_MOBS =
+        TagKey.create(Registries.ENTITY_TYPE, id("aurora_common_mobs"));
+    public static final TagKey<EntityType<?>> AURORA_MINIBOSSES =
+        TagKey.create(Registries.ENTITY_TYPE, id("aurora_minibosses"));
+    public static final TagKey<EntityType<?>> SHADOW_COMMON_MOBS =
+        TagKey.create(Registries.ENTITY_TYPE, id("shadow_common_mobs"));
+    public static final TagKey<EntityType<?>> SHADOW_MINIBOSSES =
+        TagKey.create(Registries.ENTITY_TYPE, id("shadow_minibosses"));
 
     private ModTags() {
     }

@@ -212,7 +212,36 @@ public final class AuroraAssetsValidator {
         "rosalita_helmet",
         "rosalita_chestplate",
         "rosalita_leggings",
-        "rosalita_boots"
+        "rosalita_boots",
+        "shadow_gem",
+        "shadow_nugget",
+        "vylam_gem",
+        "chlorophyte_ingot",
+        "chlorophyte_pickaxe",
+        "hero_gem",
+        "hero_sword",
+        "hero_axe",
+        "hero_pickaxe",
+        "hero_shovel",
+        "hero_hoe",
+        "derman_gem",
+        "sun_tear",
+        "sun_peak",
+        "shadow_sword",
+        "shadow_pickaxe",
+        "aurora_soul",
+        "crystaline_soul",
+        "demonic_sould",
+        "shadow_soul",
+        "void_soul"
+    );
+
+    private static final List<String> ANIMATED_SOUL_TEXTURES = List.of(
+        "aurora_soul",
+        "crystaline_soul",
+        "demonic_sould",
+        "shadow_soul",
+        "void_soul"
     );
 
     /**
@@ -334,7 +363,25 @@ public final class AuroraAssetsValidator {
         "item.chaoticd.rosalita_helmet",
         "item.chaoticd.rosalita_chestplate",
         "item.chaoticd.rosalita_leggings",
-        "item.chaoticd.rosalita_boots"
+        "item.chaoticd.rosalita_boots",
+        "item.chaoticd.shadow_gem",
+        "item.chaoticd.shadow_nugget",
+        "item.chaoticd.vylam_gem",
+        "item.chaoticd.chlorophyte_ingot",
+        "item.chaoticd.chlorophyte_pickaxe",
+        "item.chaoticd.hero_gem",
+        "item.chaoticd.hero_sword",
+        "item.chaoticd.hero_axe",
+        "item.chaoticd.hero_pickaxe",
+        "item.chaoticd.hero_shovel",
+        "item.chaoticd.hero_hoe",
+        "item.chaoticd.derman_gem",
+        "item.chaoticd.sun_tear",
+        "item.chaoticd.sun_peak",
+        "item.chaoticd.shadow_sword",
+        "item.chaoticd.shadow_pickaxe",
+        "disconnect.chaoticd.stack_protocol_required",
+        "disconnect.chaoticd.stack_protocol_version"
     );
 
     private AuroraAssetsValidator() {
@@ -351,6 +398,7 @@ public final class AuroraAssetsValidator {
         validateModelReferences();
         validateEmeraldAndDreamAssets();
         validateProgressionAssets();
+        validateAnimatedSoulAssets();
         validateRequiredTags();
         validateProgressionWorldgen();
         validateSmithingProgression();
@@ -1026,6 +1074,43 @@ public final class AuroraAssetsValidator {
                 )),
                 "Rosalita cannot bypass its ten planned intermediary tiers"
             );
+        }
+    }
+
+    private static void validateAnimatedSoulAssets()
+        throws IOException {
+
+        for (String id : ANIMATED_SOUL_TEXTURES) {
+            Path texture = ASSETS.resolve("textures/item/" + id + ".png");
+            Path metadata = ASSETS.resolve("textures/item/" + id + ".png.mcmeta");
+            requireFile(texture);
+            requireFile(metadata);
+
+            BufferedImage image = ImageIO.read(texture.toFile());
+            check(image != null, "Unreadable animated soul texture: " + texture);
+            check(
+                image.getWidth() == 22 && image.getHeight() == 88,
+                "Animated soul must be a four-frame 22x88 sheet: " + texture
+            );
+
+            JsonObject root = readJson(metadata).getAsJsonObject();
+            check(root.has("animation"), "Missing animation metadata: " + metadata);
+            JsonObject animation = root.getAsJsonObject("animation");
+            check(
+                animation.has("frametime") && animation.get("frametime").getAsInt() == 2,
+                "Animated soul frametime must be two ticks: " + metadata
+            );
+            JsonArray frames = animation.getAsJsonArray("frames");
+            check(
+                frames != null && frames.size() == 4,
+                "Animated soul must declare four frames: " + metadata
+            );
+            for (int index = 0; index < 4; index++) {
+                check(
+                    frames.get(index).getAsInt() == index,
+                    "Animated soul frame order must be 0..3: " + metadata
+                );
+            }
         }
     }
 

@@ -19,6 +19,7 @@ import net.minecraft.client.gui.screens.MenuScreens;
 public final class ChaoticDimensionsClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
+        StackSizeProtocolClient.initialize();
         SapphiricVisuals.initialize();
         AuroraVisuals.initialize();
         ShadowVisuals.initialize();

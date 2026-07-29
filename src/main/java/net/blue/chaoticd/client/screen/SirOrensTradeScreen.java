@@ -54,25 +54,41 @@ public final class SirOrensTradeScreen extends AbstractContainerScreen<SirOrensT
     @Override
     protected void renderBg(GuiGraphics graphics, float partialTick, int mouseX, int mouseY) {
         graphics.blit(VILLAGER_TEXTURE, leftPos, topPos, 0, 0, imageWidth, imageHeight, 512, 256);
+        renderExperienceBar(graphics);
         renderOfferList(graphics);
         renderSelectedOffer(graphics);
     }
 
     @Override
     protected void renderLabels(GuiGraphics graphics, int mouseX, int mouseY) {
-        SirOrensTrade trade = currentTrade();
-
-        graphics.drawString(font, title, 136, 6, TEXT_COLOR, false);
-        graphics.drawString(
-            font,
-            Component.translatable("container.chaoticd.sir_orens.level", trade.level()),
-            136,
-            18,
-            TEXT_COLOR,
-            false
-        );
+        Component level = Component.translatable("container.chaoticd.sir_orens.level", menu.unlockedLevel());
+        graphics.drawString(font, title.copy().append(" - ").append(level), 136, 6, TEXT_COLOR, false);
 
         graphics.drawString(font, playerInventoryTitle, 107, 74, TEXT_COLOR, false);
+    }
+
+    /** Draws the same compact progression language used by the vanilla merchant UI. */
+    private void renderExperienceBar(GuiGraphics graphics) {
+        int x = leftPos + 136;
+        int y = topPos + 21;
+        int width = 102;
+        int progressWidth;
+
+        if (menu.unlockedLevel() >= SirOrensTrade.MAX_LEVEL) {
+            progressWidth = width - 2;
+        } else {
+            int required = menu.experienceForNextLevel();
+            progressWidth = required <= 0
+                ? 0
+                : (width - 2) * menu.experienceIntoCurrentLevel() / required;
+        }
+
+        graphics.fill(x, y, x + width, y + 5, 0xFF303030);
+        graphics.fill(x + 1, y + 1, x + width - 1, y + 4, 0xFF5D5D5D);
+
+        if (progressWidth > 0) {
+            graphics.fill(x + 1, y + 1, x + 1 + progressWidth, y + 4, 0xFF4B8F38);
+        }
     }
 
     @Override
@@ -88,7 +104,7 @@ public final class SirOrensTradeScreen extends AbstractContainerScreen<SirOrensT
         }
 
         if (button == 0 && isInsideResultSlot(mouseX, mouseY)) {
-            if (isUnlocked(currentTrade())) {
+            if (isAvailable(currentTrade())) {
                 requestTrade();
             }
             return true;
@@ -143,7 +159,7 @@ public final class SirOrensTradeScreen extends AbstractContainerScreen<SirOrensT
             graphics.renderItem(output, x + 69, y + 2);
             renderCount(graphics, output, x + 69, y + 2, trade.outputCount());
 
-            if (!isUnlocked(trade)) {
+            if (!isAvailable(trade)) {
                 graphics.fill(x, y, x + 89, y + 20, 0x669B0000);
             }
         }
@@ -177,7 +193,7 @@ public final class SirOrensTradeScreen extends AbstractContainerScreen<SirOrensT
             renderCostSlot(graphics, trade.costs().get(index), x, y, true);
         }
 
-        if (!isUnlocked(trade)) {
+        if (!isAvailable(trade)) {
             graphics.fill(leftPos + OUTPUT_X, topPos + INPUT_Y, leftPos + OUTPUT_X + 16, topPos + INPUT_Y + 16, 0x99A00000);
         }
     }
@@ -265,6 +281,11 @@ public final class SirOrensTradeScreen extends AbstractContainerScreen<SirOrensT
 
     private boolean isUnlocked(SirOrensTrade trade) {
         return trade.level() <= menu.unlockedLevel();
+    }
+
+    /** Reuses the vanilla unavailable tint for a depleted offer without changing the layout. */
+    private boolean isAvailable(SirOrensTrade trade) {
+        return isUnlocked(trade) && menu.isTradeInStock(trade);
     }
 
     private void requestTrade() {

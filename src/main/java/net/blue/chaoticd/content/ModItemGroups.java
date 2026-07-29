@@ -134,11 +134,22 @@ public final class ModItemGroups {
         entries.accept(ModItems.JAXY_SHOVEL);
         entries.accept(ModItems.JAXY_HOE);
 
+        entries.accept(ModItems.SHADOW_SWORD);
+        entries.accept(ModItems.SHADOW_PICKAXE);
+
         entries.accept(ModItems.TITANIUM_SWORD);
         entries.accept(ModItems.TITANIUM_AXE);
         entries.accept(ModItems.TITANIUM_PICKAXE);
         entries.accept(ModItems.TITANIUM_SHOVEL);
         entries.accept(ModItems.TITANIUM_HOE);
+
+        entries.accept(ModItems.CHLOROPHYTE_PICKAXE);
+
+        entries.accept(ModItems.HERO_SWORD);
+        entries.accept(ModItems.HERO_AXE);
+        entries.accept(ModItems.HERO_PICKAXE);
+        entries.accept(ModItems.HERO_SHOVEL);
+        entries.accept(ModItems.HERO_HOE);
 
         entries.accept(ModItems.ROSALITA_SWORD);
         entries.accept(ModItems.ROSALITA_AXE);
@@ -156,6 +167,14 @@ public final class ModItemGroups {
     private static void addMaterialsAndOres(CreativeModeTab.Output entries) {
         entries.accept(ModItems.SAPPHIRE_GEM);
         entries.accept(ModItems.ROSALITA_GEM);
+        entries.accept(ModItems.DERMAN_GEM);
+        entries.accept(ModItems.HERO_GEM);
+        entries.accept(ModItems.CHLOROPHYTE_INGOT);
+        entries.accept(ModItems.VYLAM_GEM);
+        entries.accept(ModItems.SHADOW_GEM);
+        entries.accept(ModItems.SHADOW_NUGGET);
+        entries.accept(ModItems.SUN_TEAR);
+        entries.accept(ModItems.SUN_PEAK);
         entries.accept(ModItems.SHADOW_SOUL);
         entries.accept(ModItems.VORTEX_GEM);
         entries.accept(ModItems.VORTEX_SOUL);

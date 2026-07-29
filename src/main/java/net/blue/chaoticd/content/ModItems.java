@@ -7,6 +7,7 @@ import net.blue.chaoticd.content.item.CrystalineSeeItem;
 import net.blue.chaoticd.content.item.DeathTotemItem;
 import net.blue.chaoticd.content.item.EmeraldArmorMaterial;
 import net.blue.chaoticd.content.item.EmeraldTier;
+import net.blue.chaoticd.content.item.FutureProgressionTier;
 import net.blue.chaoticd.content.item.JaxyArmorMaterial;
 import net.blue.chaoticd.content.item.JaxyTier;
 import net.blue.chaoticd.content.item.LeatherBackpackItem;
@@ -180,10 +181,22 @@ public final class ModItems {
         new Item(new Item.Properties())
     );
 
-    /* Sir. Orens trade materials. They deliberately have no crafting recipes:
-     * the custom merchant is the first system that consumes or awards them. */
+    /* New material assets. Their sources are deliberately added only when a
+     * matching biome, block texture and/or mob roster exists. */
+    public static final Item SHADOW_GEM = material("shadow_gem");
+    public static final Item SHADOW_NUGGET = material("shadow_nugget");
+    public static final Item VYLAM_GEM = material("vylam_gem");
+    public static final Item CHLOROPHYTE_INGOT = material("chlorophyte_ingot");
+    public static final Item HERO_GEM = material("hero_gem");
+    public static final Item DERMAN_GEM = material("derman_gem");
+    public static final Item SUN_TEAR = material("sun_tear");
+    public static final Item SUN_PEAK = material("sun_peak");
+
+    /* Legacy trade and progression materials. They deliberately have no
+     * crafting recipes; each source is separately gated by its dimension,
+     * entity classification or future content. */
     public static final Item SHADOW_SOUL = tradeMaterial("shadow_soul");
-    public static final Item VORTEX_GEM = tradeMaterial("vortex_gem");
+    public static final Item VORTEX_GEM = material("vortex_gem");
     public static final Item VORTEX_SOUL = tradeMaterial("vortex_soul");
     public static final Item VOID_SOUL = tradeMaterial("void_soul");
     public static final Item DEMONITH = tradeMaterial("demonith");
@@ -197,6 +210,86 @@ public final class ModItems {
     public static final Item CRYSTALINE_SIGIL = tradeMaterial("crystaline_sigil");
     public static final Item UNDERGUER_SIGIL = tradeMaterial("underguer_sigil");
     public static final Item VOID = tradeMaterial("void");
+
+    public static final Item SHADOW_SWORD = register(
+        "shadow_sword",
+        new SwordItem(
+            FutureProgressionTier.SHADOW,
+            31,
+            -2.4F,
+            new Item.Properties().fireResistant()
+        )
+    );
+
+    public static final Item SHADOW_PICKAXE = register(
+        "shadow_pickaxe",
+        new PickaxeItem(
+            FutureProgressionTier.SHADOW,
+            15,
+            -2.8F,
+            new Item.Properties().fireResistant()
+        )
+    );
+
+    public static final Item CHLOROPHYTE_PICKAXE = register(
+        "chlorophyte_pickaxe",
+        new PickaxeItem(
+            FutureProgressionTier.CHLOROPHYTE,
+            99,
+            -2.8F,
+            new Item.Properties().fireResistant()
+        )
+    );
+
+    public static final Item HERO_SWORD = register(
+        "hero_sword",
+        new SwordItem(
+            FutureProgressionTier.HERO,
+            239,
+            -2.4F,
+            new Item.Properties().fireResistant()
+        )
+    );
+
+    public static final Item HERO_AXE = register(
+        "hero_axe",
+        new AxeItem(
+            FutureProgressionTier.HERO,
+            359.0F,
+            -3.0F,
+            new Item.Properties().fireResistant()
+        )
+    );
+
+    public static final Item HERO_PICKAXE = register(
+        "hero_pickaxe",
+        new PickaxeItem(
+            FutureProgressionTier.HERO,
+            119,
+            -2.8F,
+            new Item.Properties().fireResistant()
+        )
+    );
+
+    public static final Item HERO_SHOVEL = register(
+        "hero_shovel",
+        new ShovelItem(
+            FutureProgressionTier.HERO,
+            149.0F,
+            -3.0F,
+            new Item.Properties().fireResistant()
+        )
+    );
+
+    public static final Item HERO_HOE = register(
+        "hero_hoe",
+        new HoeItem(
+            FutureProgressionTier.HERO,
+            -181,
+            -1.0F,
+            new Item.Properties().fireResistant()
+        )
+    );
 
     public static final Item WATER_INGOT = register(
         "water_ingot",
@@ -648,6 +741,10 @@ public final class ModItems {
     }
 
     private static Item tradeMaterial(String id) {
+        return register(id, new Item(new Item.Properties().fireResistant()));
+    }
+
+    private static Item material(String id) {
         return register(id, new Item(new Item.Properties().fireResistant()));
     }
 

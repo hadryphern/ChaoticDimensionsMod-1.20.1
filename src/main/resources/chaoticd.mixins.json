@@ -7,7 +7,13 @@
     "LivingEntityDamageAppliedMixin",
     "VanillaEnchantmentLevelMixin",
     "BowItemMixin",
-    "InventoryDropMixin"
+    "InventoryDropMixin",
+    "ItemMaxStackSizeMixin",
+    "ContainerMaxStackSizeMixin",
+    "FriendlyByteBufItemStackMixin",
+    "ItemStackCountSerializationMixin",
+    "ItemEntityStackMergeMixin",
+    "StackedContentsMixin"
   ],
   "client": [
     "ItemStackNameMixin",
