@@ -147,18 +147,29 @@ public final class SirOrensTradeMenu extends AbstractContainerMenu {
     }
 
     private void addPlayerInventorySlots(Inventory inventory) {
-        int inventoryY = 253;
+        /*
+         * Keep the real, clickable inventory aligned with Minecraft's
+         * villager trade layout. The custom trade service still scans these
+         * same 36 slots for payments larger than a vanilla stack.
+         */
+        int inventoryX = 107;
+        int inventoryY = 84;
 
         for (int row = 0; row < 3; row++) {
             for (int column = 0; column < 9; column++) {
-                addSlot(new Slot(inventory, column + row * 9 + 9, 10 + column * 18, inventoryY + row * 18));
+                addSlot(new Slot(
+                    inventory,
+                    column + row * 9 + 9,
+                    inventoryX + column * 18,
+                    inventoryY + row * 18
+                ));
             }
         }
 
         int hotbarY = inventoryY + 58;
 
         for (int column = 0; column < 9; column++) {
-            addSlot(new Slot(inventory, column, 10 + column * 18, hotbarY));
+            addSlot(new Slot(inventory, column, inventoryX + column * 18, hotbarY));
         }
     }
 
