@@ -1,46 +1,41 @@
 package net.blue.chaoticd.content.item;
 
-import net.blue.chaoticd.content.ModItems;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.crafting.Ingredient;
 
 /**
- * Tool tier representing the direct progression after Netherite.
- *
- * <p>The important material attributes are twice their Netherite equivalents:
- * 4062 durability, 18 mining speed, 8 attack bonus and 30 enchantability.</p>
+ * Compatibility facade for the centralized Emerald progression data.
  */
 public enum EmeraldTier implements Tier {
     INSTANCE;
 
     @Override
     public int getUses() {
-        return 4_062;
+        return ProgressionMaterial.EMERALD.getUses();
     }
 
     @Override
     public float getSpeed() {
-        return 18.0F;
+        return ProgressionMaterial.EMERALD.getSpeed();
     }
 
     @Override
     public float getAttackDamageBonus() {
-        return 8.0F;
+        return ProgressionMaterial.EMERALD.getAttackDamageBonus();
     }
 
     @Override
     public int getLevel() {
-        // Ruby ore is the first post-Netherite harvest gate.
-        return 5;
+        return ProgressionMaterial.EMERALD.getLevel();
     }
 
     @Override
     public int getEnchantmentValue() {
-        return 30;
+        return ProgressionMaterial.EMERALD.getEnchantmentValue();
     }
 
     @Override
     public Ingredient getRepairIngredient() {
-        return Ingredient.of(ModItems.EMERALD_INGOT);
+        return ProgressionMaterial.EMERALD.getRepairIngredient();
     }
 }

@@ -101,6 +101,14 @@ tasks.register('validateAuroraVisuals', JavaExec) {
     dependsOn testClasses
 }
 
+tasks.register('validateProgression', JavaExec) {
+    group = 'verification'
+    description = 'Validates the centralized material progression and native mining tags.'
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'net.blue.chaoticd.validation.ProgressionValidator'
+    dependsOn testClasses
+}
+
 tasks.named('check') {
-    dependsOn validateAuroraAssets, validateAuroraWorldgen, validateAuroraTrees, validateAuroraVisuals
+    dependsOn validateAuroraAssets, validateAuroraWorldgen, validateAuroraTrees, validateAuroraVisuals, validateProgression
 }

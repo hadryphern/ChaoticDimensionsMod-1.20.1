@@ -13,7 +13,8 @@
     "FriendlyByteBufItemStackMixin",
     "ItemStackCountSerializationMixin",
     "ItemEntityStackMergeMixin",
-    "StackedContentsMixin"
+    "StackedContentsMixin",
+    "DiggerItemMiningLevelMixin"
   ],
   "client": [
     "ItemStackNameMixin",

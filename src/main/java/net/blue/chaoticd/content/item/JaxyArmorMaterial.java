@@ -1,42 +1,30 @@
 package net.blue.chaoticd.content.item;
 
 import net.blue.chaoticd.ChaoticDimensions;
-import net.blue.chaoticd.content.ModItems;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.crafting.Ingredient;
 
-/** Eight-times-Netherite armor material used between Ruby and Titanium. */
+/** Compatibility facade for centralized Jaxy armor values. */
 public enum JaxyArmorMaterial implements ArmorMaterial {
     INSTANCE;
 
-    private static final int DURABILITY_MULTIPLIER = 296;
-
     @Override
     public int getDurabilityForType(ArmorItem.Type type) {
-        return switch (type) {
-            case BOOTS -> 13 * DURABILITY_MULTIPLIER;
-            case LEGGINGS -> 15 * DURABILITY_MULTIPLIER;
-            case CHESTPLATE -> 16 * DURABILITY_MULTIPLIER;
-            case HELMET -> 11 * DURABILITY_MULTIPLIER;
-        };
+        return armorBaseDurability(type)
+            * ProgressionMaterial.JAXY.armorDurabilityMultiplier();
     }
 
     @Override
     public int getDefenseForType(ArmorItem.Type type) {
-        return switch (type) {
-            case BOOTS -> 24;
-            case LEGGINGS -> 48;
-            case CHESTPLATE -> 64;
-            case HELMET -> 24;
-        };
+        return ProgressionMaterial.JAXY.armorDefense(type);
     }
 
     @Override
     public int getEnchantmentValue() {
-        return 120;
+        return ProgressionMaterial.JAXY.getEnchantmentValue();
     }
 
     @Override
@@ -46,7 +34,7 @@ public enum JaxyArmorMaterial implements ArmorMaterial {
 
     @Override
     public Ingredient getRepairIngredient() {
-        return Ingredient.of(ModItems.JAXY_GEM);
+        return ProgressionMaterial.JAXY.getRepairIngredient();
     }
 
     @Override
@@ -56,11 +44,20 @@ public enum JaxyArmorMaterial implements ArmorMaterial {
 
     @Override
     public float getToughness() {
-        return 24.0F;
+        return ProgressionMaterial.JAXY.armorToughness();
     }
 
     @Override
     public float getKnockbackResistance() {
-        return 0.80F;
+        return ProgressionMaterial.JAXY.armorKnockbackResistance();
+    }
+
+    private static int armorBaseDurability(ArmorItem.Type type) {
+        return switch (type) {
+            case BOOTS -> 13;
+            case LEGGINGS -> 15;
+            case CHESTPLATE -> 16;
+            case HELMET -> 11;
+        };
     }
 }

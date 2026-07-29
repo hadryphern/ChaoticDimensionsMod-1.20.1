@@ -134,16 +134,13 @@ public final class ModItemGroups {
         entries.accept(ModItems.JAXY_SHOVEL);
         entries.accept(ModItems.JAXY_HOE);
 
-        entries.accept(ModItems.SHADOW_SWORD);
-        entries.accept(ModItems.SHADOW_PICKAXE);
+        entries.accept(ModItems.CHLOROPHYTE_PICKAXE);
 
         entries.accept(ModItems.TITANIUM_SWORD);
         entries.accept(ModItems.TITANIUM_AXE);
         entries.accept(ModItems.TITANIUM_PICKAXE);
         entries.accept(ModItems.TITANIUM_SHOVEL);
         entries.accept(ModItems.TITANIUM_HOE);
-
-        entries.accept(ModItems.CHLOROPHYTE_PICKAXE);
 
         entries.accept(ModItems.HERO_SWORD);
         entries.accept(ModItems.HERO_AXE);
@@ -162,6 +159,9 @@ public final class ModItemGroups {
         entries.accept(ModItems.SAPPHIRE_PICKAXE);
         entries.accept(ModItems.SAPPHIRE_SHOVEL);
         entries.accept(ModItems.SAPPHIRE_HOE);
+
+        entries.accept(ModItems.SHADOW_SWORD);
+        entries.accept(ModItems.SHADOW_PICKAXE);
     }
 
     private static void addMaterialsAndOres(CreativeModeTab.Output entries) {

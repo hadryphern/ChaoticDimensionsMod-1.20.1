@@ -1,45 +1,39 @@
 package net.blue.chaoticd.content.item;
 
-import net.blue.chaoticd.content.ModItems;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.crafting.Ingredient;
 
-/**
- * Rosalita is intentionally unavailable through the current direct Smithing
- * chain: the planned ten intermediary progressions remain required.  Its
- * values are nevertheless registered now so creative/testing stacks are
- * consistent with the announced one-hundred-times material tier.
- */
+/** Compatibility facade for the centralized Rosalita progression data. */
 public enum RosalitaTier implements Tier {
     INSTANCE;
 
     @Override
     public int getUses() {
-        return 203_100;
+        return ProgressionMaterial.ROSALITA.getUses();
     }
 
     @Override
     public float getSpeed() {
-        return 900.0F;
+        return ProgressionMaterial.ROSALITA.getSpeed();
     }
 
     @Override
     public float getAttackDamageBonus() {
-        return 400.0F;
+        return ProgressionMaterial.ROSALITA.getAttackDamageBonus();
     }
 
     @Override
     public int getLevel() {
-        return 8;
+        return ProgressionMaterial.ROSALITA.getLevel();
     }
 
     @Override
     public int getEnchantmentValue() {
-        return 1_500;
+        return ProgressionMaterial.ROSALITA.getEnchantmentValue();
     }
 
     @Override
     public Ingredient getRepairIngredient() {
-        return Ingredient.of(ModItems.ROSALITA_GEM);
+        return ProgressionMaterial.ROSALITA.getRepairIngredient();
     }
 }

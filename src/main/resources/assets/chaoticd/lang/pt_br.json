@@ -293,5 +293,6 @@
   "command.chaoticd.sir_orens.no_space": "Não há espaço seguro suficiente para invocar Sir. Orens.",
   "command.chaoticd.sir_orens.players_only": "Este comando só pode ser usado por um jogador.",
   "disconnect.chaoticd.stack_protocol_required": "A compatibilidade de stacks do Chaotic Dimensions é necessária para entrar neste servidor.",
-  "disconnect.chaoticd.stack_protocol_version": "Incompatibilidade no protocolo de stacks do Chaotic Dimensions (servidor: %s, cliente: %s)."
+  "disconnect.chaoticd.stack_protocol_version": "Incompatibilidade no protocolo de stacks do Chaotic Dimensions (servidor: %s, cliente: %s).",
+  "tooltip.chaoticd.progression_pickaxe": "%s · Nível de mineração: %s"
 }

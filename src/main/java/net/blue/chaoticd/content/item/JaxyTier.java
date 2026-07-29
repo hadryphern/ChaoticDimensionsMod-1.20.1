@@ -1,43 +1,39 @@
 package net.blue.chaoticd.content.item;
 
-import net.blue.chaoticd.content.ModItems;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.crafting.Ingredient;
 
-/**
- * Jaxy is the material after Ruby: eight times the baseline Netherite tool
- * attributes, while remaining below Titanium in harvest level.
- */
+/** Compatibility facade for the centralized Jaxy progression data. */
 public enum JaxyTier implements Tier {
     INSTANCE;
 
     @Override
     public int getUses() {
-        return 16_248;
+        return ProgressionMaterial.JAXY.getUses();
     }
 
     @Override
     public float getSpeed() {
-        return 72.0F;
+        return ProgressionMaterial.JAXY.getSpeed();
     }
 
     @Override
     public float getAttackDamageBonus() {
-        return 32.0F;
+        return ProgressionMaterial.JAXY.getAttackDamageBonus();
     }
 
     @Override
     public int getLevel() {
-        return 7;
+        return ProgressionMaterial.JAXY.getLevel();
     }
 
     @Override
     public int getEnchantmentValue() {
-        return 120;
+        return ProgressionMaterial.JAXY.getEnchantmentValue();
     }
 
     @Override
     public Ingredient getRepairIngredient() {
-        return Ingredient.of(ModItems.JAXY_GEM);
+        return ProgressionMaterial.JAXY.getRepairIngredient();
     }
 }

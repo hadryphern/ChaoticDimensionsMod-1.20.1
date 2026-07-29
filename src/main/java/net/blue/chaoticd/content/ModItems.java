@@ -11,6 +11,7 @@ import net.blue.chaoticd.content.item.FutureProgressionTier;
 import net.blue.chaoticd.content.item.JaxyArmorMaterial;
 import net.blue.chaoticd.content.item.JaxyTier;
 import net.blue.chaoticd.content.item.LeatherBackpackItem;
+import net.blue.chaoticd.content.item.ProgressionMaterial;
 import net.blue.chaoticd.content.item.RosalitaArmorMaterial;
 import net.blue.chaoticd.content.item.RosalitaTier;
 import net.blue.chaoticd.content.item.RubyArmorMaterial;
@@ -53,7 +54,7 @@ public final class ModItems {
         "sapphire_pickaxe",
         new PickaxeItem(
             SapphireTier.INSTANCE,
-            1_999,
+            ProgressionMaterial.SAPPHIRE.pickaxeAttackModifier(),
             -2.8F,
             new Item.Properties().fireResistant()
         )
@@ -63,7 +64,7 @@ public final class ModItems {
         "sapphire_axe",
         new AxeItem(
             SapphireTier.INSTANCE,
-            5_999.0F,
+            ProgressionMaterial.SAPPHIRE.axeAttackModifier(),
             -3.0F,
             new Item.Properties().fireResistant()
         )
@@ -73,7 +74,7 @@ public final class ModItems {
         "sapphire_shovel",
         new ShovelItem(
             SapphireTier.INSTANCE,
-            2_499.0F,
+            ProgressionMaterial.SAPPHIRE.pickaxeAttackModifier(),
             -3.0F,
             new Item.Properties().fireResistant()
         )
@@ -83,7 +84,7 @@ public final class ModItems {
         "sapphire_hoe",
         new HoeItem(
             SapphireTier.INSTANCE,
-            -3_001,
+            ProgressionMaterial.SAPPHIRE.hoeAttackModifier(),
             -1.0F,
             new Item.Properties().fireResistant()
         )
@@ -215,7 +216,7 @@ public final class ModItems {
         "shadow_sword",
         new SwordItem(
             FutureProgressionTier.SHADOW,
-            31,
+            ProgressionMaterial.SHADOW.swordAttackModifier(),
             -2.4F,
             new Item.Properties().fireResistant()
         )
@@ -225,7 +226,7 @@ public final class ModItems {
         "shadow_pickaxe",
         new PickaxeItem(
             FutureProgressionTier.SHADOW,
-            15,
+            ProgressionMaterial.SHADOW.pickaxeAttackModifier(),
             -2.8F,
             new Item.Properties().fireResistant()
         )
@@ -235,7 +236,7 @@ public final class ModItems {
         "chlorophyte_pickaxe",
         new PickaxeItem(
             FutureProgressionTier.CHLOROPHYTE,
-            99,
+            ProgressionMaterial.CHLOROPHYTE.pickaxeAttackModifier(),
             -2.8F,
             new Item.Properties().fireResistant()
         )
@@ -245,7 +246,7 @@ public final class ModItems {
         "hero_sword",
         new SwordItem(
             FutureProgressionTier.HERO,
-            239,
+            ProgressionMaterial.HERO.swordAttackModifier(),
             -2.4F,
             new Item.Properties().fireResistant()
         )
@@ -255,7 +256,7 @@ public final class ModItems {
         "hero_axe",
         new AxeItem(
             FutureProgressionTier.HERO,
-            359.0F,
+            ProgressionMaterial.HERO.axeAttackModifier(),
             -3.0F,
             new Item.Properties().fireResistant()
         )
@@ -265,7 +266,7 @@ public final class ModItems {
         "hero_pickaxe",
         new PickaxeItem(
             FutureProgressionTier.HERO,
-            119,
+            ProgressionMaterial.HERO.pickaxeAttackModifier(),
             -2.8F,
             new Item.Properties().fireResistant()
         )
@@ -275,7 +276,7 @@ public final class ModItems {
         "hero_shovel",
         new ShovelItem(
             FutureProgressionTier.HERO,
-            149.0F,
+            ProgressionMaterial.HERO.pickaxeAttackModifier(),
             -3.0F,
             new Item.Properties().fireResistant()
         )
@@ -285,7 +286,7 @@ public final class ModItems {
         "hero_hoe",
         new HoeItem(
             FutureProgressionTier.HERO,
-            -181,
+            ProgressionMaterial.HERO.hoeAttackModifier(),
             -1.0F,
             new Item.Properties().fireResistant()
         )
@@ -326,27 +327,27 @@ public final class ModItems {
 
     public static final Item JAXY_SWORD = register(
         "jaxy_sword",
-        new SwordItem(JaxyTier.INSTANCE, 31, -2.4F, new Item.Properties().fireResistant())
+        new SwordItem(JaxyTier.INSTANCE, ProgressionMaterial.JAXY.swordAttackModifier(), -2.4F, new Item.Properties().fireResistant())
     );
 
     public static final Item JAXY_PICKAXE = register(
         "jaxy_pickaxe",
-        new PickaxeItem(JaxyTier.INSTANCE, 15, -2.8F, new Item.Properties().fireResistant())
+        new PickaxeItem(JaxyTier.INSTANCE, ProgressionMaterial.JAXY.pickaxeAttackModifier(), -2.8F, new Item.Properties().fireResistant())
     );
 
     public static final Item JAXY_AXE = register(
         "jaxy_axe",
-        new AxeItem(JaxyTier.INSTANCE, 47.0F, -3.0F, new Item.Properties().fireResistant())
+        new AxeItem(JaxyTier.INSTANCE, ProgressionMaterial.JAXY.axeAttackModifier(), -3.0F, new Item.Properties().fireResistant())
     );
 
     public static final Item JAXY_SHOVEL = register(
         "jaxy_shovel",
-        new ShovelItem(JaxyTier.INSTANCE, 19.0F, -3.0F, new Item.Properties().fireResistant())
+        new ShovelItem(JaxyTier.INSTANCE, ProgressionMaterial.JAXY.pickaxeAttackModifier(), -3.0F, new Item.Properties().fireResistant())
     );
 
     public static final Item JAXY_HOE = register(
         "jaxy_hoe",
-        new HoeItem(JaxyTier.INSTANCE, -25, 0.0F, new Item.Properties().fireResistant())
+        new HoeItem(JaxyTier.INSTANCE, ProgressionMaterial.JAXY.hoeAttackModifier(), 0.0F, new Item.Properties().fireResistant())
     );
 
     public static final Item JAXY_HELMET = register(
@@ -375,27 +376,27 @@ public final class ModItems {
 
     public static final Item TITANIUM_SWORD = register(
         "titanium_sword",
-        new SwordItem(TitaniumTier.INSTANCE, 159, -2.4F, new Item.Properties().fireResistant())
+        new SwordItem(TitaniumTier.INSTANCE, ProgressionMaterial.TITANIUM.swordAttackModifier(), -2.4F, new Item.Properties().fireResistant())
     );
 
     public static final Item TITANIUM_PICKAXE = register(
         "titanium_pickaxe",
-        new PickaxeItem(TitaniumTier.INSTANCE, 79, -2.8F, new Item.Properties().fireResistant())
+        new PickaxeItem(TitaniumTier.INSTANCE, ProgressionMaterial.TITANIUM.pickaxeAttackModifier(), -2.8F, new Item.Properties().fireResistant())
     );
 
     public static final Item TITANIUM_AXE = register(
         "titanium_axe",
-        new AxeItem(TitaniumTier.INSTANCE, 239.0F, -3.0F, new Item.Properties().fireResistant())
+        new AxeItem(TitaniumTier.INSTANCE, ProgressionMaterial.TITANIUM.axeAttackModifier(), -3.0F, new Item.Properties().fireResistant())
     );
 
     public static final Item TITANIUM_SHOVEL = register(
         "titanium_shovel",
-        new ShovelItem(TitaniumTier.INSTANCE, 99.0F, -3.0F, new Item.Properties().fireResistant())
+        new ShovelItem(TitaniumTier.INSTANCE, ProgressionMaterial.TITANIUM.pickaxeAttackModifier(), -3.0F, new Item.Properties().fireResistant())
     );
 
     public static final Item TITANIUM_HOE = register(
         "titanium_hoe",
-        new HoeItem(TitaniumTier.INSTANCE, -121, 0.0F, new Item.Properties().fireResistant())
+        new HoeItem(TitaniumTier.INSTANCE, ProgressionMaterial.TITANIUM.hoeAttackModifier(), 0.0F, new Item.Properties().fireResistant())
     );
 
     public static final Item TITANIUM_HELMET = register(
@@ -436,27 +437,27 @@ public final class ModItems {
 
     public static final Item ROSALITA_SWORD = register(
         "rosalita_sword",
-        new SwordItem(RosalitaTier.INSTANCE, 399, -2.4F, new Item.Properties().fireResistant())
+        new SwordItem(RosalitaTier.INSTANCE, ProgressionMaterial.ROSALITA.swordAttackModifier(), -2.4F, new Item.Properties().fireResistant())
     );
 
     public static final Item ROSALITA_PICKAXE = register(
         "rosalita_pickaxe",
-        new PickaxeItem(RosalitaTier.INSTANCE, 199, -2.8F, new Item.Properties().fireResistant())
+        new PickaxeItem(RosalitaTier.INSTANCE, ProgressionMaterial.ROSALITA.pickaxeAttackModifier(), -2.8F, new Item.Properties().fireResistant())
     );
 
     public static final Item ROSALITA_AXE = register(
         "rosalita_axe",
-        new AxeItem(RosalitaTier.INSTANCE, 599.0F, -3.0F, new Item.Properties().fireResistant())
+        new AxeItem(RosalitaTier.INSTANCE, ProgressionMaterial.ROSALITA.axeAttackModifier(), -3.0F, new Item.Properties().fireResistant())
     );
 
     public static final Item ROSALITA_SHOVEL = register(
         "rosalita_shovel",
-        new ShovelItem(RosalitaTier.INSTANCE, 249.0F, -3.0F, new Item.Properties().fireResistant())
+        new ShovelItem(RosalitaTier.INSTANCE, ProgressionMaterial.ROSALITA.pickaxeAttackModifier(), -3.0F, new Item.Properties().fireResistant())
     );
 
     public static final Item ROSALITA_HOE = register(
         "rosalita_hoe",
-        new HoeItem(RosalitaTier.INSTANCE, -301, 0.0F, new Item.Properties().fireResistant())
+        new HoeItem(RosalitaTier.INSTANCE, ProgressionMaterial.ROSALITA.hoeAttackModifier(), 0.0F, new Item.Properties().fireResistant())
     );
 
     public static final Item ROSALITA_HELMET = register(
@@ -502,7 +503,7 @@ public final class ModItems {
         "ruby_sword",
         new SwordItem(
             RubyTier.INSTANCE,
-            15,
+            ProgressionMaterial.RUBY.swordAttackModifier(),
             -2.0F,
             new Item.Properties().fireResistant()
         )
@@ -512,7 +513,7 @@ public final class ModItems {
         "ruby_pickaxe",
         new PickaxeItem(
             RubyTier.INSTANCE,
-            7,
+            ProgressionMaterial.RUBY.pickaxeAttackModifier(),
             -2.4F,
             new Item.Properties().fireResistant()
         )
@@ -522,7 +523,7 @@ public final class ModItems {
         "ruby_axe",
         new AxeItem(
             RubyTier.INSTANCE,
-            23.0F,
+            ProgressionMaterial.RUBY.axeAttackModifier(),
             -2.6F,
             new Item.Properties().fireResistant()
         )
@@ -532,7 +533,7 @@ public final class ModItems {
         "ruby_shovel",
         new ShovelItem(
             RubyTier.INSTANCE,
-            9.0F,
+            ProgressionMaterial.RUBY.pickaxeAttackModifier(),
             -2.4F,
             new Item.Properties().fireResistant()
         )
@@ -542,7 +543,7 @@ public final class ModItems {
         "ruby_hoe",
         new HoeItem(
             RubyTier.INSTANCE,
-            -13,
+            ProgressionMaterial.RUBY.hoeAttackModifier(),
             0.0F,
             new Item.Properties().fireResistant()
         )
@@ -635,7 +636,7 @@ public final class ModItems {
         "emerald_sword",
         new SwordItem(
             EmeraldTier.INSTANCE,
-            7,
+            ProgressionMaterial.EMERALD.swordAttackModifier(),
             -2.4F,
             new Item.Properties()
                 .fireResistant()
@@ -646,7 +647,7 @@ public final class ModItems {
         "emerald_pickaxe",
         new PickaxeItem(
             EmeraldTier.INSTANCE,
-            3,
+            ProgressionMaterial.EMERALD.pickaxeAttackModifier(),
             -2.8F,
             new Item.Properties()
                 .fireResistant()
@@ -657,7 +658,7 @@ public final class ModItems {
         "emerald_axe",
         new AxeItem(
             EmeraldTier.INSTANCE,
-            11.0F,
+            ProgressionMaterial.EMERALD.axeAttackModifier(),
             -3.0F,
             new Item.Properties()
                 .fireResistant()
@@ -668,7 +669,7 @@ public final class ModItems {
         "emerald_shovel",
         new ShovelItem(
             EmeraldTier.INSTANCE,
-            4.0F,
+            ProgressionMaterial.EMERALD.pickaxeAttackModifier(),
             -3.0F,
             new Item.Properties()
                 .fireResistant()
@@ -679,7 +680,7 @@ public final class ModItems {
         "emerald_hoe",
         new HoeItem(
             EmeraldTier.INSTANCE,
-            -7,
+            ProgressionMaterial.EMERALD.hoeAttackModifier(),
             0.0F,
             new Item.Properties()
                 .fireResistant()
@@ -836,6 +837,82 @@ public final class ModItems {
             || stack.is(EMERALD_CHESTPLATE)
             || stack.is(EMERALD_LEGGINGS)
             || stack.is(EMERALD_BOOTS);
+    }
+
+    /** Returns the centralized material profile for currently registered gear. */
+    public static ProgressionMaterial progressionMaterial(
+        ItemStack stack
+    ) {
+        if (stack.is(EMERALD_SWORD)
+            || stack.is(EMERALD_PICKAXE)
+            || stack.is(EMERALD_AXE)
+            || stack.is(EMERALD_SHOVEL)
+            || stack.is(EMERALD_HOE)
+            || isEmeraldArmor(stack)) {
+            return ProgressionMaterial.EMERALD;
+        }
+        if (stack.is(RUBY_SWORD)
+            || stack.is(RUBY_PICKAXE)
+            || stack.is(RUBY_AXE)
+            || stack.is(RUBY_SHOVEL)
+            || stack.is(RUBY_HOE)
+            || stack.is(RUBY_HELMET)
+            || stack.is(RUBY_CHESTPLATE)
+            || stack.is(RUBY_LEGGINGS)
+            || stack.is(RUBY_BOOTS)) {
+            return ProgressionMaterial.RUBY;
+        }
+        if (stack.is(JAXY_SWORD)
+            || stack.is(JAXY_PICKAXE)
+            || stack.is(JAXY_AXE)
+            || stack.is(JAXY_SHOVEL)
+            || stack.is(JAXY_HOE)
+            || stack.is(JAXY_HELMET)
+            || stack.is(JAXY_CHESTPLATE)
+            || stack.is(JAXY_LEGGINGS)
+            || stack.is(JAXY_BOOTS)) {
+            return ProgressionMaterial.JAXY;
+        }
+        if (stack.is(CHLOROPHYTE_PICKAXE)) {
+            return ProgressionMaterial.CHLOROPHYTE;
+        }
+        if (stack.is(TITANIUM_SWORD)
+            || stack.is(TITANIUM_PICKAXE)
+            || stack.is(TITANIUM_AXE)
+            || stack.is(TITANIUM_SHOVEL)
+            || stack.is(TITANIUM_HOE)
+            || stack.is(TITANIUM_HELMET)
+            || stack.is(TITANIUM_CHESTPLATE)
+            || stack.is(TITANIUM_LEGGINGS)
+            || stack.is(TITANIUM_BOOTS)) {
+            return ProgressionMaterial.TITANIUM;
+        }
+        if (stack.is(HERO_SWORD)
+            || stack.is(HERO_PICKAXE)
+            || stack.is(HERO_AXE)
+            || stack.is(HERO_SHOVEL)
+            || stack.is(HERO_HOE)) {
+            return ProgressionMaterial.HERO;
+        }
+        if (stack.is(ROSALITA_SWORD)
+            || stack.is(ROSALITA_PICKAXE)
+            || stack.is(ROSALITA_AXE)
+            || stack.is(ROSALITA_SHOVEL)
+            || stack.is(ROSALITA_HOE)
+            || stack.is(ROSALITA_HELMET)
+            || stack.is(ROSALITA_CHESTPLATE)
+            || stack.is(ROSALITA_LEGGINGS)
+            || stack.is(ROSALITA_BOOTS)) {
+            return ProgressionMaterial.ROSALITA;
+        }
+        if (isSapphireGear(stack)) {
+            return ProgressionMaterial.SAPPHIRE;
+        }
+        if (stack.is(SHADOW_SWORD) || stack.is(SHADOW_PICKAXE)) {
+            return ProgressionMaterial.SHADOW;
+        }
+
+        return null;
     }
 
     public static boolean isEmeraldArmor(

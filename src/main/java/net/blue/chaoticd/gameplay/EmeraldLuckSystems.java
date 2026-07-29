@@ -101,6 +101,7 @@ public final class EmeraldLuckSystems {
         if (level.isClientSide
             || !(player instanceof ServerPlayer serverPlayer)
             || !hasLuck(serverPlayer)
+            || !player.hasCorrectToolForDrops(state)
             || !isOre(state)) {
             return;
         }

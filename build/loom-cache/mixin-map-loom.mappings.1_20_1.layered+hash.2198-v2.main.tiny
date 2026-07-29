@@ -1,2 +1,0 @@
-v1	named	intermediary
-FIELD	net/blue/chaoticd/mixin/ServerGamePacketListenerImplMixin	Lnet/minecraft/server/level/ServerPlayer;	player	field_14140

@@ -1,12 +1,8 @@
 {
   "replace": false,
   "values": [
-    "chaoticd:rosalita_ore",
-    "chaoticd:deepslate_rosalita_ore",
-    "chaoticd:nether_rosalita_ore",
-    "chaoticd:aurora_rosalita_ore",
-    "chaoticd:rosalita_block",
-    "chaoticd:sapphire_ore",
-    "chaoticd:aurora_sapphire_ore"
+    "chaoticd:titanium_ore",
+    "chaoticd:deepslate_titanium_ore",
+    "chaoticd:titanium_block"
   ]
 }

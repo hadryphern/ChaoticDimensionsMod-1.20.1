@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import net.blue.chaoticd.content.ModCombatEnchantments;
+import net.blue.chaoticd.content.ModItems;
+import net.blue.chaoticd.content.item.ProgressionMaterial;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -11,6 +13,7 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.PickaxeItem;
 import net.minecraft.world.item.TooltipFlag;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -44,6 +47,15 @@ public abstract class ItemStackTooltipMixin {
             lines.add(Component.translatable("attribute.modifier.plus.0", format(reach),
                 Component.translatable("tooltip.chaoticd.attack_reach"))
                 .withStyle(ChatFormatting.DARK_PURPLE));
+        }
+
+        ProgressionMaterial material = ModItems.progressionMaterial(stack);
+        if (material != null && stack.getItem() instanceof PickaxeItem) {
+            lines.add(Component.translatable(
+                "tooltip.chaoticd.progression_pickaxe",
+                Component.translatable(material.materialTranslationKey()),
+                material.miningLevel()
+            ).withStyle(ChatFormatting.GRAY));
         }
 
         callback.setReturnValue(lines);
